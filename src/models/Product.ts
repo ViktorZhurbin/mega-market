@@ -9,6 +9,10 @@ export const ProductSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    image: {
+        sm: String,
+        xl: String,
+    },
 });
 
 export const Product =

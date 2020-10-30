@@ -9,6 +9,8 @@ import styles from './CreateProduct.module.css';
 export const CreateProduct: React.FC = () => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
+    const [imageSm, setImageSm] = useState('');
+    const [imageXl, setImageXl] = useState('');
 
     const createNFakeProducts = async (n: number) => {
         const products: Product[] = [];
@@ -16,6 +18,20 @@ export const CreateProduct: React.FC = () => {
             products.push({
                 title: faker.commerce.productName(),
                 price: faker.commerce.price(),
+                image: {
+                    sm: faker.image.unsplash.imageUrl(
+                        180,
+                        180,
+                        'technology',
+                        'product'
+                    ),
+                    xl: faker.image.unsplash.imageUrl(
+                        580,
+                        580,
+                        'technology',
+                        'product'
+                    ),
+                },
             });
         }
 
@@ -30,7 +46,11 @@ export const CreateProduct: React.FC = () => {
             return;
         }
 
-        await createProduct({ title, price });
+        await createProduct({
+            title,
+            price,
+            image: { sm: imageSm, xl: imageXl },
+        });
         setTitle('');
         setPrice('');
     };
@@ -61,6 +81,20 @@ export const CreateProduct: React.FC = () => {
                     className={styles.input}
                     placeholder="Price"
                     onChange={setPrice}
+                />
+                <Input
+                    name="imageSm"
+                    value={imageSm}
+                    className={styles.input}
+                    placeholder="Small Image URL"
+                    onChange={setImageSm}
+                />
+                <Input
+                    name="imageXl"
+                    value={imageXl}
+                    className={styles.input}
+                    placeholder="Large Image URL"
+                    onChange={setImageXl}
                 />
                 <button type="submit">Create</button>
             </form>
