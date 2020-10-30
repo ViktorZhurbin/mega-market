@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
+import faker from 'faker';
 
 import { TextArea } from '@/components/TextArea';
-import { createProduct } from '../../services';
+import { Product } from '@/modules/products/typings';
+import { createProduct, deleteManyProducts } from '../../services';
 import styles from './CreateProduct.module.css';
 
 export const CreateProduct: React.FC = () => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
+
+    const createNFakeProducts = async (n: number) => {
+        const products: Product[] = [];
+        for (let index = 0; index < n; index++) {
+            products.push({
+                title: faker.commerce.productName(),
+                price: faker.commerce.price(),
+            });
+        }
+
+        await createProduct(products);
+    };
+
+    const clearProducts = () => deleteManyProducts({});
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -14,13 +30,19 @@ export const CreateProduct: React.FC = () => {
             return;
         }
 
-        await createProduct(title, price);
+        await createProduct({ title, price });
         setTitle('');
         setPrice('');
     };
 
     return (
         <div className={styles.container}>
+            <h2>Add fake products to DB</h2>
+            <button onClick={() => createNFakeProducts(10)}>Generate</button>
+
+            <h2>Delete all products in DB</h2>
+            <button onClick={() => clearProducts()}>Clear</button>
+
             <h2>Create Product</h2>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <TextArea
@@ -37,7 +59,7 @@ export const CreateProduct: React.FC = () => {
                     placeholder="Price"
                     onChange={setPrice}
                 />
-                <button type="submit">Submit</button>
+                <button type="submit">Create</button>
             </form>
         </div>
     );

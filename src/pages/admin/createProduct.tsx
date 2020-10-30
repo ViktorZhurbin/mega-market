@@ -10,11 +10,9 @@ const Page: React.FC = () => {
             return null;
         }
 
-        if (session.userRole === 'admin') {
-            return <CreateProduct />;
-        }
+        return <CreateProduct />;
 
-        return <div>Admin rights required</div>;
+        // return <div>Admin rights required</div>;
     };
 
     return <Layout>{getComponent()}</Layout>;
