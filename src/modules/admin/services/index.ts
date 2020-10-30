@@ -6,14 +6,14 @@ export const createProduct = (
     title: string,
     price: string
 ): Promise<ResponseData> =>
-    fetcher('/api/product/create', 'POST', { title, price });
+    fetcher('/api/products/create', 'POST', { title, price });
 
 export const editProduct = ({
     _id: id,
     title,
     price,
 }: Product): Promise<ResponseData> =>
-    fetcher('/api/product/edit', 'PUT', { id, title, price });
+    fetcher('/api/products/updateOne', 'PUT', { id, title, price });
 
 export const deleteProduct = (id: string): Promise<ResponseData> =>
-    fetcher('/api/product/delete', 'DELETE', { id });
+    fetcher('/api/products/deleteOne', 'DELETE', { id });

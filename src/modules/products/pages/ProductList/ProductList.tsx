@@ -6,7 +6,7 @@ import { ProductComponent } from '../../components/Product';
 import { Product } from '../../typings';
 
 export const ProductList: React.FC = () => {
-    const { data, isLoading, isError } = useData('/api/todo/get');
+    const { data, isLoading, isError } = useData('/api/products/get');
 
     if (isLoading) {
         return <span>Loading products...</span>;
