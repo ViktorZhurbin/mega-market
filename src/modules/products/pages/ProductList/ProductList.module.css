@@ -1,17 +1,6 @@
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    border-radius: 8px;
-    overflow: hidden;
-    padding: 25px 0;
-    box-sizing: border-box;
-}
-
-.title {
-    margin: 0 auto;
-    text-align: center;
-    color: deepskyblue;
-    border-bottom: none;
+    display: grid;
+    grid-gap: 25px;
+    padding: 10px 15px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
