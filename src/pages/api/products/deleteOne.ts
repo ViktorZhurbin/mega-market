@@ -13,10 +13,11 @@ export default async (
             method,
             body: { id },
         } = req;
-        const { userId } = await getSession({ req });
+        const session = await getSession({ req });
 
-        if (!userId) {
-            throw new Error('Not signed in');
+        if (!session) {
+            res.status(401).json({ success: false, error: 'Unauthorized' });
+            throw new Error('Unauthorized');
         }
 
         if (method !== 'DELETE') {

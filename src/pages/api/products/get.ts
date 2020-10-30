@@ -9,7 +9,6 @@ export default async (
 ): Promise<any> => {
     try {
         const { method } = req;
-        await connectDb();
 
         if (method !== 'GET') {
             throw new Error('Request method must be GET');

@@ -1,8 +1,8 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { connectDb } from '../../../utils/initDb';
-import { Product } from '../../../models/Product';
+import { connectDb } from '@/utils/initDb';
+import { Product } from '@/models/Product';
 
 export default async (
     req: NextApiRequest,
@@ -14,10 +14,11 @@ export default async (
             body: { payload },
         } = req;
 
-        const { userId } = await getSession({ req });
+        const session = await getSession({ req });
 
-        if (!userId) {
-            throw new Error('Not signed in');
+        if (!session) {
+            res.status(401).json({ success: false, error: 'Unauthorized' });
+            throw new Error('Unauthorized');
         }
 
         if (method !== 'POST') {
