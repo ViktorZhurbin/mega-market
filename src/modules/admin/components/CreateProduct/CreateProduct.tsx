@@ -20,19 +20,25 @@ export const CreateProduct: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.container}>
-            <TextArea
-                name="title"
-                value={title}
-                placeholder="Title"
-                onChange={setTitle}
-            />
-            <TextArea
-                name="price"
-                value={price}
-                placeholder="Price"
-                onChange={setPrice}
-            />
-        </form>
+        <div className={styles.container}>
+            <h2>Create Product</h2>
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <TextArea
+                    name="title"
+                    value={title}
+                    className={styles.input}
+                    placeholder="Title"
+                    onChange={setTitle}
+                />
+                <TextArea
+                    name="price"
+                    value={price}
+                    className={styles.input}
+                    placeholder="Price"
+                    onChange={setPrice}
+                />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     );
 };

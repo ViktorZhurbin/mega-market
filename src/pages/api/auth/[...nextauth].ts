@@ -1,6 +1,8 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
+// import { User } from '@/models/User';
+// import { connectDb } from '@/utils';
 
 const options = {
     providers: [
@@ -29,6 +31,10 @@ const options = {
     callbacks: {
         session: async (session, user) => {
             session.userId = user.id;
+            // await connectDb();
+            // const dbUser = await User.findOne({ _id: user.id });
+            // session.userRole = dbUser.role;
+
             return Promise.resolve(session);
         },
     },
