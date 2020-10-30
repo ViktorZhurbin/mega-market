@@ -1,8 +1,6 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-// import { User } from '@/models/User';
-// import { connectDb } from '@/utils';
 
 const options = {
     providers: [
@@ -16,14 +14,7 @@ const options = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
         Providers.Email({
-            server: {
-                host: process.env.EMAIL_SERVER_HOST,
-                port: Number(process.env.EMAIL_SERVER_PORT),
-                auth: {
-                    user: process.env.EMAIL_SERVER_USER,
-                    pass: process.env.EMAIL_SERVER_PASSWORD,
-                },
-            },
+            server: process.env.EMAIL_SERVER,
             from: process.env.EMAIL_FROM,
         }),
     ],
@@ -31,9 +22,6 @@ const options = {
     callbacks: {
         session: async (session, user) => {
             session.userId = user.id;
-            // await connectDb();
-            // const dbUser = await User.findOne({ _id: user.id });
-            // session.userRole = dbUser.role;
 
             return Promise.resolve(session);
         },
