@@ -9,7 +9,7 @@ export const Auth: React.FC = () => {
         <button onClick={() => signIn()}>Sign in</button>
     ) : (
         <div className={styles.signOut}>
-            <span>Signed in as {session.user.name}</span>
+            <span>Signed in as {session.user.name || session.user.email}</span>
             <button onClick={() => signOut()}>Sign out</button>
         </div>
     );

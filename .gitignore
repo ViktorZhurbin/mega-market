@@ -14,7 +14,8 @@ node_modules/
 .DS_*
 
 # dotenv environment variables file
-.env*
+.env.local*
+.env
 
 .vscode/
 
