@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { ProductSchema } from './Product';
 
 export const AccountSchema = new mongoose.Schema({
     compoundId: String,
@@ -9,7 +8,6 @@ export const AccountSchema = new mongoose.Schema({
     accessToken: String,
     createdAt: Date,
     updatedAt: Date,
-    todos: [ProductSchema],
 });
 
 export const Account =
