@@ -1,0 +1,37 @@
+.checkbox {
+    display: flex;
+    align-items: center;
+    border: 2px solid #333;
+    opacity: 0.5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    outline-color: transparent;
+    user-select: none;
+}
+
+.checkbox:hover {
+    opacity: 0.8;
+}
+
+.checkbox svg {
+    pointer-events: none;
+    width: 16px;
+    height: 16px;
+}
+
+.checkbox svg path {
+    fill: none;
+    stroke: #333;
+    stroke-width: 4px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 101;
+}
+
+.checkbox.isChecked svg path {
+    stroke-dashoffset: 0;
+}

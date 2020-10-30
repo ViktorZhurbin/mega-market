@@ -1,0 +1,68 @@
+{
+    "name": "my-journal",
+    "version": "0.0.1",
+    "description": "",
+    "license": "MIT",
+    "scripts": {
+        "dev": "next",
+        "debug": "NODE_OPTIONS='--inspect' next dev",
+        "build": "next build",
+        "start": "next start",
+        "prettier": "prettier --write 'src/**/*.(js|jsx|tsx|ts)'",
+        "lint": "eslint src",
+        "stylelint": "stylelint 'src/**/*.css'"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "browserslist": {
+        "production": [
+            "last 2 versions",
+            "not < 1%",
+            "not ie 11"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/classnames": "^2.2.9",
+        "@types/mongoose": "^5.7.36",
+        "@types/next-auth": "^3.1.14",
+        "@types/node": "^13.5.0",
+        "@types/react": "^16.9.17",
+        "@types/react-dom": "^16.9.4",
+        "@typescript-eslint/eslint-plugin": "^4.5.0",
+        "@typescript-eslint/parser": "^4.5.0",
+        "babel-plugin-inline-react-svg": "^1.1.1",
+        "eslint": "^7.11.0",
+        "eslint-config-prettier": "^6.14.0",
+        "husky": ">=4",
+        "lint-staged": ">=10",
+        "prettier": "2.1.2",
+        "stylelint": "^13.7.2",
+        "stylelint-config-prettier": "^8.0.2",
+        "stylelint-config-standard": "^20.0.0",
+        "stylelint-prettier": "^1.1.2"
+    },
+    "peerOptionalDependencies": {
+        "mongodb": "^3.6.2"
+    },
+    "dependencies": {
+        "classnames": "^2.2.6",
+        "mongoose": "^5.10.9",
+        "next": "latest",
+        "next-auth": "^3.1.0",
+        "next-images": "^1.6.0",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "swr": "^0.3.6",
+        "typescript": "^3.7.4",
+        "typography": "^0.16.19",
+        "typography-theme-github": "^0.16.19"
+    }
+}
