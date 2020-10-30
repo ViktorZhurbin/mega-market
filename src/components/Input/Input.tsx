@@ -5,7 +5,7 @@ import styles from './TextField.module.css';
 
 const cx = cl.bind(styles);
 
-interface TextFieldProps {
+interface InputProps {
     className?: string;
     value: string;
     placeholder?: string;
@@ -17,9 +17,10 @@ interface TextFieldProps {
     onKeyDown?: (event: React.KeyboardEvent) => void;
     onTouchMove?: () => void;
     ref?: React.RefObject<HTMLInputElement>;
+    type?: string;
 }
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
     (
         {
             className,
@@ -30,6 +31,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             onChange,
             onTouchMove,
             onKeyDown,
+            type = 'text',
         },
         ref
     ) => {
@@ -37,7 +39,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             <input
                 ref={ref}
                 className={cx('input', className)}
-                type="text"
+                type={type}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
@@ -50,4 +52,4 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     }
 );
 
-TextField.displayName = 'TextField';
+Input.displayName = 'Input';
