@@ -11,6 +11,7 @@ interface TextAreaProps {
     placeholder?: string;
     name?: string;
     active?: boolean;
+    rows?: number;
     onBlur?: () => void;
     onFocus?: () => void;
     onChange?: (value: string) => void;
@@ -31,6 +32,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onChange,
             onTouchMove,
             onKeyDown,
+            rows = 1,
         },
         ref
     ) => {
@@ -42,11 +44,14 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         };
 
         return (
-            <div className={cx('parent', className)} data-value={value.trim()}>
+            <div
+                className={cx('parent', className)}
+                data-value={String(value).trim()}
+            >
                 <textarea
                     ref={ref}
-                    className={cx('textarea')}
-                    rows={1}
+                    className={styles.textarea}
+                    rows={rows}
                     placeholder={placeholder}
                     value={value}
                     onChange={handleChange}

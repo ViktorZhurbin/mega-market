@@ -1,16 +1,10 @@
-import { useSession } from 'next-auth/client';
-
 import { Auth } from '../Auth';
 
 export const Layout: React.FC = ({ children }) => {
-    const [session, loading] = useSession();
-
-    return loading ? (
-        <span>Session loading...</span>
-    ) : (
+    return (
         <div>
             <Auth />
-            {session && children}
+            {children}
         </div>
     );
 };

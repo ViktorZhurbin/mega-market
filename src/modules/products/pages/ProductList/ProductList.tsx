@@ -3,7 +3,7 @@ import React from 'react';
 import { useData } from '@/hooks/useData';
 import styles from './ProductList.module.css';
 import { ProductComponent } from '../../components/Product';
-import { Product } from '../../@types';
+import { Product } from '../../typings';
 
 export const ProductList: React.FC = () => {
     const { data, isLoading, isError } = useData('/api/todo/get');

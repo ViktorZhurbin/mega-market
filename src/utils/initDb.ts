@@ -35,7 +35,7 @@ export const connectDb = async (): Promise<void> => {
         console.error.bind(console, 'MongoDB connection error:')
     );
 
-    mongoose.connection.on('connected', () =>
+    mongoose.connection.once('connected', () =>
         console.log('Connected to MongoDB')
     );
 };

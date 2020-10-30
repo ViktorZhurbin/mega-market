@@ -1,0 +1,15 @@
+.container {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 25px;
+    list-style: none;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    color: #4d4d4d;
+}
