@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import cl from 'classnames/bind';
 
-import styles from './TextField.module.css';
+import styles from './Input.module.css';
 
 const cx = cl.bind(styles);
 
@@ -11,9 +11,11 @@ interface InputProps {
     placeholder?: string;
     name?: string;
     active?: boolean;
+    min?: number;
+    step?: string;
     onBlur?: () => void;
     onFocus?: () => void;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (value: string) => void;
     onKeyDown?: (event: React.KeyboardEvent) => void;
     onTouchMove?: () => void;
     ref?: React.RefObject<HTMLInputElement>;
@@ -32,9 +34,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onTouchMove,
             onKeyDown,
             type = 'text',
+            ...props
         },
         ref
     ) => {
+        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange(event.target.value);
+        };
+
         return (
             <input
                 ref={ref}
@@ -42,11 +49,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 type={type}
                 placeholder={placeholder}
                 value={value}
-                onChange={onChange}
+                onChange={handleChange}
                 onKeyDown={onKeyDown}
                 onBlur={onBlur}
                 onFocus={onFocus}
                 onTouchMove={onTouchMove}
+                {...props}
             />
         );
     }

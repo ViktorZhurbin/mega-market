@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import faker from 'faker';
 
-import { TextArea } from '@/components/TextArea';
+import { Input } from '@/components/Input';
 import { Product } from '@/modules/products/typings';
 import { createProduct, deleteManyProducts } from '../../services';
 import styles from './CreateProduct.module.css';
@@ -45,15 +45,18 @@ export const CreateProduct: React.FC = () => {
 
             <h2>Create Product</h2>
             <form onSubmit={handleSubmit} className={styles.form}>
-                <TextArea
+                <Input
                     name="title"
                     value={title}
                     className={styles.input}
                     placeholder="Title"
                     onChange={setTitle}
                 />
-                <TextArea
+                <Input
                     name="price"
+                    type="number"
+                    min={1}
+                    step="any"
                     value={price}
                     className={styles.input}
                     placeholder="Price"
