@@ -10,8 +10,8 @@ export const ProductSchema = new mongoose.Schema({
         required: true,
     },
     image: {
-        sm: String,
-        xl: String,
+        type: String,
+        required: true,
     },
 });
 

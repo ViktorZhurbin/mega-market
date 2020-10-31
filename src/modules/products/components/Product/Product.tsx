@@ -15,7 +15,7 @@ export const ProductComponent: React.FC<ProductProps> = ({
         <div className={styles.container}>
             <Image
                 className={styles.image}
-                src={image.sm}
+                src={image}
                 width="180"
                 height="180"
                 alt={title}
