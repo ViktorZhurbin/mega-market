@@ -3,7 +3,13 @@ import useSWR from 'swr';
 const fetcher = (input: RequestInfo, init?: RequestInit) =>
     fetch(input, init).then((res) => res.json());
 
-export const useData = (apiEndpoint: string): any => {
+type Response = {
+    data: any;
+    isLoading: boolean;
+    isError: boolean | undefined;
+};
+
+export const useData = (apiEndpoint: string): Response => {
     const { data, error } = useSWR(apiEndpoint, fetcher);
 
     return {

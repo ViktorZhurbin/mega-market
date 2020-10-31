@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Provider } from 'next-auth/client';
 
+import { AppContextProvider } from '../contexts';
 import { typography } from '../styles/typography';
 import '../styles/global.css';
 
@@ -19,7 +20,9 @@ export default function App({ Component, pageProps }: AppProps): ReactElement {
             </Head>
 
             <Provider session={pageProps.session}>
-                <Component {...pageProps} />
+                <AppContextProvider>
+                    <Component {...pageProps} />
+                </AppContextProvider>
             </Provider>
         </>
     );
