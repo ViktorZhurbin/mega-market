@@ -5,19 +5,19 @@ import { GenericObject, GenericResponse } from 'src/typings';
 export const createProduct = (
     products: Product | Product[]
 ): Promise<GenericResponse> =>
-    fetcher('/api/products/create', 'POST', { products });
+    fetcher('/api/admin/products/create', 'POST', { products });
 
 export const editProduct = ({
     _id: id,
     title,
     price,
 }: Product): Promise<GenericResponse> =>
-    fetcher('/api/products/updateOne', 'PUT', { id, title, price });
+    fetcher('/api/admin/products/updateOne', 'PUT', { id, title, price });
 
 export const deleteProduct = (id: string): Promise<GenericResponse> =>
-    fetcher('/api/products/deleteOne', 'DELETE', { id });
+    fetcher('/api/admin/products/deleteOne', 'DELETE', { id });
 
 export const deleteManyProducts = (
     filter: GenericObject
 ): Promise<GenericResponse> =>
-    fetcher('/api/products/deleteMany', 'DELETE', filter);
+    fetcher('/api/admin/products/deleteMany', 'DELETE', filter);
