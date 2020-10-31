@@ -3,7 +3,7 @@
         "baseUrl": "./src",
         "paths": {
             "@src/*": ["./*"],
-            "@products/*": ["./modules/products/*"],
+            "@product/*": ["./modules/product/*"],
             "@admin/*": ["./modules/admin/*"]
         },
         "target": "es5",
