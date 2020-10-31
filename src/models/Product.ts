@@ -1,7 +1,12 @@
 import mongoose from 'mongoose';
+import { Product as ProductType } from '@product/typings';
 
 export const ProductSchema = new mongoose.Schema({
     title: {
+        type: String,
+        required: true,
+    },
+    description: {
         type: String,
         required: true,
     },
@@ -16,4 +21,5 @@ export const ProductSchema = new mongoose.Schema({
 });
 
 export const Product =
-    mongoose.models?.Product || mongoose.model('Product', ProductSchema);
+    mongoose.models?.Product ||
+    mongoose.model<ProductType & mongoose.Document>('Product', ProductSchema);

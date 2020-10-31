@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React /* , { useState } */ from 'react';
 import faker from 'faker';
 
-import { Input } from '@src/components/Input';
+// import { Input } from '@src/components/Input';
 import { Product } from '@src/modules/product/typings';
 import { createProduct, deleteManyProducts } from '../../services';
 import styles from './CreateProduct.module.css';
@@ -14,15 +14,17 @@ const generateNFakeProducts = (length: number): Product[] => {
 
     return arr.map((num) => ({
         title: faker.commerce.productName(),
-        price: faker.random.float({ min: 0, max: 1000000 }),
+        description: faker.commerce.productDescription(),
+        price: String(faker.random.float({ min: 0, max: 1000000 })),
         image: `/images/${num}.webp`,
     }));
 };
 
 export const CreateProduct: React.FC = () => {
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState('');
-    const [image, setImage] = useState('');
+    // const [title, setTitle] = useState('');
+    // const [description, setDescription] = useState('');
+    // const [price, setPrice] = useState('');
+    // const [image, setImage] = useState('');
 
     const createProducts = () => createProduct(generateNFakeProducts(10));
     const clearProducts = () => deleteManyProducts({});
@@ -31,20 +33,22 @@ export const CreateProduct: React.FC = () => {
         createProducts();
     };
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (!title || !price) {
-            return;
-        }
+    // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    //     if (!title || !price) {
+    //         return;
+    //     }
 
-        await createProduct({
-            title,
-            price,
-            image,
-        });
-        setTitle('');
-        setPrice('');
-    };
+    //     await createProduct({
+    //         title,
+    //         description,
+    //         price,
+    //         image,
+    //     });
+    //     setTitle('');
+    //     setDescription('');
+    //     setPrice('');
+    // };
 
     return (
         <div className={styles.container}>
@@ -57,7 +61,7 @@ export const CreateProduct: React.FC = () => {
             <h2>Delete all products in DB</h2>
             <button onClick={clearProducts}>Clear</button>
 
-            <h2>Create Product</h2>
+            {/* <h2>Create Product</h2>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <Input
                     name="title"
@@ -65,6 +69,13 @@ export const CreateProduct: React.FC = () => {
                     className={styles.input}
                     placeholder="Title"
                     onChange={setTitle}
+                />
+                <Input
+                    name="description"
+                    value={description}
+                    className={styles.input}
+                    placeholder="Description"
+                    onChange={setDescription}
                 />
                 <Input
                     name="price"
@@ -84,7 +95,7 @@ export const CreateProduct: React.FC = () => {
                     onChange={setImage}
                 />
                 <button type="submit">Create</button>
-            </form>
+            </form> */}
         </div>
     );
 };
