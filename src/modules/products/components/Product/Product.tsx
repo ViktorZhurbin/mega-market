@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { Product } from '../../typings';
 import styles from './Product.module.css';
+import { formatPrice } from 'src/utils/string';
 
 interface ProductProps {
     product: Product;
@@ -22,7 +23,7 @@ export const ProductComponent: React.FC<ProductProps> = ({
                 title={title}
             />
             <div className={styles.details}>
-                <div className={styles.price}>{price}</div>
+                <div className={styles.price}>{formatPrice(price)}</div>
                 <div className={styles.title}>{title}</div>
             </div>
         </div>
