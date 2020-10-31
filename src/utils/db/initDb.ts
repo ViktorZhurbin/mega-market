@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { schemas } from '../models';
+import { schemas } from 'src/models';
 
 const createModels = () => {
     try {

@@ -1,4 +1,4 @@
-import { fetcher } from 'src/utils/fetcher';
+import { fetcher } from 'src/utils/db/fetcher';
 import { Product } from '@products/typings';
 import { GenericObject, GenericResponse } from 'src/typings';
 

@@ -1,4 +1,4 @@
-import { GenericObject } from '../typings';
+import { GenericObject } from 'src/typings';
 
 const contentType = 'application/json';
 const headers = {
@@ -15,7 +15,7 @@ export const fetcher = async (
         const res = await fetch(endpoint, {
             method,
             headers,
-            body: JSON.stringify({ ...payload }),
+            body: JSON.stringify(payload),
         });
 
         if (!res.ok) {
