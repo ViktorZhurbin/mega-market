@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { useData } from '@src/hooks/useData';
+import { Layout } from '@src/components/Layout';
+
 import styles from './ProductList.module.css';
 import { ProductComponent } from '../../components/Product';
 import { Product } from '../../typings';
@@ -16,10 +18,12 @@ export const ProductList: React.FC = () => {
     }
 
     return (
-        <div className={styles.container}>
-            {data.map((product: Product) => (
-                <ProductComponent key={product._id} product={product} />
-            ))}
-        </div>
+        <Layout>
+            <div className={styles.container}>
+                {data.map((product: Product) => (
+                    <ProductComponent key={product._id} product={product} />
+                ))}
+            </div>
+        </Layout>
     );
 };
