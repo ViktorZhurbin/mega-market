@@ -5,6 +5,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "next",
+        "test": "jest",
         "debug": "NODE_OPTIONS='--inspect' next dev",
         "build": "next build",
         "start": "next start",
@@ -30,6 +31,7 @@
         ]
     },
     "devDependencies": {
+        "@types/jest": "^26.0.15",
         "@types/mongoose": "^5.7.36",
         "@types/next-auth": "^3.1.14",
         "@types/node": "^14.14.6",
@@ -42,6 +44,7 @@
         "eslint-config-prettier": "^6.14.0",
         "faker": "^5.1.0",
         "husky": ">=4",
+        "jest": "^26.6.1",
         "lint-staged": ">=10",
         "prettier": "2.1.2",
         "stylelint": "^13.7.2",
