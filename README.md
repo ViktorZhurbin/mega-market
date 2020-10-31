@@ -1,1 +1,1 @@
-# my-journal
+# mini market demo
