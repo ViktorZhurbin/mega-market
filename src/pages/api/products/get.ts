@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 
-import { connectDb } from 'src/utils/db/initDb';
-import { Product } from 'src/models';
+import { connectDb } from '@src/utils/db/initDb';
+import { Product } from '@src/models';
 
 export default async (
     req: NextApiRequest,

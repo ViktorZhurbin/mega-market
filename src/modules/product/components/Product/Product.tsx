@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { Product } from '../../typings';
 import styles from './Product.module.css';
-import { formatPrice } from 'src/utils/string';
+import { formatPrice } from '@src/utils/string';
 
 interface ProductProps {
     product: Product;

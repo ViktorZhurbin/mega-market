@@ -1,6 +1,6 @@
-import { fetcher } from 'src/utils/db/fetcher';
-import { Product } from '@products/typings';
-import { GenericObject, GenericResponse } from 'src/typings';
+import { fetcher } from '@src/utils/db/fetcher';
+import { Product } from '@src/modules/product/typings';
+import { GenericObject, GenericResponse } from '@src/typings';
 
 export const createProduct = (
     products: Product | Product[]
