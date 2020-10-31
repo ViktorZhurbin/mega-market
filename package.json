@@ -30,7 +30,6 @@
         ]
     },
     "devDependencies": {
-        "@types/classnames": "^2.2.9",
         "@types/mongoose": "^5.7.36",
         "@types/next-auth": "^3.1.14",
         "@types/node": "^13.5.0",
@@ -54,7 +53,6 @@
         "mongodb": "^3.6.2"
     },
     "dependencies": {
-        "classnames": "^2.2.6",
         "mongoose": "^5.10.9",
         "next": "^10.0.0",
         "next-auth": "^3.1.0",

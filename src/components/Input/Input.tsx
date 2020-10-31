@@ -1,9 +1,6 @@
 import React, { forwardRef } from 'react';
-import cl from 'classnames/bind';
 
 import styles from './Input.module.css';
-
-const cx = cl.bind(styles);
 
 interface InputProps {
     className?: string;
@@ -45,7 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         return (
             <input
                 ref={ref}
-                className={cx('input', className)}
+                className={`${styles.input} ${className}`}
                 type={type}
                 placeholder={placeholder}
                 value={value}

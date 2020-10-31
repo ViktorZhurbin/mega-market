@@ -1,9 +1,6 @@
 import React, { useState, useRef } from 'react';
-import classNames from 'classnames/bind';
 
 import styles from './EditableText.module.css';
-
-const cx = classNames.bind(styles);
 
 interface EditableTextProps {
     text: string;
@@ -51,7 +48,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
     return (
         <div
             ref={textAreaRef}
-            className={cx('text', className)}
+            className={`${styles.text} ${className}`}
             onClick={onFocus}
             onInput={handleInput}
             onBlur={handleSubmit}

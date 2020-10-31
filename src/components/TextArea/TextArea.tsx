@@ -1,9 +1,6 @@
 import React, { forwardRef } from 'react';
-import cl from 'classnames/bind';
 
 import styles from './TextArea.module.css';
-
-const cx = cl.bind(styles);
 
 interface TextAreaProps {
     className?: string;
@@ -45,7 +42,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         return (
             <div
-                className={cx('parent', className)}
+                className={`${styles.parent} ${className}`}
                 data-value={String(value).trim()}
             >
                 <textarea

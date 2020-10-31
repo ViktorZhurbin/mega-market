@@ -32,6 +32,6 @@
     stroke-dashoffset: 101;
 }
 
-.checkbox.isChecked svg path {
+.checked svg path {
     stroke-dashoffset: 0;
 }
