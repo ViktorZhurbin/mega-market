@@ -7,3 +7,7 @@ export const schemas = {
     Account: AccountSchema,
     User: UserSchema,
 };
+
+export * from './Product';
+export * from './Account';
+export * from './User';

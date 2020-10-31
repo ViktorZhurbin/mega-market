@@ -2,8 +2,9 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "paths": {
-            "@/*": ["./*"],
-            "@todo/*": ["./modules/todo/*"]
+            "src/*": ["./*"],
+            "@products/*": ["./modules/products/*"],
+            "@admin/*": ["./modules/admin/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],

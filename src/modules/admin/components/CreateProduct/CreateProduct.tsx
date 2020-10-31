@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import faker from 'faker';
 
-import { Input } from '@/components/Input';
-import { Product } from '@/modules/products/typings';
+import { Input } from 'src/components/Input';
+import { Product } from '@products/typings';
 import { createProduct, deleteManyProducts } from '../../services';
 import styles from './CreateProduct.module.css';
 

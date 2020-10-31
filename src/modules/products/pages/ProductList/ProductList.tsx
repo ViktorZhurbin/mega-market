@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useData } from '@/hooks/useData';
+import { useData } from 'src/hooks/useData';
 import styles from './ProductList.module.css';
 import { ProductComponent } from '../../components/Product';
 import { Product } from '../../typings';

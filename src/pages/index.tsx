@@ -1,5 +1,5 @@
-import { ProductList } from '../modules/products/pages/ProductList';
-import { Layout } from '../components/Layout';
+import { ProductList } from '@products/pages/ProductList';
+import { Layout } from 'src/components/Layout';
 
 const Main: React.FC = () => {
     return (

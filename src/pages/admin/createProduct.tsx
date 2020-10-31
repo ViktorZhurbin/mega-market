@@ -1,8 +1,8 @@
 import { useSession } from 'next-auth/client';
 
-import { CreateProduct } from '@/modules/admin/components/CreateProduct';
-import { Layout } from '@/components/Layout';
-import { useData } from '@/hooks/useData';
+import { CreateProduct } from '@admin/components/CreateProduct';
+import { Layout } from 'src/components/Layout';
+import { useData } from 'src/hooks/useData';
 
 const Page: React.FC = () => {
     const [session] = useSession();
