@@ -4,7 +4,8 @@
         "paths": {
             "@src/*": ["./*"],
             "@product/*": ["./modules/product/*"],
-            "@admin/*": ["./modules/admin/*"]
+            "@admin/*": ["./modules/admin/*"],
+            "@cart/*": ["./modules/cart/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
