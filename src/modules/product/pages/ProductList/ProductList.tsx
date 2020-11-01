@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Layout } from '@src/components/Layout';
 
 import styles from './ProductList.module.css';
 import { ProductItem } from '../../components/ProductItem';
 import { Product } from '../../typings';
-import { ProductContext } from '@src/contexts/ProductContext';
+import { useData } from '@src/hooks/useData';
 
 export const ProductList: React.FC = () => {
-    const { data, isLoading, isError } = useContext(ProductContext);
+    const { data, isLoading, isError } = useData('/api/products/get');
 
     if (isLoading) {
         return <span>Loading products...</span>;
