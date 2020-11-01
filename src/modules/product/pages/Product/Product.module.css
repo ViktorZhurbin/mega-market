@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container > div {
+    align-self: center;
+}
+
+.image {
+    object-fit: contain;
+}
+
+.title {
+    line-height: 1.25;
+    color: #001a34;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.price {
+    font-size: 30px;
+    line-height: 1.25;
+    font-weight: 700;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.38;
+}
+
+.header {
+    margin-bottom: 16px;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #001a34;
+}
