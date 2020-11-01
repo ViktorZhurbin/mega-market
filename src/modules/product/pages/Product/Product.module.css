@@ -4,7 +4,7 @@
     padding: 0 16px;
 }
 
-.container > div {
+.container > div:first-child {
     align-self: center;
 }
 
