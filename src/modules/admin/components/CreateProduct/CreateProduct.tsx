@@ -52,14 +52,28 @@ export const CreateProduct: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <h2>Clear and populate DB</h2>
-            <button onClick={regenerateProducts}>Regenerate</button>
+            {/* <h2>Clear and populate DB</h2> */}
+            <button
+                className={`${styles.btn} ${styles.btnPrimary}`}
+                onClick={regenerateProducts}
+            >
+                Clear and populate DB
+            </button>
+            <br />
 
-            <h2>Add fake products to DB</h2>
-            <button onClick={createProducts}>Generate</button>
+            {/* <h2>Add fake products to DB</h2> */}
+            <button className={`${styles.btn}`} onClick={createProducts}>
+                Add fake products to DB
+            </button>
+            <br />
 
-            <h2>Delete all products in DB</h2>
-            <button onClick={clearProducts}>Clear</button>
+            {/* <h2>Delete all products in DB</h2> */}
+            <button
+                className={`${styles.btn} ${styles.btnSecondary}`}
+                onClick={clearProducts}
+            >
+                Delete all products in DB
+            </button>
 
             {/* <h2>Create Product</h2>
             <form onSubmit={handleSubmit} className={styles.form}>
