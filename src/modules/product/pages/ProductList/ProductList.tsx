@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Layout } from '@src/components/Layout';
 
 import styles from './ProductList.module.css';
-import { ProductComponent } from '../../components/Product';
+import { ProductItem } from '../../components/ProductItem';
 import { Product } from '../../typings';
 import { ProductContext } from '@src/contexts/ProductContext';
 
@@ -21,7 +21,7 @@ export const ProductList: React.FC = () => {
         <Layout>
             <div className={styles.container}>
                 {data.map((product: Product) => (
-                    <ProductComponent key={product._id} product={product} />
+                    <ProductItem key={product._id} product={product} />
                 ))}
             </div>
         </Layout>

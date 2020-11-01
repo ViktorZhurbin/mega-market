@@ -3,14 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Product } from '../../typings';
-import styles from './Product.module.css';
+import styles from './ProductItem.module.css';
 import { formatPrice } from '@src/utils/string';
 
-interface ProductProps {
+interface Props {
     product: Product;
 }
 
-export const ProductComponent: React.FC<ProductProps> = ({
+export const ProductItem: React.FC<Props> = ({
     product: { _id, title, price, image },
 }) => {
     return (
