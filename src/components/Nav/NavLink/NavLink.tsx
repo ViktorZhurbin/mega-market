@@ -21,7 +21,7 @@ export const NavLink: React.FC<Props> = ({ title, icon, href, counter }) => {
                 className={`${styles.link} ${isActive && styles.active}`}
             >
                 <span className={styles.icon}>{icon}</span>
-                <span className={styles.text}>{title}</span>
+                <span className={styles.title}>{title}</span>
                 {Boolean(counter) && (
                     <span className={styles.counter}>{counter}</span>
                 )}

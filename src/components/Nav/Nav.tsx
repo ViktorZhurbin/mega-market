@@ -9,14 +9,13 @@ import IconProfile from './icons/profile.svg';
 import IconHome from './icons/home.svg';
 import IconCart from './icons/cart.svg';
 
-export const Nav: React.FC<{ userId: string }> = ({ userId }) => {
-    const { data: user } = useData<UserType>(
-        userId ? `api/user/${userId}` : null
-    );
+export const Nav: React.FC<{ userId: string }> = ({ userId, children }) => {
+    const { data: user } = useData<UserType>(`api/user/${userId}`);
     const cartQty = user?.cart.reduce((qty, item) => qty + item.quantity, 0);
 
     return (
         <nav className={styles.container}>
+            {children}
             <div className={styles.linkWrapper}>
                 <NavLink title="Home" icon={<IconHome />} href="/" />
                 <NavLink
