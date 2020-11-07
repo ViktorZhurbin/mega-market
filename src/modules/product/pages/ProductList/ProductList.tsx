@@ -4,11 +4,11 @@ import { Layout } from '@src/components/Layout';
 
 import styles from './ProductList.module.css';
 import { ProductItem } from '../../components/ProductItem';
-import { Product } from '../../typings';
+import { ProductType } from '../../typings';
 import { useData } from '@src/hooks/useData';
 
 export const ProductList: React.FC = () => {
-    const { data, isLoading, isError } = useData('/api/products/get');
+    const { data, isLoading, isError } = useData('/api/product/get');
 
     if (isLoading) {
         return <span>Loading products...</span>;
@@ -20,7 +20,7 @@ export const ProductList: React.FC = () => {
     return (
         <Layout>
             <div className={styles.container}>
-                {data.map((product: Product) => (
+                {data.map((product: ProductType) => (
                     <ProductItem key={product._id} product={product} />
                 ))}
             </div>

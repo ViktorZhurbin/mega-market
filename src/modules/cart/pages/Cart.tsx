@@ -1,11 +1,11 @@
-import { Product } from '@product/typings';
+import { ProductType } from '@product/typings';
 import { Layout } from '@src/components/Layout';
 import { CartItem } from '../components/CartItem';
 
 import styles from './Cart.module.css';
 
 type CartItem = {
-    product: Product;
+    product: ProductType;
     quantity: string;
 };
 

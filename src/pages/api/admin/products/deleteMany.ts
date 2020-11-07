@@ -2,7 +2,7 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
 import { Product } from '@src/models';
-import { connectDb } from '@src/utils/db/initDb';
+import { dbConnect } from '@src/utils/db/initDb';
 
 export default async (
     req: NextApiRequest,
@@ -21,7 +21,7 @@ export default async (
             throw new Error('Request method must be DELETE');
         }
 
-        await connectDb();
+        await dbConnect();
 
         const { deletedCount } = await Product.deleteMany(filter);
 

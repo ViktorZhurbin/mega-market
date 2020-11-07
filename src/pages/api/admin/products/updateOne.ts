@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { connectDb } from '@src/utils/db/initDb';
+import { dbConnect } from '@src/utils/db/initDb';
 import { Product } from '@src/models';
 
 export default async (
@@ -28,7 +28,7 @@ export default async (
             throw new Error('Missing required field: payload');
         }
 
-        await connectDb();
+        await dbConnect();
 
         const { id: _id, title, price } = payload;
         const product = await Product.findOneAndUpdate(

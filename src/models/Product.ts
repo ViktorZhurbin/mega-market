@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Product as ProductType } from '@product/typings';
+import { ProductType } from '@product/typings';
 
 export const ProductSchema = new mongoose.Schema({
     title: {

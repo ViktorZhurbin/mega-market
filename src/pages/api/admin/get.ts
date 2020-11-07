@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { connectDb } from '@src/utils/db/initDb';
+import { dbConnect } from '@src/utils/db/initDb';
 import { User } from '@src/models';
 
 export default async (
@@ -24,7 +24,7 @@ export default async (
             throw new Error('Request method must be GET');
         }
 
-        await connectDb();
+        await dbConnect();
         const user = await User.findOne({ _id: session.userId });
         const isAdmin = user.role === 'admin';
 

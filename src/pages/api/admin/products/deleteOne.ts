@@ -2,7 +2,7 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
 import { Product } from '@src/models';
-import { connectDb } from '@src/utils/db/initDb';
+import { dbConnect } from '@src/utils/db/initDb';
 
 export default async (
     req: NextApiRequest,
@@ -27,7 +27,7 @@ export default async (
         if (!id) {
             throw new Error('Missing field: id');
         }
-        await connectDb();
+        await dbConnect();
 
         const product = await Product.deleteOne({ _id: id });
         console.log('product', product);

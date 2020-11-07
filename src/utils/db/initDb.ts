@@ -16,7 +16,7 @@ const createModels = () => {
     }
 };
 
-export const connectDb = async (): Promise<void> => {
+export const dbConnect = async (): Promise<void> => {
     const disconnected = mongoose.connection['_readyState'] === 0;
     if (disconnected) {
         try {
@@ -26,7 +26,7 @@ export const connectDb = async (): Promise<void> => {
                 useFindAndModify: false,
             });
         } catch (error) {
-            console.error('connectDb error: ', error);
+            console.error('dbConnect error: ', error);
         }
     }
 
@@ -42,5 +42,5 @@ export const connectDb = async (): Promise<void> => {
 
 export const initDb = async (): Promise<void> => {
     createModels();
-    await connectDb();
+    await dbConnect();
 };

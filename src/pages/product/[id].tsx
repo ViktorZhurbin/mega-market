@@ -1,8 +1,8 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 
 import { Product as ProductModel } from '@src/models';
-import { Product as ProductType } from '@product/typings';
-import { connectDb } from '@src/utils/db';
+import { ProductType } from '@product/typings';
+import { dbConnect } from '@src/utils/db';
 import { ProductComponent } from '@product/pages/Product';
 
 type Props = {
@@ -15,7 +15,7 @@ const ProductPage: React.FC<Props> = ({ product }) => (
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
-        await connectDb();
+        await dbConnect();
         const product = await ProductModel.findOne({
             _id: params.id,
         });
@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     try {
-        await connectDb();
+        await dbConnect();
         const products: ProductType[] = await ProductModel.find({});
         const paths = products.map((product) => ({
             params: { id: product._id.toString() },
