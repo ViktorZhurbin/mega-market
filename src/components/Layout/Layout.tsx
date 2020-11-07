@@ -5,7 +5,7 @@ import { Nav } from '../Nav';
 
 import styles from './Layout.module.css';
 
-export const Layout: React.FC<{ stickyItem: ReactElement }> = ({
+export const Layout: React.FC<{ stickyItem?: ReactElement }> = ({
     children,
     stickyItem,
 }) => {

@@ -9,8 +9,8 @@ type Response<Data> = {
     isError: boolean | undefined;
 };
 
-export const useData = <Data>(apiEndpoint: string): Response<Data> => {
-    const { data, error } = useSWR<{ data: Data }>(apiEndpoint, fetcher);
+export const useData = <Data>(key: string): Response<Data> => {
+    const { data, error } = useSWR<{ data: Data }>(key, fetcher);
 
     return {
         data: data?.data,

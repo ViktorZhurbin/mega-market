@@ -1,9 +1,9 @@
 import { fetcher } from '@src/utils/db/fetcher';
-import { Product } from '@src/modules/product/typings';
+import { ProductType } from '@src/modules/product/typings';
 import { GenericObject, GenericResponse } from '@src/typings';
 
 export const createProduct = (
-    products: Product | Product[]
+    products: ProductType | ProductType[]
 ): Promise<GenericResponse> =>
     fetcher('/api/admin/products/create', 'POST', { products });
 
@@ -11,7 +11,7 @@ export const editProduct = ({
     _id: id,
     title,
     price,
-}: Product): Promise<GenericResponse> =>
+}: ProductType): Promise<GenericResponse> =>
     fetcher('/api/admin/products/updateOne', 'PUT', { id, title, price });
 
 export const deleteProduct = (id: string): Promise<GenericResponse> =>
