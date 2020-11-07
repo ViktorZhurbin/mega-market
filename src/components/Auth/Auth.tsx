@@ -1,20 +1,13 @@
-import { signIn, signOut, useSession } from 'next-auth/client';
-
+import { signIn, signOut } from 'next-auth/client';
+import { UserType } from '@user/typings';
 import styles from './Auth.module.css';
 
-export const Auth: React.FC = () => {
-    const [session, loading] = useSession();
-
+export const Auth: React.FC<{ user: Partial<UserType> }> = ({ user }) => {
     const getComponent = () => {
-        if (loading) {
-            return <span>Loading session...</span>;
-        }
-        if (session) {
+        if (user) {
             return (
                 <div className={styles.signOut}>
-                    <span>
-                        Signed in as {session.user.name || session.user.email}
-                    </span>
+                    <span>Signed in as {user.name || user.email}</span>
                     <button onClick={() => signOut()}>Sign out</button>
                 </div>
             );

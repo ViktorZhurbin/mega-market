@@ -1,25 +1,28 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 
 import { dbConnect } from '@src/utils/db/initDb';
-import { Product } from '@src/models';
+import { User } from '@src/models';
 
 export default async (
     req: NextApiRequest,
     res: NextApiResponse
 ): Promise<any> => {
     try {
-        const { method, body } = req;
+        const { method, query } = req;
 
         if (method !== 'GET') {
             throw new Error('Request method must be GET');
         }
 
+        if (!query?.id) {
+            throw new Error('Missing required query param: id');
+        }
+
         await dbConnect();
 
-        const filter = typeof body === 'object' ? body : {};
-        const products = await Product.find(filter);
+        const user = await User.findOne({ _id: query.id });
 
-        res.status(200).json({ success: true, data: products });
+        res.status(200).json({ success: true, data: user });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

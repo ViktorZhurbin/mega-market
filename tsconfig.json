@@ -5,7 +5,8 @@
             "@src/*": ["./*"],
             "@product/*": ["./modules/product/*"],
             "@admin/*": ["./modules/admin/*"],
-            "@cart/*": ["./modules/cart/*"]
+            "@cart/*": ["./modules/cart/*"],
+            "@user/*": ["./modules/user/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],

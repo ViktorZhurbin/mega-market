@@ -12,20 +12,17 @@ export const ProductList: React.FC = () => {
         '/api/product/get'
     );
 
-    if (isLoading) {
-        return <span>Loading products...</span>;
-    }
-    if (isError) {
-        return <span>ERROR fetching products!</span>;
-    }
-
     return (
         <Layout>
-            <div className={styles.container}>
-                {data.map((product: ProductType) => (
-                    <ProductItem key={product._id} product={product} />
-                ))}
-            </div>
+            {isLoading && <span>Loading products...</span>}
+            {isError && <span>ERROR fetching products!</span>}
+            {data && (
+                <div className={styles.container}>
+                    {data.map((product) => (
+                        <ProductItem key={product._id} product={product} />
+                    ))}
+                </div>
+            )}
         </Layout>
     );
 };

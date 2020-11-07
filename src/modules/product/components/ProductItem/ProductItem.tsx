@@ -2,12 +2,12 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Product } from '../../typings';
+import { ProductType } from '../../typings';
 import styles from './ProductItem.module.css';
 import { formatPrice } from '@src/utils/string';
 
 interface Props {
-    product: Product;
+    product: ProductType;
 }
 
 export const ProductItem: React.FC<Props> = ({

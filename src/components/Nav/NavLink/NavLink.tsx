@@ -7,9 +7,10 @@ type Props = {
     title: string;
     icon: any;
     href: string;
+    counter?: number;
 };
 
-export const NavLink: React.FC<Props> = ({ title, icon, href }) => {
+export const NavLink: React.FC<Props> = ({ title, icon, href, counter }) => {
     const router = useRouter();
     const isActive = router.pathname === href;
 
@@ -21,6 +22,9 @@ export const NavLink: React.FC<Props> = ({ title, icon, href }) => {
             >
                 <span className={styles.icon}>{icon}</span>
                 <span className={styles.text}>{title}</span>
+                {Boolean(counter) && (
+                    <span className={styles.counter}>{counter}</span>
+                )}
             </a>
         </Link>
     );
