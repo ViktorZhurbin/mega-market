@@ -8,7 +8,9 @@ import { ProductType } from '../../typings';
 import { useData } from '@src/hooks/useData';
 
 export const ProductList: React.FC = () => {
-    const { data, isLoading, isError } = useData('/api/product/get');
+    const { data, isLoading, isError } = useData<ProductType[]>(
+        '/api/product/get'
+    );
 
     if (isLoading) {
         return <span>Loading products...</span>;

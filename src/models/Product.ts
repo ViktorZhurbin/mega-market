@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { ProductType } from '@product/typings';
 
 export const ProductSchema = new mongoose.Schema({
     title: {
@@ -21,5 +20,4 @@ export const ProductSchema = new mongoose.Schema({
 });
 
 export const Product =
-    mongoose.models?.Product ||
-    mongoose.model<ProductType & mongoose.Document>('Product', ProductSchema);
+    mongoose.models?.Product || mongoose.model('Product', ProductSchema);

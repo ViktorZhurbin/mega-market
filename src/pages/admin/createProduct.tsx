@@ -6,7 +6,7 @@ import { useData } from '@src/hooks/useData';
 
 const Page: React.FC = () => {
     const [session] = useSession();
-    const { data, isLoading } = useData('/api/admin/get');
+    const { data, isLoading } = useData<{ isAdmin: boolean }>('/api/admin/get');
 
     const getComponent = () => {
         if (!session || isLoading || !data) {
