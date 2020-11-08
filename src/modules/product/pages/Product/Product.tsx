@@ -7,8 +7,6 @@ import { Layout } from '@src/components/Layout';
 import { ProductType } from '../../typings';
 import { addToCart } from '@user/services';
 import styles from './Product.module.css';
-import { useData } from '@src/hooks/useData';
-import { UserType } from '@user/typings';
 
 type Props = {
     product: ProductType;
@@ -17,9 +15,6 @@ type Props = {
 export const ProductComponent: React.FC<Props> = ({ product }) => {
     const { image, title, description, price } = product;
     const [session] = useSession();
-    const { data: user, isLoading } = useData<UserType>(
-        `/api/user/${session.userId}`
-    );
 
     const handleAddToCart = () => {
         addToCart(product);

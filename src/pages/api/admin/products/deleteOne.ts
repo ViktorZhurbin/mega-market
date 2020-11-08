@@ -32,7 +32,7 @@ export default async (
         const product = await Product.deleteOne({ _id: id });
         console.log('product', product);
 
-        res.status(201).json({ success: true, data: product });
+        res.status(200).json({ success: true, data: product });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

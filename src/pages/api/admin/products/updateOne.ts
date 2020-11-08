@@ -37,7 +37,7 @@ export default async (
             { new: true }
         );
 
-        res.status(201).json({ success: true, data: product });
+        res.status(200).json({ success: true, data: product });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

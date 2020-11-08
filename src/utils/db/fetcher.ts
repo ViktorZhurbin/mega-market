@@ -9,13 +9,13 @@ const headers = {
 export const fetcher = async (
     endpoint: string,
     method: string,
-    payload: GenericObject
+    payload?: GenericObject
 ): Promise<any> => {
     try {
         const res = await fetch(endpoint, {
             method,
             headers,
-            body: JSON.stringify(payload),
+            body: payload && JSON.stringify(payload),
         });
 
         if (!res.ok) {

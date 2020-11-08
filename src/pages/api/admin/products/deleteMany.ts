@@ -25,7 +25,7 @@ export default async (
 
         const { deletedCount } = await Product.deleteMany(filter);
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             data: `Deleted ${deletedCount} products`,
         });

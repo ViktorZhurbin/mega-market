@@ -2,14 +2,14 @@ import React /* , { useState } */ from 'react';
 import faker from 'faker';
 
 // import { Input } from '@src/components/Input';
-import { Product } from '@src/modules/product/typings';
-import { createProduct, deleteManyProducts } from '../../services';
-import styles from './CreateProduct.module.css';
+import { ProductType } from '@src/modules/product/typings';
+import { createProduct, deleteManyProducts, clearCart } from '../../services';
+import styles from './Admin.module.css';
 
 const getShuffledArray = (length: number) =>
     Array.from({ length }, (_, i) => i + 1).sort(() => Math.random() - 0.5);
 
-const generateNFakeProducts = (length: number): Product[] => {
+const generateNFakeProducts = (length: number): ProductType[] => {
     const arr = getShuffledArray(length);
 
     return arr.map((num) => ({
@@ -20,7 +20,7 @@ const generateNFakeProducts = (length: number): Product[] => {
     }));
 };
 
-export const CreateProduct: React.FC = () => {
+export const Admin: React.FC = () => {
     // const [title, setTitle] = useState('');
     // const [description, setDescription] = useState('');
     // const [price, setPrice] = useState('');
@@ -52,27 +52,35 @@ export const CreateProduct: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            {/* <h2>Clear and populate DB</h2> */}
+            <h2>Products</h2>
             <button
                 className={`${styles.btn} ${styles.btnPrimary}`}
                 onClick={regenerateProducts}
             >
-                Clear and populate DB
+                Repopulate
             </button>
-            <br />
 
             {/* <h2>Add fake products to DB</h2> */}
-            <button className={`${styles.btn}`} onClick={createProducts}>
-                Add fake products to DB
+            <button className={styles.btn} onClick={createProducts}>
+                Fake
             </button>
-            <br />
 
             {/* <h2>Delete all products in DB</h2> */}
             <button
                 className={`${styles.btn} ${styles.btnSecondary}`}
                 onClick={clearProducts}
             >
-                Delete all products in DB
+                Clear
+            </button>
+
+            <br />
+
+            <h2>Cart</h2>
+            <button
+                className={`${styles.btn} ${styles.btnSecondary}`}
+                onClick={clearCart}
+            >
+                Clear
             </button>
 
             {/* <h2>Create Product</h2>
