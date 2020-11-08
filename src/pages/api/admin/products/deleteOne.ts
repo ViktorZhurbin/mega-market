@@ -30,7 +30,6 @@ export default async (
         await dbConnect();
 
         const product = await Product.deleteOne({ _id: id });
-        console.log('product', product);
 
         res.status(200).json({ success: true, data: product });
     } catch (error) {

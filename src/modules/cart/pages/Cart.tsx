@@ -24,8 +24,6 @@ export const Cart: React.FC<Props> = () => {
         session ? `/api/user/${session.userId}` : null
     );
 
-    console.log('order', data?.order);
-
     // TODO:
     // - update qty POST request onChange
     // - optimistic UI response

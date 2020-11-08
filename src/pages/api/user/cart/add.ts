@@ -32,7 +32,7 @@ export default async (
         await dbConnect();
 
         const user = await User.findOne({ _id: session.userId });
-        const updatedCart = user.addToCart(productId);
+        const updatedCart = await user.addToCart(productId);
 
         res.status(200).json({ success: true, data: updatedCart });
     } catch (error) {

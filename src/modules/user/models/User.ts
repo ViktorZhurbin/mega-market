@@ -25,20 +25,20 @@ type CartItemType = { productId: string; quantity: number };
 userSchema.methods.addToCart = async function (productId: string) {
     const updatedCart: CartItemType[] = [...this.cart];
     const itemIndex = updatedCart.findIndex(
-        (item) => item.productId === productId
+        (item) => item.productId.toString() === productId
     );
 
     if (itemIndex !== -1) {
         updatedCart[itemIndex].quantity += 1;
     } else {
-        updatedCart.push({ productId: productId, quantity: 1 });
+        updatedCart.push({ productId, quantity: 1 });
     }
 
     this.cart = updatedCart;
 
     await this.save();
 
-    return updatedCart;
+    return this.cart;
 };
 
 userSchema.methods.removeFromCart = function (productId: string) {

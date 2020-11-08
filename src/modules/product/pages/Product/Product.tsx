@@ -16,8 +16,8 @@ export const ProductComponent: React.FC<Props> = ({ product }) => {
     const { _id, image, title, description, price } = product;
     const [session] = useSession();
 
-    const handleAddToCart = () => {
-        addToCart(_id);
+    const handleAddToCart = async () => {
+        await addToCart(_id);
         mutate(`/api/user/${session.userId}`);
     };
 

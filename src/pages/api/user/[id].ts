@@ -46,7 +46,6 @@ export default async (
                 return order.save();
             });
 
-        console.log('order', order);
         res.status(200).json({ success: true, data: { user, order } });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
