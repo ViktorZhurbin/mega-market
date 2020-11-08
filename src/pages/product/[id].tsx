@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 
-import { Product as ProductModel } from '@src/models';
+import { Product as ProductModel } from '@product/models';
 import { ProductType } from '@product/typings';
 import { dbConnect } from '@src/utils/db';
 import { ProductComponent } from '@product/pages/Product';

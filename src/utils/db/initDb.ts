@@ -1,5 +1,16 @@
 import mongoose from 'mongoose';
-import { schemas } from '@src/models';
+
+import { ProductSchema } from '@product/models/Product';
+import { AccountSchema } from '@user/models/Account';
+import { userSchema } from '@user/models/User';
+import { OrderSchema } from '@cart/models/Order';
+
+export const schemas = {
+    Product: ProductSchema,
+    Account: AccountSchema,
+    User: userSchema,
+    Order: OrderSchema,
+};
 
 const createModels = () => {
     try {

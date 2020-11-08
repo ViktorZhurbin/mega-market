@@ -13,11 +13,11 @@ type Props = {
 };
 
 export const ProductComponent: React.FC<Props> = ({ product }) => {
-    const { image, title, description, price } = product;
+    const { _id, image, title, description, price } = product;
     const [session] = useSession();
 
     const handleAddToCart = () => {
-        addToCart(product);
+        addToCart(_id);
         mutate(`/api/user/${session.userId}`);
     };
 

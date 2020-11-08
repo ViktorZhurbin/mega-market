@@ -1,7 +1,8 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 
 import { dbConnect } from '@src/utils/db/initDb';
-import { User } from '@src/models';
+import { User } from '@user/models';
+import { Order } from '@cart/models';
 
 export default async (
     req: NextApiRequest,
@@ -21,8 +22,32 @@ export default async (
         await dbConnect();
 
         const user = await User.findOne({ _id: query.id });
+        const order = await user
+            .populate('cart.productId')
+            .execPopulate()
+            .then((user) => {
+                let totalQuantity = 0;
+                const products = user.cart.map(({ quantity, productId }) => {
+                    totalQuantity += quantity;
 
-        res.status(200).json({ success: true, data: user });
+                    return {
+                        quantity,
+                        product: { ...productId._doc },
+                    };
+                });
+                const order = new Order({
+                    user: {
+                        id: query.id,
+                    },
+                    products,
+                    totalQuantity,
+                });
+
+                return order.save();
+            });
+
+        console.log('order', order);
+        res.status(200).json({ success: true, data: { user, order } });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

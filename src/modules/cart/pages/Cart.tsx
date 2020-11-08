@@ -1,8 +1,12 @@
 import { ProductType } from '@product/typings';
+import { UserType } from '@user/typings';
+import { OrderType } from '@cart/typings';
 import { Layout } from '@src/components/Layout';
+import { useData } from '@src/hooks/useData';
 import { CartItem } from '../components/CartItem';
 
 import styles from './Cart.module.css';
+import { useSession } from 'next-auth/client';
 
 type CartItem = {
     product: ProductType;
@@ -13,37 +17,31 @@ type Props = {
     cartItems: CartItem[];
 };
 
-const mock: CartItem[] = [
-    {
-        product: {
-            _id: '1',
-            title: 'Dummy Title',
-            price: '119.99',
-            description: '',
-            image: '/images/1.webp',
-        },
-        quantity: '1',
-    },
-];
+export const Cart: React.FC<Props> = () => {
+    const [session] = useSession();
 
-export const Cart: React.FC<Props> = ({ cartItems = mock }) => {
+    const { data } = useData<{ user: UserType; order: OrderType }>(
+        session ? `/api/user/${session.userId}` : null
+    );
+
+    console.log('order', data?.order);
+
     // TODO:
-    // - add User model
-    // - add Cart model
-    // - useData to fetch user cart
     // - update qty POST request onChange
     // - optimistic UI response
     return (
         <Layout>
-            <div className={styles.container}>
-                {cartItems.map(({ product, quantity }) => (
-                    <CartItem
-                        key={product._id}
-                        product={product}
-                        quantity={quantity}
-                    />
-                ))}
-            </div>
+            {data?.order && (
+                <div className={styles.container}>
+                    {data?.order.products.map(({ product, quantity }) => (
+                        <CartItem
+                            key={product._id}
+                            product={product}
+                            quantity={quantity}
+                        />
+                    ))}
+                </div>
+            )}
         </Layout>
     );
 };

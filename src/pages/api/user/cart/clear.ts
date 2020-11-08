@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { User } from '@src/models';
+import { User } from '@user/models';
 import { dbConnect } from '@src/utils/db/initDb';
 
 export default async (

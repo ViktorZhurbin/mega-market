@@ -2,14 +2,17 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
 import { dbConnect } from '@src/utils/db/initDb';
-import { User } from '@src/models';
+import { User } from '@user/models';
 
 export default async (
     req: NextApiRequest,
     res: NextApiResponse
 ): Promise<any> => {
     try {
-        const { method, body } = req;
+        const {
+            method,
+            body: { productId },
+        } = req;
 
         const session = await getSession({ req });
 
@@ -22,29 +25,16 @@ export default async (
             throw new Error('Request method must be PUT');
         }
 
-        if (!body) {
-            throw new Error('Missing required field: body');
+        if (!productId) {
+            throw new Error('Missing required field: productId');
         }
 
         await dbConnect();
 
         const user = await User.findOne({ _id: session.userId });
-        const isInCart = user.cart.find((item) => item._id === body._id);
-        const newCart = isInCart
-            ? user.cart.map((item) =>
-                  item.product._id === body._id
-                      ? { ...item, quantity: item.quantity + 1 }
-                      : item
-              )
-            : [...user.cart, body];
+        const updatedCart = user.addToCart(productId);
 
-        const newUser = await User.findOneAndUpdate(
-            { _id: session.userId },
-            { cart: newCart },
-            { new: true }
-        );
-
-        res.status(200).json({ success: true, data: newUser.cart });
+        res.status(200).json({ success: true, data: updatedCart });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

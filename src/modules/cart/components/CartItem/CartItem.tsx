@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Product } from '@product/typings';
+import { ProductType } from '@product/typings';
 import { formatPrice } from '@src/utils/string';
 
 import styles from './CartItem.module.css';
 import { Input } from '@src/components/Input';
 
 type Props = {
-    product: Product;
-    quantity: string;
+    product: ProductType;
+    quantity: number;
 };
 
 export const CartItem: React.FC<Props> = ({ product, quantity }) => {
@@ -24,7 +24,7 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
                     <a className={styles.title}>{title}</a>
                 </Link>
                 <Input
-                    value={quantity}
+                    value={quantity.toString()}
                     className={styles.quantity}
                     type="number"
                     min={1}

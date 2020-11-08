@@ -1,5 +1,6 @@
 import { useData } from '@src/hooks/useData';
 import { UserType } from '@user/typings';
+import { OrderType } from '@cart/typings';
 
 import { NavLink } from './NavLink';
 
@@ -10,7 +11,9 @@ import IconHome from './icons/home.svg';
 import IconCart from './icons/cart.svg';
 
 export const Nav: React.FC<{ userId: string }> = ({ userId, children }) => {
-    const { data: user, isLoading } = useData<UserType>(`/api/user/${userId}`);
+    const { data, isLoading } = useData<{ user: UserType; order: OrderType }>(
+        `/api/user/${userId}`
+    );
 
     return (
         !isLoading && (
@@ -22,7 +25,7 @@ export const Nav: React.FC<{ userId: string }> = ({ userId, children }) => {
                         title="Cart"
                         icon={<IconCart />}
                         href="/cart"
-                        counter={user?.cart.length}
+                        counter={data.order.totalQuantity}
                     />
                     <NavLink
                         title="Profile"
