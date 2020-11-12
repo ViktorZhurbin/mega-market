@@ -4,6 +4,7 @@
     margin: 8px 0;
     padding: 16px 24px;
     font-size: 16px;
+    font-family: inherit;
     line-height: 1.25;
     border-radius: 3px;
     color: #fff;
@@ -12,8 +13,32 @@
     cursor: pointer;
     appearance: none;
     border: none;
+    background-color: #005bff;
+}
+
+.link {
+    composes: btn;
+    text-decoration: none;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .btn:hover {
     background-color: #004ed6;
+}
+
+.green {
+    background-color: #3ac267;
+}
+
+.green:hover {
+    background-color: #33b062;
+}
+
+.red {
+    background-color: rgb(220, 0, 78);
+}
+
+.red:hover {
+    background-color: rgb(154, 0, 54);
 }
