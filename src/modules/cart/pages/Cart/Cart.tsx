@@ -8,6 +8,7 @@ import { useData } from '@src/hooks/useData';
 import { CartItem } from '../../components/CartItem';
 
 import styles from './Cart.module.css';
+import { Empty } from './Empty';
 
 type Props = {
     cartItems: CartItemType[];
@@ -22,7 +23,7 @@ export const Cart: React.FC<Props> = () => {
 
     return (
         <Layout>
-            {data?.order && (
+            {data?.order.totalQuantity ? (
                 <div className={styles.container}>
                     {data?.order.products.map(({ product, quantity }) => (
                         <CartItem
@@ -32,6 +33,8 @@ export const Cart: React.FC<Props> = () => {
                         />
                     ))}
                 </div>
+            ) : (
+                <Empty />
             )}
         </Layout>
     );
