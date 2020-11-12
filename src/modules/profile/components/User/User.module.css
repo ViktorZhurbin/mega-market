@@ -1,0 +1,19 @@
+.container {
+    background-color: #005bff;
+    display: flex;
+    align-items: center;
+    padding: 44px 16px 12px;
+    margin: 0 -16px;
+}
+
+.name {
+    padding: 0 16px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fff;
+}
+
+.photo {
+    border-radius: 50%;
+}
