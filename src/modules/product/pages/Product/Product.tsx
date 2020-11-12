@@ -4,6 +4,7 @@ import { mutate } from 'swr';
 
 import { formatPrice } from '@src/utils/string';
 import { Layout } from '@src/components/Layout';
+import { Button } from '@src/components/Button';
 import { ProductType } from '../../typings';
 import { addToCart } from '@cart/services';
 import styles from './Product.module.css';
@@ -22,9 +23,7 @@ export const Product: React.FC<Props> = ({ product }) => {
     };
 
     const AddToCartButton = (
-        <button className={styles.addToCart} onClick={handleAddToCart}>
-            Add to cart
-        </button>
+        <Button onClick={handleAddToCart}>Add to cart</Button>
     );
 
     return (
