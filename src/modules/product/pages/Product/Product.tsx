@@ -5,7 +5,7 @@ import { mutate } from 'swr';
 import { formatPrice } from '@src/utils/string';
 import { Layout } from '@src/components/Layout';
 import { ProductType } from '../../typings';
-import { addToCart } from '@user/services';
+import { addToCart } from '@cart/services';
 import styles from './Product.module.css';
 
 type Props = {

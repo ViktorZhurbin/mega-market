@@ -1,20 +1,16 @@
-import { ProductType } from '@product/typings';
+import { useSession } from 'next-auth/client';
+
+import { CartItemType } from '../../typings';
 import { UserType } from '@user/typings';
 import { OrderType } from '@cart/typings';
 import { Layout } from '@src/components/Layout';
 import { useData } from '@src/hooks/useData';
-import { CartItem } from '../components/CartItem';
+import { CartItem } from '../../components/CartItem';
 
 import styles from './Cart.module.css';
-import { useSession } from 'next-auth/client';
-
-type CartItem = {
-    product: ProductType;
-    quantity: string;
-};
 
 type Props = {
-    cartItems: CartItem[];
+    cartItems: CartItemType[];
 };
 
 export const Cart: React.FC<Props> = () => {
@@ -24,8 +20,6 @@ export const Cart: React.FC<Props> = () => {
         session ? `/api/user/${session.userId}` : null
     );
 
-    // TODO:
-    // - update qty POST request onChange
     return (
         <Layout>
             {data?.order && (

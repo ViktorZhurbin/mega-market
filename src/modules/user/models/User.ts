@@ -41,6 +41,22 @@ userSchema.methods.addToCart = async function (productId: string) {
     return this.cart;
 };
 
+userSchema.methods.updateCartQty = async function (
+    productId: string,
+    qty: number
+) {
+    const updatedCart = [...this.cart];
+    const itemIndex = updatedCart.findIndex(
+        (item) => item.productId.toString() === productId
+    );
+    updatedCart[itemIndex].quantity = qty;
+    this.cart = updatedCart;
+
+    await this.save();
+
+    return this.cart;
+};
+
 userSchema.methods.removeFromCart = function (productId: string) {
     const updatedCart: CartItemType[] = [...this.cart];
 
