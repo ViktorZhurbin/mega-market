@@ -5,10 +5,11 @@ import { Nav } from '../Nav';
 
 import styles from './Layout.module.css';
 
-export const Layout: React.FC<{ stickyItem?: ReactElement }> = ({
-    children,
-    stickyItem,
-}) => {
+type Props = {
+    stickyItem?: ReactElement;
+};
+
+export const Layout: React.FC<Props> = ({ children, stickyItem }) => {
     const [session, loading] = useSession();
 
     if (loading) {
