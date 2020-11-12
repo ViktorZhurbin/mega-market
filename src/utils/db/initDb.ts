@@ -1,15 +1,14 @@
 import mongoose from 'mongoose';
 
-import { ProductSchema } from '@product/models/Product';
-import { AccountSchema } from '@user/models/Account';
-import { userSchema } from '@user/models/User';
-import { OrderSchema } from '@cart/models/Order';
+import { productSchema } from '@product/models';
+import { accountSchema, userSchema } from '@user/models';
+import { orderSchema } from '@cart/models';
 
 export const schemas = {
-    Product: ProductSchema,
-    Account: AccountSchema,
+    Product: productSchema,
+    Account: accountSchema,
     User: userSchema,
-    Order: OrderSchema,
+    Order: orderSchema,
 };
 
 const createModels = () => {
