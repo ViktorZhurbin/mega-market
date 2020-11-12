@@ -8,9 +8,10 @@ type Props = {
 
 const getColor = (color: string) => {
     switch (color) {
-        case 'secondary':
+        case 'red':
             return '#f91155';
-        case 'primary':
+        case 'green':
+            return '#3ac267';
         default:
             return '#005bff';
     }
