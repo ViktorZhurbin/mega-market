@@ -21,6 +21,7 @@ export const orderSchema = new mongoose.Schema({
         },
     },
     totalQuantity: { type: Number, required: true },
+    totalAmount: { type: Number, required: true },
 });
 
 export const OrderModel =

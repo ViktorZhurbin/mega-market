@@ -9,10 +9,7 @@ export const Profile: React.FC = () => {
 
     const getButton = () =>
         session ? (
-            <Button
-                color="secondary"
-                onClick={() => signOut({ callbackUrl: '/' })}
-            >
+            <Button color="red" onClick={() => signOut({ callbackUrl: '/' })}>
                 Sign out
             </Button>
         ) : (

@@ -27,12 +27,15 @@ export default async (
             .execPopulate()
             .then((user) => {
                 let totalQuantity = 0;
+                let totalAmount = 0;
                 const products = user.cart.map(({ quantity, productId }) => {
+                    const product = { ...productId._doc };
                     totalQuantity += quantity;
+                    totalAmount += product.price * quantity;
 
                     return {
                         quantity,
-                        product: { ...productId._doc },
+                        product,
                     };
                 });
                 const order = new OrderModel({
@@ -41,6 +44,7 @@ export default async (
                     },
                     products,
                     totalQuantity,
+                    totalAmount,
                 });
 
                 return order.save();

@@ -6,6 +6,7 @@ export type OrderType = {
         quantity: number;
     }[];
     totalQuantity: number;
+    totalAmount: number;
     user: {
         id: string;
     };

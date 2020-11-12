@@ -1,6 +1,6 @@
-import styles from './Empty.module.css';
+import styles from './EmptyCart.module.css';
 
-export const Empty: React.FC = () => (
+export const EmptyCart: React.FC = () => (
     <div className={styles.wrapper}>
         <h1 className={styles.title}>Cart is empty</h1>
         <p className={styles.subtitle}>
