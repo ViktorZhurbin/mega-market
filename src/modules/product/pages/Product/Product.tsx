@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useSession } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/client';
 import { mutate } from 'swr';
 
 import { formatPrice } from '@src/utils/string';
@@ -17,13 +17,19 @@ export const Product: React.FC<Props> = ({ product }) => {
     const { _id, image, title, description, price } = product;
     const [session] = useSession();
 
-    const handleAddToCart = async () => {
-        await addToCart(_id);
-        mutate(`/api/user/${session.userId}`);
+    const handleClick = async () => {
+        if (session?.userId) {
+            await addToCart(_id);
+            mutate(`/api/user/${session.userId}`);
+        } else {
+            signIn();
+        }
     };
 
     const AddToCartButton = (
-        <Button onClick={handleAddToCart}>Add to cart</Button>
+        <Button onClick={handleClick}>
+            {session?.userId ? 'Add to cart' : 'Sign In'}
+        </Button>
     );
 
     return (
