@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { ProductType } from '../../typings';
+import { ProductType } from '../../../product/typings';
 import styles from './ProductItem.module.css';
 import { formatPrice } from '@src/utils/string';
 

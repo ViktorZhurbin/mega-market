@@ -3,14 +3,14 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { Product as ProductModel } from '@product/models';
 import { ProductType } from '@product/typings';
 import { dbConnect } from '@src/utils/db';
-import { ProductComponent } from '@product/pages/Product';
+import { Product } from '@product/pages';
 
 type Props = {
     product: ProductType;
 };
 
 const ProductPage: React.FC<Props> = ({ product }) => (
-    <ProductComponent product={product} />
+    <Product product={product} />
 );
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { Layout } from '@src/components/Layout';
-
-import styles from './ProductList.module.css';
-import { ProductItem } from '../../components/ProductItem';
-import { ProductType } from '../../typings';
+import { ProductType } from '@product/typings';
 import { useData } from '@src/hooks/useData';
+import { ProductItem } from '../../components/ProductItem';
 
-export const ProductList: React.FC = () => {
+import styles from './Home.module.css';
+
+export const Home: React.FC = () => {
     const { data, isLoading, isError } = useData<ProductType[]>(
         '/api/product/get'
     );

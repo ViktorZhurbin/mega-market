@@ -12,7 +12,7 @@ type Props = {
     product: ProductType;
 };
 
-export const ProductComponent: React.FC<Props> = ({ product }) => {
+export const Product: React.FC<Props> = ({ product }) => {
     const { _id, image, title, description, price } = product;
     const [session] = useSession();
 
@@ -23,7 +23,7 @@ export const ProductComponent: React.FC<Props> = ({ product }) => {
 
     const AddToCartButton = (
         <button className={styles.addToCart} onClick={handleAddToCart}>
-            Добавить в корзину
+            Add to cart
         </button>
     );
 
