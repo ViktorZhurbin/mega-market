@@ -1,8 +1,8 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 
 import { dbConnect } from '@src/utils/db/initDb';
-import { User } from '@user/models';
-import { Order } from '@cart/models';
+import { UserModel } from '@user/models';
+import { OrderModel } from '@cart/models';
 
 export default async (
     req: NextApiRequest,
@@ -21,7 +21,7 @@ export default async (
 
         await dbConnect();
 
-        const user = await User.findOne({ _id: query.id });
+        const user = await UserModel.findOne({ _id: query.id });
         const order = await user
             .populate('cart.productId')
             .execPopulate()
@@ -35,7 +35,7 @@ export default async (
                         product: { ...productId._doc },
                     };
                 });
-                const order = new Order({
+                const order = new OrderModel({
                     user: {
                         id: query.id,
                     },

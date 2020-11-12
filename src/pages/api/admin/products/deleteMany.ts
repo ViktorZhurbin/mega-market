@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { Product } from '@product/models';
+import { ProductModel } from '@product/models';
 import { dbConnect } from '@src/utils/db/initDb';
 
 export default async (
@@ -23,7 +23,7 @@ export default async (
 
         await dbConnect();
 
-        const { deletedCount } = await Product.deleteMany(filter);
+        const { deletedCount } = await ProductModel.deleteMany(filter);
 
         res.status(200).json({
             success: true,

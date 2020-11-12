@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { User } from '@user/models';
+import { UserModel } from '@user/models';
 import { dbConnect } from '@src/utils/db/initDb';
 
 export default async (
@@ -23,7 +23,7 @@ export default async (
 
         await dbConnect();
 
-        const user = await User.findOneAndUpdate(
+        const user = await UserModel.findOneAndUpdate(
             { _id: session.userId },
             { cart: [] },
             { new: true }

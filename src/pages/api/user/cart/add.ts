@@ -2,7 +2,7 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
 import { dbConnect } from '@src/utils/db/initDb';
-import { User } from '@user/models';
+import { UserModel } from '@user/models';
 
 export default async (
     req: NextApiRequest,
@@ -31,7 +31,7 @@ export default async (
 
         await dbConnect();
 
-        const user = await User.findOne({ _id: session.userId });
+        const user = await UserModel.findOne({ _id: session.userId });
         const updatedCart = await user.addToCart(productId);
 
         res.status(200).json({ success: true, data: updatedCart });

@@ -26,7 +26,6 @@ export const Cart: React.FC<Props> = () => {
 
     // TODO:
     // - update qty POST request onChange
-    // - optimistic UI response
     return (
         <Layout>
             {data?.order && (

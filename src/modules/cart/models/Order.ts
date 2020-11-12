@@ -23,5 +23,5 @@ export const OrderSchema = new mongoose.Schema({
     totalQuantity: { type: Number, required: true },
 });
 
-export const Order =
+export const OrderModel =
     mongoose.models?.Order || mongoose.model('Order', OrderSchema);

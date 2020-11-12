@@ -2,7 +2,7 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
 import { dbConnect } from '@src/utils/db/initDb';
-import { Product } from '@product/models';
+import { ProductModel } from '@product/models';
 
 export default async (
     req: NextApiRequest,
@@ -30,7 +30,7 @@ export default async (
 
         await dbConnect();
 
-        const product = await Product.create(products);
+        const product = await ProductModel.create(products);
 
         res.status(201).json({ success: true, data: product });
     } catch (error) {

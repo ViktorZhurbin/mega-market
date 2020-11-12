@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { Product } from '@product/models';
+import { ProductModel } from '@product/models';
 import { dbConnect } from '@src/utils/db/initDb';
 
 export default async (
@@ -29,7 +29,7 @@ export default async (
         }
         await dbConnect();
 
-        const product = await Product.deleteOne({ _id: id });
+        const product = await ProductModel.deleteOne({ _id: id });
 
         res.status(200).json({ success: true, data: product });
     } catch (error) {

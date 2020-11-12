@@ -63,6 +63,6 @@ type UserDocument = UserType & {
     clearCart(): void;
 };
 
-export const User =
+export const UserModel =
     mongoose.models?.User ||
     mongoose.model<UserDocument & mongoose.Document>('User', userSchema);

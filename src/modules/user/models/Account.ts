@@ -10,5 +10,5 @@ export const AccountSchema = new mongoose.Schema({
     updatedAt: Date,
 });
 
-export const Account =
+export const AccountModel =
     mongoose.models?.Account || mongoose.model('Account', AccountSchema);

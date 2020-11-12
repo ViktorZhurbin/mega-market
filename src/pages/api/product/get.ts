@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 
 import { dbConnect } from '@src/utils/db/initDb';
-import { Product } from '@product/models';
+import { ProductModel } from '@product/models';
 
 export default async (
     req: NextApiRequest,
@@ -17,7 +17,7 @@ export default async (
         await dbConnect();
 
         const filter = typeof body === 'object' ? body : {};
-        const products = await Product.find(filter);
+        const products = await ProductModel.find(filter);
 
         res.status(200).json({ success: true, data: products });
     } catch (error) {
