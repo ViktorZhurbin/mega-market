@@ -17,19 +17,26 @@ type Props = {
 export const Cart: React.FC<Props> = () => {
     const [session] = useSession();
 
-    const { data } = useData<{ user: UserType; order: OrderType }>(
-        session ? `/api/user/${session.userId}` : null
-    );
+    const { data, isLoading, mutate } = useData<{
+        user: UserType;
+        order: OrderType;
+    }>(session ? `/api/user/${session.userId}` : null);
+
+    if (isLoading) {
+        return <div>Loading Cart...</div>;
+    }
 
     return (
         <Layout>
             {data?.order.totalQuantity ? (
                 <div className={styles.container}>
+                    <h1 className={styles.title}>Cart</h1>
                     {data?.order.products.map(({ product, quantity }) => (
                         <CartItem
                             key={product._id}
                             product={product}
                             quantity={quantity}
+                            onChange={mutate}
                         />
                     ))}
                 </div>

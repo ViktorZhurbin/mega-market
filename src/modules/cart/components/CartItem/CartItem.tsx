@@ -10,16 +10,18 @@ import { updateCartQty } from '../../services';
 import styles from './CartItem.module.css';
 import { useDebounce } from '@src/hooks/useDebounce';
 
-export const CartItem: React.FC<CartItemType> = ({ product, quantity }) => {
+type Props = CartItemType & { onChange: () => void };
+
+export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
     const { _id, title, price, image } = product;
     const [qty, setQty] = useState(quantity.toString());
     const updatedQty = useDebounce<string>(qty, 500);
 
     useEffect(() => {
-        if (updatedQty) {
-            updateCartQty(product._id, updatedQty);
+        if (updatedQty && updatedQty !== quantity.toString()) {
+            updateCartQty(product._id, updatedQty).then(() => onChange());
         }
-    }, [updatedQty, product._id]);
+    }, [updatedQty, product._id, onChange, quantity]);
 
     return (
         <div className={styles.container}>
