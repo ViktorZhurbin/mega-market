@@ -1,6 +1,9 @@
 .container {
     display: flex;
     padding: 16px 0;
+}
+
+.container:not(:last-of-type) {
     border-bottom: 1px solid #d6dbe0;
 }
 
