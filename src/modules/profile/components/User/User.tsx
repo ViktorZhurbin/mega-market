@@ -1,5 +1,4 @@
 import { UserType } from '@user/typings';
-import Image from 'next/image';
 import styles from './User.module.css';
 
 export const User: React.FC<{ user: Partial<UserType> }> = ({ user }) => {
@@ -7,11 +6,10 @@ export const User: React.FC<{ user: Partial<UserType> }> = ({ user }) => {
         user && (
             <div className={styles.container}>
                 {user.image && (
-                    <Image
+                    <img
                         className={styles.photo}
                         src={user.image}
-                        width={64}
-                        height={64}
+                        alt="User Photo"
                     />
                 )}
                 <span className={styles.name}>{user.name || user.email}</span>
