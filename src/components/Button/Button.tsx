@@ -3,10 +3,30 @@ import styles from './Button.module.css';
 type Props = {
     onClick: () => void;
     className?: string;
+    color?: string;
 };
 
-export const Button: React.FC<Props> = ({ className, onClick, children }) => (
-    <button className={`${styles.btn} ${className}`} onClick={onClick}>
+const getColor = (color: string) => {
+    switch (color) {
+        case 'secondary':
+            return '#f91155';
+        case 'primary':
+        default:
+            return '#005bff';
+    }
+};
+
+export const Button: React.FC<Props> = ({
+    color,
+    className,
+    onClick,
+    children,
+}) => (
+    <button
+        style={{ backgroundColor: getColor(color) }}
+        className={`${styles.btn} ${className}`}
+        onClick={onClick}
+    >
         {children}
     </button>
 );
