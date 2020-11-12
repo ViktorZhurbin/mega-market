@@ -59,3 +59,12 @@
     outline: none;
     border-color: #99bdff;
 }
+
+.delete {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.29em;
+    color: #005bff;
+    cursor: pointer;
+    font-weight: 500;
+}

@@ -7,5 +7,8 @@ export const updateCartQty = (
 ): Promise<GenericResponse> =>
     fetcher('/api/user/cart/updateQty', 'PUT', { productId, qty });
 
+export const deleteCartItem = (productId: string): Promise<GenericResponse> =>
+    fetcher('/api/user/cart/deleteOne', 'PUT', { productId });
+
 export const addToCart = (productId: string): Promise<GenericResponse> =>
     fetcher('/api/user/cart/add', 'PUT', { productId });

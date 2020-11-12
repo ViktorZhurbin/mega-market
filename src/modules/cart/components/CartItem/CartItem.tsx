@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { formatPrice } from '@src/utils/string';
 import { Input } from '@src/components/Input';
 import { CartItemType } from '../../typings';
-import { updateCartQty } from '../../services';
+import { updateCartQty, deleteCartItem } from '../../services';
 
 import styles from './CartItem.module.css';
 import { useDebounce } from '@src/hooks/useDebounce';
@@ -23,6 +23,11 @@ export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
         }
     }, [updatedQty, product._id, onChange, quantity]);
 
+    const handleDelete = async () => {
+        await deleteCartItem(product._id);
+        onChange();
+    };
+
     return (
         <div className={styles.container}>
             <Image src={image} width={52} height={64} className={styles.img} />
@@ -38,6 +43,9 @@ export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
                     min={1}
                     onChange={setQty}
                 />
+                <span className={styles.delete} onClick={handleDelete}>
+                    Delete
+                </span>
             </div>
         </div>
     );

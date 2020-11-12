@@ -57,14 +57,16 @@ userSchema.methods.updateCartQty = async function (
     return this.cart;
 };
 
-userSchema.methods.removeFromCart = function (productId: string) {
+userSchema.methods.removeFromCart = async function (productId: string) {
     const updatedCart: CartItemType[] = [...this.cart];
 
     this.cart = updatedCart.filter(
         (item) => item.productId.toString() !== productId.toString()
     );
 
-    return this.save();
+    await this.save();
+
+    return this.cart;
 };
 
 userSchema.methods.clearCart = function () {
