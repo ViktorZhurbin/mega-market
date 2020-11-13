@@ -1,7 +1,6 @@
 import { useSession } from 'next-auth/client';
 
-import { UserType } from '@user/typings';
-import { OrderType } from '@cart/typings';
+import { UserResponse } from '@user/typings';
 import { Layout } from '@src/components/Layout';
 import { useData } from '@src/hooks/useData';
 import { CartItemType } from '../../typings';
@@ -15,10 +14,9 @@ type Props = {
 export const Cart: React.FC<Props> = () => {
     const [session] = useSession();
 
-    const { data, isLoading, mutate } = useData<{
-        user: UserType;
-        order: OrderType;
-    }>(session ? `/api/user/${session.userId}` : null);
+    const { data, isLoading, mutate } = useData<UserResponse>(
+        session ? `/api/user/${session.userId}` : null
+    );
 
     if (session && isLoading) {
         return <div>Loading Cart...</div>;

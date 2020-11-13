@@ -1,6 +1,5 @@
 import { useData } from '@src/hooks/useData';
-import { UserType } from '@user/typings';
-import { OrderType } from '@cart/typings';
+import { UserResponse } from '@user/typings';
 
 import { NavLink } from './NavLink';
 
@@ -9,11 +8,6 @@ import styles from './Nav.module.css';
 import IconProfile from './icons/profile.svg';
 import IconHome from './icons/home.svg';
 import IconCart from './icons/cart.svg';
-
-type UserResponse = {
-    user: UserType;
-    order: OrderType;
-};
 
 export const Nav: React.FC<{ userId?: string }> = ({ userId, children }) => {
     const { data } = useData<UserResponse>(
