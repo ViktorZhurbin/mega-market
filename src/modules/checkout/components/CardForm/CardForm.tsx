@@ -30,7 +30,7 @@ const CardForm: React.FC = () => {
             card: cardElement,
         });
 
-        const response = await fetch('/api/checkout/createSession', {
+        const response = await fetch('/api/checkout/session', {
             method: 'POST',
         });
 

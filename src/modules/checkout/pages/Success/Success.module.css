@@ -1,0 +1,10 @@
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.4em;
+    color: #001a34;
+    height: calc(100vh - 62px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

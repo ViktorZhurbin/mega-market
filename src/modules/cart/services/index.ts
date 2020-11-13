@@ -19,7 +19,7 @@ export const createCheckoutSession = async (
     order: OrderType,
     stripe: Stripe
 ): Promise<any> => {
-    const session = await fetcher('/api/checkout/createSession', 'POST', {
+    const session = await fetcher('/api/checkout/session', 'POST', {
         order,
     });
     const result = await stripe.redirectToCheckout({

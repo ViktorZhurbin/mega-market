@@ -17,13 +17,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 export const CartProducts: React.FC<Props> = ({ onChange, order }) => {
     const handleCheckout = async () => {
         const stripe = await stripePromise;
-        const result = await createCheckoutSession(order, stripe);
-
-        if (result.error) {
-            // If `redirectToCheckout` fails due to a browser or network
-            // error, display the localized error message to your customer
-            // using `result.error.message`.
-        }
+        await createCheckoutSession(order, stripe);
     };
 
     return (
