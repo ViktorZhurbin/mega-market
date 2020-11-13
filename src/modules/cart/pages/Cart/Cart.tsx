@@ -20,7 +20,7 @@ export const Cart: React.FC<Props> = () => {
         order: OrderType;
     }>(session ? `/api/user/${session.userId}` : null);
 
-    if (isLoading) {
+    if (session && isLoading) {
         return <div>Loading Cart...</div>;
     }
 
