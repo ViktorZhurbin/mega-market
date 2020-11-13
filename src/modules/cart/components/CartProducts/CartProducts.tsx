@@ -1,24 +1,27 @@
 import { loadStripe } from '@stripe/stripe-js';
 
-import { OrderType } from '@cart/typings';
 import { Button } from '@src/components/Button';
 import { CartItem } from '../CartItem';
 import { Summary } from '../Summary';
 import styles from './CartProducts.module.css';
 import { createCheckoutSession } from '../../services';
-
-type Props = {
-    onChange: () => void;
-    order: OrderType;
-};
+import { UserContext } from '@src/contexts';
+import { useContext } from 'react';
+import { EmptyCart } from '../EmptyCart';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
-export const CartProducts: React.FC<Props> = ({ onChange, order }) => {
+export const CartProducts: React.FC = () => {
+    const user = useContext(UserContext);
+    const order = user?.data?.order;
     const handleCheckout = async () => {
         const stripe = await stripePromise;
         await createCheckoutSession(order, stripe);
     };
+
+    if (!order?.totalQuantity) {
+        return <EmptyCart />;
+    }
 
     return (
         <div className={styles.container}>
@@ -28,7 +31,7 @@ export const CartProducts: React.FC<Props> = ({ onChange, order }) => {
                     key={product._id}
                     product={product}
                     quantity={quantity}
-                    onChange={onChange}
+                    onChange={user.mutate}
                 />
             ))}
             <Button

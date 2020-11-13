@@ -1,6 +1,3 @@
-import { useData } from '@src/hooks/useData';
-import { UserResponse } from '@user/typings';
-
 import { NavLink } from './NavLink';
 
 import styles from './Nav.module.css';
@@ -8,11 +5,11 @@ import styles from './Nav.module.css';
 import IconProfile from './icons/profile.svg';
 import IconHome from './icons/home.svg';
 import IconCart from './icons/cart.svg';
+import { useContext } from 'react';
+import { UserContext } from '@src/contexts';
 
-export const Nav: React.FC<{ userId?: string }> = ({ userId, children }) => {
-    const { data } = useData<UserResponse>(
-        userId ? `/api/user/${userId}` : null
-    );
+export const Nav: React.FC = ({ children }) => {
+    const user = useContext(UserContext);
 
     return (
         <nav className={styles.container}>
@@ -23,7 +20,7 @@ export const Nav: React.FC<{ userId?: string }> = ({ userId, children }) => {
                     title="Cart"
                     icon={<IconCart />}
                     href="/cart"
-                    counter={data?.order?.totalQuantity}
+                    counter={user?.data?.order.totalQuantity}
                 />
                 <NavLink
                     title="Profile"
