@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { dbConnect } from '@src/utils/api/db/initDb';
+import { dbConnect } from '@src/utils/api/db';
 import { ProductModel } from '@product/models';
 
 export default async (

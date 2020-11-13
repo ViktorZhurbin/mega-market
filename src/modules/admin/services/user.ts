@@ -1,4 +1,4 @@
-import { fetcher } from '@src/utils/api/helpers/fetcher';
+import { fetcher } from '@src/utils/api/helpers';
 import { GenericResponse } from '@src/typings';
 
 export const clearCart = (): Promise<GenericResponse> =>

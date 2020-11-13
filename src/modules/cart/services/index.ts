@@ -1,5 +1,5 @@
 import { Stripe } from '@stripe/stripe-js';
-import { fetcher } from '@src/utils/api/helpers/fetcher';
+import { fetcher } from '@src/utils/api/helpers';
 import { OrderType } from '@cart/typings';
 import { GenericResponse } from '@src/typings';
 

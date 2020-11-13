@@ -1,4 +1,4 @@
-import { fetcher } from '@src/utils/api/helpers/fetcher';
+import { fetcher } from '@src/utils/api/helpers';
 import { ProductType } from '@product/typings';
 import { GenericObject, GenericResponse } from '@src/typings';
 
