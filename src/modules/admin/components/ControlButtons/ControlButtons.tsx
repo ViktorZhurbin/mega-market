@@ -14,7 +14,7 @@ const generateNFakeProducts = (length: number): ProductType[] => {
     return arr.map((num) => ({
         title: faker.commerce.productName(),
         description: faker.commerce.productDescription(),
-        price: String(faker.random.number({ min: 1, max: 1000 })),
+        price: faker.random.number({ min: 1, max: 1000 }),
         image: `/images/${num}.webp`,
     }));
 };

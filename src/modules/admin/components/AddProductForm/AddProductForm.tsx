@@ -20,7 +20,7 @@ export const AddProductForm: React.FC = () => {
         await createProduct({
             title,
             description,
-            price,
+            price: Number(price),
             image,
         });
         setTitle('');
