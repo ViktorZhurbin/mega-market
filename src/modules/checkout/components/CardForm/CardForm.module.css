@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Code+Pro&display=swap');
+
+.error {
+    margin: 0;
+    font-size: 12px;
+    line-height: 18px;
+    color: #f91155;
+    white-space: normal;
+    padding: 4px;
+    height: auto;
+}
+
+.btn {
+    margin-top: 30px;
+}

@@ -4,3 +4,24 @@ body {
     font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
+
+.StripeElement {
+    display: block;
+    max-width: 500px;
+    padding: 10px 14px;
+    font-size: 1em;
+    font-family: 'Source Code Pro', monospace;
+    border: 2px solid #d6dbe0;
+    border-radius: 4px;
+    outline: none;
+    background: white;
+    transition: all 150ms ease;
+}
+
+.StripeElement--focus {
+    border-color: #99bdff;
+}
+
+.StripeElement--invalid {
+    border-color: #fdb8cc;
+}

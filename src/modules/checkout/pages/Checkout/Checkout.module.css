@@ -1,0 +1,23 @@
+.container {
+    padding: 36px 16px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    color: #001a34;
+}
+
+.titleWrapper {
+    margin-bottom: 50px;
+}
+
+.total {
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.price {
+    margin-left: 5px;
+}
