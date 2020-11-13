@@ -6,16 +6,11 @@ const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
     try {
         const { method, user } = req;
 
-        if (method !== 'PUT') {
-            throw new Error('Request method must be PUT');
+        if (method !== 'GET') {
+            throw new Error('Request method must be GET');
         }
 
-        const cart = await user.clearCart();
-
-        res.status(200).json({
-            success: true,
-            data: cart,
-        });
+        res.status(200).json({ success: true, data: user });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

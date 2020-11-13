@@ -1,25 +1,14 @@
-import { NextApiResponse, NextApiRequest } from 'next';
-import { getSession } from 'next-auth/client';
+import { NextApiResponse } from 'next';
 
-import { dbConnect } from '@src/utils/api/db';
-import { UserModel } from '@user/models';
+import { user, ApiRequest } from '@src/utils/api/middleware';
 
-export default async (
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<any> => {
+const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
     try {
         const {
             method,
             body: { productId },
+            user,
         } = req;
-
-        const session = await getSession({ req });
-
-        if (!session) {
-            res.status(401).json({ success: false, error: 'Unauthorized' });
-            throw new Error('Unauthorized');
-        }
 
         if (method !== 'PUT') {
             throw new Error('Request method must be PUT');
@@ -29,9 +18,6 @@ export default async (
             throw new Error('Missing required field: productId');
         }
 
-        await dbConnect();
-
-        const user = await UserModel.findOne({ _id: session.userId });
         const updatedCart = await user.removeFromCart(productId);
 
         res.status(200).json({ success: true, data: updatedCart });
@@ -39,3 +25,5 @@ export default async (
         res.status(400).json({ success: false, error: error.message });
     }
 };
+
+export default user(handler);

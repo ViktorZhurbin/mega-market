@@ -69,18 +69,21 @@ userSchema.methods.removeFromCart = async function (productId: string) {
     return this.cart;
 };
 
-userSchema.methods.clearCart = function () {
+userSchema.methods.clearCart = async function () {
     this.cart = [];
 
-    this.save();
+    await this.save();
+
+    return this.cart;
 };
 
-export type UserDocument = UserType & {
-    addToCart(productId: string): Promise<any>;
-    removeFromCart(productId: string): Promise<any>;
-    updateCartQty(productId: string, qty: number): Promise<any>;
-    clearCart(): void;
-};
+export type UserDocument = mongoose.Document &
+    UserType & {
+        addToCart(productId: string): Promise<any>;
+        removeFromCart(productId: string): Promise<any>;
+        updateCartQty(productId: string, qty: number): Promise<any>;
+        clearCart(): void;
+    };
 
 export const UserModel =
     mongoose.models?.User ||
