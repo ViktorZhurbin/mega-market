@@ -75,9 +75,10 @@ userSchema.methods.clearCart = function () {
     this.save();
 };
 
-type UserDocument = UserType & {
+export type UserDocument = UserType & {
     addToCart(productId: string): Promise<any>;
     removeFromCart(productId: string): Promise<any>;
+    updateCartQty(productId: string, qty: number): Promise<any>;
     clearCart(): void;
 };
 
