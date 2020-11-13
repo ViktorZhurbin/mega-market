@@ -6,6 +6,8 @@ type Props = {
     className?: string;
     color?: string;
     route?: string;
+    type?: 'button' | 'submit' | 'reset';
+    disabled?: boolean;
 };
 
 export const Button: React.FC<Props> = ({
@@ -14,6 +16,8 @@ export const Button: React.FC<Props> = ({
     onClick,
     route,
     children,
+    type,
+    disabled,
 }) => {
     const classNames = `${styles[color]} ${className}`;
 
@@ -22,7 +26,12 @@ export const Button: React.FC<Props> = ({
             <a className={`${styles.link} ${classNames}`}>{children}</a>
         </Link>
     ) : (
-        <button className={`${styles.btn} ${classNames}`} onClick={onClick}>
+        <button
+            type={type}
+            className={`${styles.btn} ${classNames}`}
+            onClick={onClick}
+            disabled={disabled}
+        >
             {children}
         </button>
     );

@@ -16,6 +16,13 @@
     background-color: #005bff;
 }
 
+.btn:disabled {
+    background-color: #d6dbe0;
+    color: #808d9a;
+    cursor: default;
+    pointer-events: none;
+}
+
 .link {
     composes: btn;
     text-decoration: none;
