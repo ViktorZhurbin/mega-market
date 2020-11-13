@@ -7,8 +7,8 @@ export const userSchema = new mongoose.Schema({
     role: String,
     cart: [
         {
-            productId: {
-                type: mongoose.Schema.Types.ObjectId,
+            product: {
+                type: String,
                 ref: 'Product',
                 required: true,
             },
@@ -20,18 +20,18 @@ export const userSchema = new mongoose.Schema({
     ],
 });
 
-type CartItemType = { productId: string; quantity: number };
+type CartItemType = { product: string; quantity: number };
 
 userSchema.methods.addToCart = async function (productId: string) {
     const updatedCart: CartItemType[] = [...this.cart];
     const itemIndex = updatedCart.findIndex(
-        (item) => item.productId.toString() === productId
+        (item) => item.product.toString() === productId
     );
 
     if (itemIndex !== -1) {
         updatedCart[itemIndex].quantity += 1;
     } else {
-        updatedCart.push({ productId, quantity: 1 });
+        updatedCart.push({ product: productId, quantity: 1 });
     }
 
     this.cart = updatedCart;
@@ -47,7 +47,7 @@ userSchema.methods.updateCartQty = async function (
 ) {
     const updatedCart = [...this.cart];
     const itemIndex = updatedCart.findIndex(
-        (item) => item.productId.toString() === productId
+        (item) => item.product.toString() === productId
     );
     updatedCart[itemIndex].quantity = qty;
     this.cart = updatedCart;
@@ -61,7 +61,7 @@ userSchema.methods.removeFromCart = async function (productId: string) {
     const updatedCart: CartItemType[] = [...this.cart];
 
     this.cart = updatedCart.filter(
-        (item) => item.productId.toString() !== productId.toString()
+        (item) => item.product.toString() !== productId
     );
 
     await this.save();

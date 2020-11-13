@@ -1,15 +1,12 @@
-import { NextApiResponse, NextApiRequest } from 'next';
+import { NextApiResponse } from 'next';
 
-import { dbConnect } from '@src/utils/api/db';
-import { UserModel } from '@user/models';
+import { user, ApiRequest } from '@src/utils/api/middleware';
 import { OrderModel } from '@cart/models';
+import { ProductType } from '@src/modules/product/typings';
 
-export default async (
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<any> => {
+const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
     try {
-        const { method, query } = req;
+        const { method, query, user } = req;
 
         if (method !== 'GET') {
             throw new Error('Request method must be GET');
@@ -19,39 +16,34 @@ export default async (
             throw new Error('Missing required query param: id');
         }
 
-        await dbConnect();
+        const { cart } = await user.populate('cart.product').execPopulate();
+        let totalQuantity = 0;
+        let totalAmount = 0;
+        const products = cart.map(({ quantity, product }) => {
+            totalQuantity += quantity;
+            // convert type after using mongoose populate
+            const price = (<ProductType>product).price;
+            totalAmount += price * quantity;
 
-        const user = await UserModel.findOne({ _id: query.id });
-        const order = await user
-            .populate('cart.productId')
-            .execPopulate()
-            .then((user) => {
-                let totalQuantity = 0;
-                let totalAmount = 0;
-                const products = user.cart.map(({ quantity, productId }) => {
-                    const product = { ...productId._doc };
-                    totalQuantity += quantity;
-                    totalAmount += product.price * quantity;
+            return {
+                quantity,
+                product,
+            };
+        });
 
-                    return {
-                        quantity,
-                        product,
-                    };
-                });
-                const order = new OrderModel({
-                    user: {
-                        id: query.id,
-                    },
-                    products,
-                    totalQuantity,
-                    totalAmount,
-                });
-
-                return order.save();
-            });
+        const order = new OrderModel({
+            user: {
+                id: query.id,
+            },
+            products,
+            totalQuantity,
+            totalAmount,
+        });
 
         res.status(200).json({ success: true, data: { user, order } });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }
 };
+
+export default user(handler);
