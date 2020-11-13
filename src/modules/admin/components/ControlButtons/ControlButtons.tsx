@@ -14,14 +14,17 @@ const generateNFakeProducts = (length: number): ProductType[] => {
     return arr.map((num) => ({
         title: faker.commerce.productName(),
         description: faker.commerce.productDescription(),
-        price: String(faker.random.float({ min: 0, max: 1000000 })),
+        price: String(faker.random.number({ min: 1, max: 1000 })),
         image: `/images/${num}.webp`,
     }));
 };
 
 export const ControlButtons: React.FC = () => {
     const createProducts = () => createProduct(generateNFakeProducts(10));
-    const clearProducts = () => deleteManyProducts({});
+    const clearProducts = async () => {
+        await deleteManyProducts({});
+        clearCart();
+    };
     const regenerateProducts = async () => {
         await clearProducts();
         createProducts();
