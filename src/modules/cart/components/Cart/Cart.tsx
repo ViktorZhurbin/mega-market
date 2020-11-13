@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Button } from '@src/components/Button';
 import { CartItem } from '../CartItem';
 import { Summary } from '../Summary';
-import styles from './CartProducts.module.css';
+import styles from './Cart.module.css';
 import { createCheckoutSession } from '../../services';
 import { UserContext } from '@src/contexts';
 import { useContext } from 'react';
@@ -11,7 +11,7 @@ import { EmptyCart } from '../EmptyCart';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
-export const CartProducts: React.FC = () => {
+export const Cart: React.FC = () => {
     const user = useContext(UserContext);
     const order = user?.data?.order;
     const handleCheckout = async () => {

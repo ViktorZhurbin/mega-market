@@ -1,15 +1,15 @@
 import { Layout } from '@src/components/Layout';
 import { CartItemType } from '../../typings';
-import { CartProducts } from '../../components/CartProducts';
+import { Cart } from '../../components/Cart';
 
 type Props = {
     cartItems: CartItemType[];
 };
 
-export const Cart: React.FC<Props> = () => {
+export const CartPage: React.FC<Props> = () => {
     return (
         <Layout>
-            <CartProducts />
+            <Cart />
         </Layout>
     );
 };
