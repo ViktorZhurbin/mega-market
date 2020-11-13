@@ -31,8 +31,8 @@ export default async (
             payment_method_types: ['card'],
             line_items,
             mode: 'payment',
-            success_url: 'http://localhost:3000/checkout/success',
-            cancel_url: 'http://localhost:3000/cart',
+            success_url: `${req.headers.origin}/checkout/success`,
+            cancel_url: `${req.headers.origin}/cart`,
         });
 
         res.json({ id: session.id });
