@@ -7,7 +7,7 @@ import { UserModel, UserDocument } from '@user/models';
 export type ApiRequest = NextApiRequest & { user: UserDocument };
 type Handler = (req: ApiRequest, res: NextApiResponse) => Promise<any>;
 
-export const user = (handler: Handler) => async (
+export const withUser = (handler: Handler) => async (
     req: ApiRequest,
     res: NextApiResponse
 ): Promise<any> => {

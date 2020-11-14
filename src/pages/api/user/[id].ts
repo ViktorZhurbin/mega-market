@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import { user, ApiRequest } from '@src/utils/api/middleware';
+import { withUser, ApiRequest } from '@src/utils/api/middleware';
 import { OrderModel } from '@cart/models';
 import { ProductType } from '@src/modules/product/typings';
 
@@ -46,4 +46,4 @@ const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
     }
 };
 
-export default user(handler);
+export default withUser(handler);
