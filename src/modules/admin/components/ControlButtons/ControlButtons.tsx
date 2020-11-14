@@ -1,6 +1,6 @@
 import faker from 'faker';
-import cx from 'classnames';
 
+import { Button } from '@src/components/Button';
 import { ProductType } from '@src/modules/product/typings';
 import { createProduct, deleteManyProducts, clearCart } from '../../services';
 
@@ -21,14 +21,14 @@ const generateNFakeProducts = (length: number): ProductType[] => {
 };
 
 export const ControlButtons: React.FC = () => {
-    const createProducts = () => createProduct(generateNFakeProducts(10));
-    const clearProducts = async () => {
+    const fillDb = () => createProduct(generateNFakeProducts(10));
+    const clearDb = async () => {
         await deleteManyProducts({});
         clearCart();
     };
-    const regenerateProducts = async () => {
-        await clearProducts();
-        createProducts();
+    const repopulateDb = async () => {
+        await clearDb();
+        fillDb();
     };
 
     return (
@@ -36,35 +36,24 @@ export const ControlButtons: React.FC = () => {
             <h2 className={styles.title}>Products</h2>
 
             <div className={styles.btnContainer}>
-                {/* <h2>Add fake products to DB</h2> */}
-                <button className={styles.btn} onClick={createProducts}>
+                <Button color="green" className={styles.btn} onClick={fillDb}>
                     Add Fakes
-                </button>
+                </Button>
 
-                {/* <h2>Delete all products in DB</h2> */}
-                <button
-                    className={cx(styles.btn, styles.btnSecondary)}
-                    onClick={clearProducts}
-                >
+                <Button className={styles.btn} color="red" onClick={clearDb}>
                     Delete All
-                </button>
+                </Button>
 
-                <button
-                    className={cx(styles.btn, styles.btnPrimary)}
-                    onClick={regenerateProducts}
-                >
+                <Button className={styles.btn} onClick={repopulateDb}>
                     Delete & Add
-                </button>
+                </Button>
             </div>
 
             <div className={styles.btnContainer}>
                 <h2 className={styles.title}>Cart</h2>
-                <button
-                    className={cx(styles.btn, styles.btnSecondary)}
-                    onClick={clearCart}
-                >
+                <Button className={styles.btn} color="red" onClick={clearCart}>
                     Clear
-                </button>
+                </Button>
             </div>
         </>
     );

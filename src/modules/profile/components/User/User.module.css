@@ -20,7 +20,8 @@
     border-radius: 50%;
 }
 
-.fallback {
+.fallbackPhoto {
+    composes: photo;
     background-color: orangered;
     display: flex;
     align-items: center;
