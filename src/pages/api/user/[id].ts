@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next';
 
-import { withUser, ApiRequest } from '@src/utils/api/middleware';
-import { OrderModel } from '@cart/models';
+import { withUser, ApiRequest } from '@/utils/api/middleware';
+import { OrderModel } from '~cart/models';
 
 const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
     try {

@@ -1,6 +1,6 @@
 import { Nav } from '../Nav';
 import styles from './Layout.module.css';
-import { UserProvider } from '@src/contexts';
+import { UserProvider } from '@/contexts';
 
 type Props = {
     stickyItem?: React.ReactElement;

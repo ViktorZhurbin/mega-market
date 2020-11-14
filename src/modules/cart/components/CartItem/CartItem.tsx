@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { formatPrice } from '@src/utils/string';
-import { Input } from '@src/components/Input';
+import { formatPrice } from '@/utils/string';
+import { Input } from '@/components/Input';
 import { CartItemType } from '../../typings';
 import { updateCartQty, deleteCartItem } from '../../services';
 
 import styles from './CartItem.module.css';
-import { useDebounce } from '@src/hooks/useDebounce';
+import { useDebounce } from '@/hooks/useDebounce';
 
 type Props = CartItemType & { onChange(): void };
 

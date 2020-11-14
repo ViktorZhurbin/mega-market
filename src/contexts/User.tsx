@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 import { useSession } from 'next-auth/client';
 
-import { useData, Response } from '@src/hooks/useData';
-import { UserResponse } from '@user/typings';
+import { useData, Response } from '@/hooks/useData';
+import { UserResponse } from '~user/typings';
 
 export const UserContext = createContext<Response<UserResponse> | null>(null);
 

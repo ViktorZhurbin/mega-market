@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { UserType } from '@user/typings';
-import { productSchema } from '@product/models';
-import { ProductType } from '@src/modules/product/typings';
+import { UserType } from '~user/typings';
+import { productSchema } from '~product/models';
+import { ProductType } from '@/modules/product/typings';
 
 export const userSchema = new mongoose.Schema({
     email: String,

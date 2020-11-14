@@ -1,4 +1,4 @@
-import { ProductType } from '@product/typings';
+import { ProductType } from '~product/typings';
 
 export type OrderType = {
     products: {

@@ -1,7 +1,7 @@
 import faker from 'faker';
 
-import { Button } from '@src/components/Button';
-import { ProductType } from '@src/modules/product/typings';
+import { Button } from '@/components/Button';
+import { ProductType } from '@/modules/product/typings';
 import { createProduct, deleteManyProducts, clearCart } from '../../services';
 
 import styles from './ControlButtons.module.css';

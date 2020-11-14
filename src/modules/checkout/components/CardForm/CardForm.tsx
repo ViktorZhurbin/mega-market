@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@src/components/Button';
+import { Button } from '@/components/Button';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 
 import styles from './CardForm.module.css';

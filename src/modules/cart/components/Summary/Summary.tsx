@@ -1,4 +1,4 @@
-import { formatPrice, getDeclension } from '@src/utils/string';
+import { formatPrice, getDeclension } from '@/utils/string';
 import styles from './Summary.module.css';
 
 type Props = {

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
-import { productSchema } from '@product/models';
-import { accountSchema, userSchema } from '@user/models';
-import { orderSchema } from '@cart/models';
+import { productSchema } from '~product/models';
+import { accountSchema, userSchema } from '~user/models';
+import { orderSchema } from '~cart/models';
 
 export const schemas = {
     Product: productSchema,

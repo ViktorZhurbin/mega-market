@@ -1,4 +1,4 @@
-import { Layout } from '@src/components/Layout';
+import { Layout } from '@/components/Layout';
 import { CartItemType } from '../../typings';
 import { Cart } from '../../components/Cart';
 

@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from 'next-auth/client';
 
-import { Button } from '@src/components/Button';
-import { Layout } from '@src/components/Layout';
+import { Button } from '@/components/Button';
+import { Layout } from '@/components/Layout';
 import { User } from '../../components/User/User';
 
 export const Profile: React.FC = () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Layout } from '@src/components/Layout';
-import { ProductType } from '@product/typings';
-import { useData } from '@src/hooks/useData';
+import { Layout } from '@/components/Layout';
+import { ProductType } from '~product/typings';
+import { useData } from '@/hooks/useData';
 import { ProductItem } from '../../components/ProductItem';
 
 import styles from './Home.module.css';

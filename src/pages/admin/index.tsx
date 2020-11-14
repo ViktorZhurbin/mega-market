@@ -1,1 +1,1 @@
-export { Admin as default } from '@src/modules/admin/pages';
+export { Admin as default } from '@/modules/admin/pages';

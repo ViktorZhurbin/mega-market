@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 
-import { Button } from '@src/components/Button';
-import { UserContext } from '@src/contexts';
+import { Button } from '@/components/Button';
+import { UserContext } from '@/contexts';
 import { CartItem } from '../CartItem';
 import { Summary } from '../Summary';
 import { createCheckoutSession } from '../../services';

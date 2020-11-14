@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Input } from '@src/components/Input';
+import { Input } from '@/components/Input';
 import { createProduct } from '../../services';
 
 import styles from './AddProductForm.module.css';

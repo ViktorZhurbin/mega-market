@@ -1,8 +1,8 @@
 import { Stripe } from '@stripe/stripe-js';
-import { fetcher } from '@src/utils/api/helpers';
-import { OrderType } from '@cart/typings';
-import { GenericResponse } from '@src/typings';
-import { ProductType } from '@src/modules/product/typings';
+import { fetcher } from '@/utils/api/helpers';
+import { OrderType } from '~cart/typings';
+import { GenericResponse } from '@/typings';
+import { ProductType } from '@/modules/product/typings';
 
 export const updateCartQty = (
     productId: string,

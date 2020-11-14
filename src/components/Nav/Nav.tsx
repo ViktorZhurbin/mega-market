@@ -6,7 +6,7 @@ import IconProfile from './icons/profile.svg';
 import IconHome from './icons/home.svg';
 import IconCart from './icons/cart.svg';
 import { useContext } from 'react';
-import { UserContext } from '@src/contexts';
+import { UserContext } from '@/contexts';
 
 export const Nav: React.FC = ({ children }) => {
     const user = useContext(UserContext);

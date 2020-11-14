@@ -1,4 +1,4 @@
-import { productSchema } from '@src/modules/product/models';
+import { productSchema } from '@/modules/product/models';
 import mongoose from 'mongoose';
 
 export const orderSchema = new mongoose.Schema({

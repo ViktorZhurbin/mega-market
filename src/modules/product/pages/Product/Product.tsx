@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { signIn, useSession } from 'next-auth/client';
 import { mutate } from 'swr';
 
-import { formatPrice } from '@src/utils/string';
-import { Layout } from '@src/components/Layout';
-import { Button } from '@src/components/Button';
+import { formatPrice } from '@/utils/string';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/Button';
 import { ProductType } from '../../typings';
-import { addToCart } from '@cart/services';
+import { addToCart } from '~cart/services';
 import styles from './Product.module.css';
 
 type Props = {

@@ -1,9 +1,9 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 
-import { ProductModel } from '@product/models';
-import { ProductType } from '@product/typings';
-import { dbConnect } from '@src/utils/api/db';
-import { Product } from '@product/pages';
+import { ProductModel } from '~product/models';
+import { ProductType } from '~product/typings';
+import { dbConnect } from '@/utils/api/db';
+import { Product } from '~product/pages';
 
 type Props = {
     product: ProductType;

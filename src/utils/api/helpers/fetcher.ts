@@ -1,4 +1,4 @@
-import { GenericObject } from '@src/typings';
+import { GenericObject } from '@/typings';
 
 const contentType = 'application/json';
 const headers = {

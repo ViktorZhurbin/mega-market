@@ -1,8 +1,8 @@
 import { useSession } from 'next-auth/client';
 
-import { useData } from '@src/hooks/useData';
-import { Layout } from '@src/components/Layout';
-import { UserType } from '@user/typings';
+import { useData } from '@/hooks/useData';
+import { Layout } from '@/components/Layout';
+import { UserType } from '~user/typings';
 
 // import { AddProductForm } from '../../components/AddProductForm';
 import { ControlButtons } from '../../components/ControlButtons';
