@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import cx from 'classnames';
 
 import styles from './Input.module.css';
 
@@ -42,7 +43,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         return (
             <input
                 ref={ref}
-                className={`${styles.input} ${className}`}
+                className={cx(styles.input, className)}
                 type={type}
                 placeholder={placeholder}
                 value={value}

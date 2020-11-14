@@ -1,4 +1,5 @@
 import faker from 'faker';
+import cx from 'classnames';
 
 import { ProductType } from '@src/modules/product/typings';
 import { createProduct, deleteManyProducts, clearCart } from '../../services';
@@ -42,14 +43,14 @@ export const ControlButtons: React.FC = () => {
 
                 {/* <h2>Delete all products in DB</h2> */}
                 <button
-                    className={`${styles.btn} ${styles.btnSecondary}`}
+                    className={cx(styles.btn, styles.btnSecondary)}
                     onClick={clearProducts}
                 >
                     Delete All
                 </button>
 
                 <button
-                    className={`${styles.btn} ${styles.btnPrimary}`}
+                    className={cx(styles.btn, styles.btnPrimary)}
                     onClick={regenerateProducts}
                 >
                     Delete & Add
@@ -59,7 +60,7 @@ export const ControlButtons: React.FC = () => {
             <div className={styles.btnContainer}>
                 <h2 className={styles.title}>Cart</h2>
                 <button
-                    className={`${styles.btn} ${styles.btnSecondary}`}
+                    className={cx(styles.btn, styles.btnSecondary)}
                     onClick={clearCart}
                 >
                     Clear

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import cx from 'classnames';
 import styles from './NavLink.module.css';
 
 type Props = {
@@ -18,7 +18,7 @@ export const NavLink: React.FC<Props> = ({ title, icon, href, counter }) => {
         <Link href={href}>
             <a
                 target="_self"
-                className={`${styles.link} ${isActive && styles.active}`}
+                className={cx(styles.link, { [styles.active]: isActive })}
             >
                 <span className={styles.icon}>{icon}</span>
                 <span className={styles.title}>{title}</span>

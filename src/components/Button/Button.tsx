@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import cx from 'classnames';
+
 import styles from './Button.module.css';
 
 type Props = {
@@ -19,16 +21,16 @@ export const Button: React.FC<Props> = ({
     type,
     disabled,
 }) => {
-    const classNames = `${styles[color]} ${className}`;
+    const classNames = cx(styles[color], className);
 
     return route ? (
         <Link href={route}>
-            <a className={`${styles.link} ${classNames}`}>{children}</a>
+            <a className={cx(styles.link, classNames)}>{children}</a>
         </Link>
     ) : (
         <button
             type={type}
-            className={`${styles.btn} ${classNames}`}
+            className={cx(styles.btn, classNames)}
             onClick={onClick}
             disabled={disabled}
         >

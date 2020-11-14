@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 import styles from './Checkbox.module.css';
 
@@ -21,9 +22,9 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
 
     return (
         <div
-            className={`${className} ${styles.checkbox} ${
-                isChecked && styles.checked
-            }`}
+            className={cx(className, styles.checkbox, {
+                [styles.checked]: isChecked,
+            })}
             onClick={onToggle}
             tabIndex={0}
             role="checkbox"

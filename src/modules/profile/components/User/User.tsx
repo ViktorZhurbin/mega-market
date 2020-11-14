@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import cx from 'classnames';
+
 import { UserType } from '@user/typings';
 import styles from './User.module.css';
 
@@ -16,7 +18,7 @@ export const User: React.FC<{ user: Partial<UserType> }> = ({ user }) => {
                         onError={() => setImageError(true)}
                     />
                 ) : (
-                    <div className={`${styles.photo} ${styles.fallback}`}>
+                    <div className={cx(styles.photo, styles.fallback)}>
                         {user.name[0]}
                     </div>
                 )}

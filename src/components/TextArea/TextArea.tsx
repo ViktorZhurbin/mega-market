@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import cx from 'classnames';
 
 import styles from './TextArea.module.css';
 
@@ -42,7 +43,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         return (
             <div
-                className={`${styles.parent} ${className}`}
+                className={cx(styles.wrapper, className)}
                 data-value={String(value).trim()}
             >
                 <textarea

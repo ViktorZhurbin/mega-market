@@ -1,4 +1,4 @@
-.parent {
+.wrapper {
     display: inline-grid;
     align-items: stretch;
     vertical-align: top;
@@ -6,12 +6,12 @@
     width: 100%;
 }
 
-.parent::after {
+.wrapper::after {
     content: attr(data-value) ' ';
     visibility: hidden;
 }
 
-.parent::after,
+.wrapper::after,
 .textarea {
     padding: 0 4px;
     grid-area: 2 / 1;
