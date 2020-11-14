@@ -21,10 +21,13 @@ export const user = (handler: Handler) => async (
         await dbConnect();
 
         const user = await UserModel.findOne({ _id: session.userId });
+        if (!user) {
+            return res.status(500).send('No user found');
+        }
         req.user = user;
 
         return handler(req, res);
     } catch (error) {
-        console.error('No user found ', error);
+        console.error(error);
     }
 };
