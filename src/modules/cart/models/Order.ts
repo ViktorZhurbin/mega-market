@@ -1,12 +1,10 @@
+import { productSchema } from '@src/modules/product/models';
 import mongoose from 'mongoose';
 
 export const orderSchema = new mongoose.Schema({
-    products: [
+    items: [
         {
-            product: {
-                type: Object,
-                required: true,
-            },
+            product: productSchema,
             quantity: {
                 type: Number,
                 required: true,

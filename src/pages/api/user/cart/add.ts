@@ -6,7 +6,7 @@ const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
     try {
         const {
             method,
-            body: { productId },
+            body: { product },
             user,
         } = req;
 
@@ -14,11 +14,11 @@ const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
             throw new Error('Request method must be PUT');
         }
 
-        if (!productId) {
-            throw new Error('Missing required field: productId');
+        if (!product) {
+            throw new Error('Missing required field: product');
         }
 
-        const updatedCart = await user.addToCart(productId);
+        const updatedCart = await user.addToCart(product);
 
         res.status(200).json({ success: true, data: updatedCart });
     } catch (error) {

@@ -14,12 +14,12 @@ type Props = {
 };
 
 export const Product: React.FC<Props> = ({ product }) => {
-    const { _id, image, title, description, price } = product;
+    const { image, title, description, price } = product;
     const [session] = useSession();
 
     const handleClick = async () => {
         if (session?.userId) {
-            await addToCart(_id);
+            await addToCart(product);
             mutate(`/api/user/${session.userId}`);
         } else {
             signIn();

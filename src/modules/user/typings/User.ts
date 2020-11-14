@@ -7,7 +7,7 @@ export type UserType = {
     image?: string;
     name: string;
     role: string;
-    cart: [{ _id?: string; product: string | ProductType; quantity: number }];
+    cart: [{ _id?: string; product: ProductType; quantity: number }];
 };
 
 export type UserResponse = {

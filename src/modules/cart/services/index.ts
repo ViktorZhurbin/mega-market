@@ -2,6 +2,7 @@ import { Stripe } from '@stripe/stripe-js';
 import { fetcher } from '@src/utils/api/helpers';
 import { OrderType } from '@cart/typings';
 import { GenericResponse } from '@src/typings';
+import { ProductType } from '@src/modules/product/typings';
 
 export const updateCartQty = (
     productId: string,
@@ -12,8 +13,8 @@ export const updateCartQty = (
 export const deleteCartItem = (productId: string): Promise<GenericResponse> =>
     fetcher('/api/user/cart/deleteOne', 'PUT', { productId });
 
-export const addToCart = (productId: string): Promise<GenericResponse> =>
-    fetcher('/api/user/cart/add', 'PUT', { productId });
+export const addToCart = (product: ProductType): Promise<GenericResponse> =>
+    fetcher('/api/user/cart/add', 'PUT', { product });
 
 export const createCheckoutSession = async (
     order: OrderType,

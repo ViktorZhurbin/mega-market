@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import { UserType } from '@user/typings';
+import { productSchema } from '@product/models';
+import { ProductType } from '@src/modules/product/typings';
 
 export const userSchema = new mongoose.Schema({
     email: String,
@@ -7,11 +9,7 @@ export const userSchema = new mongoose.Schema({
     role: String,
     cart: [
         {
-            product: {
-                type: String,
-                ref: 'Product',
-                required: true,
-            },
+            product: productSchema,
             quantity: {
                 type: Number,
                 required: true,
@@ -20,18 +18,18 @@ export const userSchema = new mongoose.Schema({
     ],
 });
 
-type CartItemType = { product: string; quantity: number };
+type CartItemType = { product: ProductType; quantity: number };
 
-userSchema.methods.addToCart = async function (productId: string) {
+userSchema.methods.addToCart = async function (product: ProductType) {
     const updatedCart: CartItemType[] = [...this.cart];
     const itemIndex = updatedCart.findIndex(
-        (item) => item.product.toString() === productId
+        (item) => item?.product.toString() === product._id
     );
 
     if (itemIndex !== -1) {
         updatedCart[itemIndex].quantity += 1;
     } else {
-        updatedCart.push({ product: productId, quantity: 1 });
+        updatedCart.push({ product, quantity: 1 });
     }
 
     this.cart = updatedCart;
@@ -77,12 +75,30 @@ userSchema.methods.clearCart = async function () {
     return this.cart;
 };
 
+userSchema.methods.getCartQty = async function () {
+    if (this.cart.length === 0) {
+        return 0;
+    }
+
+    return this.cart.reduce((total, item) => total + item.quantity, 0);
+};
+
+userSchema.methods.getCartAmount = async function () {
+    if (this.cart.length === 0) {
+        return 0;
+    }
+
+    return this.cart.reduce((total, item) => total + item.product.price, 0);
+};
+
 export type UserDocument = mongoose.Document &
     UserType & {
-        addToCart(productId: string): Promise<any>;
+        addToCart(product: ProductType): Promise<any>;
         removeFromCart(productId: string): Promise<any>;
         updateCartQty(productId: string, qty: number): Promise<any>;
         clearCart(): void;
+        getCartQty(): number;
+        getCartAmount(): number;
     };
 
 export const UserModel =
