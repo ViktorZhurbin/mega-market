@@ -60,7 +60,7 @@
     "dependencies": {
         "@stripe/react-stripe-js": "^1.1.2",
         "@stripe/stripe-js": "^1.11.0",
-        "mongoose": "^5.10.9",
+        "mongoose": "^5.10.14",
         "next": "latest",
         "next-auth": "^3.1.0",
         "react": "^17.0.1",
