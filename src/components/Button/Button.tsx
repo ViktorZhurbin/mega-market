@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './Button.module.css';
 
 type Props = {
-    onClick?: () => void;
+    onClick?(): void;
     className?: string;
     color?: string;
     route?: string;

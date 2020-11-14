@@ -5,8 +5,8 @@ import styles from './EditableText.module.css';
 interface EditableTextProps {
     text: string;
     className?: string;
-    onBlur?: () => void;
-    onFocus?: () => void;
+    onBlur?(): void;
+    onFocus?(): void;
     onEdit?: (value: string) => void;
 }
 

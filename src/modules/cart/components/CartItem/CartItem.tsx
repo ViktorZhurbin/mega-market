@@ -10,7 +10,7 @@ import { updateCartQty, deleteCartItem } from '../../services';
 import styles from './CartItem.module.css';
 import { useDebounce } from '@src/hooks/useDebounce';
 
-type Props = CartItemType & { onChange: () => void };
+type Props = CartItemType & { onChange(): void };
 
 export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
     const { _id, title, price, image } = product;

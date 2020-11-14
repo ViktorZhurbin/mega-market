@@ -7,7 +7,7 @@ export type Response<Data> = {
     data: Data;
     isLoading: boolean;
     isError: boolean | undefined;
-    mutate: () => void;
+    mutate(): void;
 };
 
 export const useData = <Data>(key: string): Response<Data> => {

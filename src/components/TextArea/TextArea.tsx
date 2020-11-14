@@ -9,12 +9,12 @@ interface TextAreaProps {
     name?: string;
     active?: boolean;
     rows?: number;
-    onBlur?: () => void;
-    onFocus?: () => void;
+    onBlur?(): void;
+    onFocus?(): void;
     onChange?: (value: string) => void;
     onKeyDown?: (event: React.KeyboardEvent) => void;
     onKeyUp?: (event: React.KeyboardEvent) => void;
-    onTouchMove?: () => void;
+    onTouchMove?(): void;
     ref?: React.RefObject<HTMLTextAreaElement>;
 }
 

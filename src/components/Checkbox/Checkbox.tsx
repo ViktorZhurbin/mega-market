@@ -4,7 +4,7 @@ import styles from './Checkbox.module.css';
 
 interface ICheckboxProps {
     isChecked: boolean;
-    onToggle: () => void;
+    onToggle(): void;
     className?: string;
 }
 

@@ -10,11 +10,11 @@ interface InputProps {
     active?: boolean;
     min?: number;
     step?: string;
-    onBlur?: () => void;
-    onFocus?: () => void;
+    onBlur?(): void;
+    onFocus?(): void;
     onChange: (value: string) => void;
     onKeyDown?: (event: React.KeyboardEvent) => void;
-    onTouchMove?: () => void;
+    onTouchMove?(): void;
     ref?: React.RefObject<HTMLInputElement>;
     type?: string;
 }
