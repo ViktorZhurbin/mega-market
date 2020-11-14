@@ -1,8 +1,8 @@
-import { NextApiResponse, NextApiRequest } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/client';
 
 import { dbConnect } from '@/utils/api/db';
-import { UserModel, UserDocument } from '~user/models';
+import { UserDocument, UserModel } from '~user/models';
 
 export type ApiRequest = NextApiRequest & { user: UserDocument };
 type Handler = (req: ApiRequest, res: NextApiResponse) => Promise<any>;

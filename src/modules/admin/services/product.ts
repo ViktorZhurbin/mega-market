@@ -1,6 +1,6 @@
+import { GenericObject, GenericResponse } from '@/typings';
 import { fetcher } from '@/utils/api/helpers';
 import { ProductType } from '~product/typings';
-import { GenericObject, GenericResponse } from '@/typings';
 
 export const createProduct = (
     products: ProductType | ProductType[]

@@ -1,12 +1,11 @@
 import { useSession } from 'next-auth/client';
 
-import { useData } from '@/hooks/useData';
 import { Layout } from '@/components/Layout';
+import { useData } from '@/hooks/useData';
 import { UserType } from '~user/typings';
 
 // import { AddProductForm } from '../../components/AddProductForm';
 import { ControlButtons } from '../../components/ControlButtons';
-
 import styles from './Admin.module.css';
 
 export const Admin: React.FC = () => {

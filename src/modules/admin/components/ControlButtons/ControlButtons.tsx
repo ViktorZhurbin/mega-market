@@ -2,8 +2,8 @@ import faker from 'faker';
 
 import { Button } from '@/components/Button';
 import { ProductType } from '@/modules/product/typings';
-import { createProduct, deleteManyProducts, clearCart } from '../../services';
 
+import { clearCart, createProduct, deleteManyProducts } from '../../services';
 import styles from './ControlButtons.module.css';
 
 const getShuffledArray = (length: number) =>

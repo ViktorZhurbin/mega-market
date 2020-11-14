@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
 import cx from 'classnames';
+import React, { useRef, useState } from 'react';
 
 import styles from './EditableText.module.css';
 

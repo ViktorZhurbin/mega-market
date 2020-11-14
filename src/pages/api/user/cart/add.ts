@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import { withUser, ApiRequest } from '@/utils/api/middleware';
+import { ApiRequest, withUser } from '@/utils/api/middleware';
 
 const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
     try {

@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { useContext } from 'react';
 
 import { Layout } from '@/components/Layout';
-import { formatPrice } from '@/utils/string';
 import { UserContext } from '@/contexts';
+import { formatPrice } from '@/utils/string';
 
 import CardForm from '../../components/CardForm/CardForm';
 import styles from './Checkout.module.css';

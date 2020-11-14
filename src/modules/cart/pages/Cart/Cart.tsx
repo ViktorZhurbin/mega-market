@@ -1,6 +1,7 @@
 import { Layout } from '@/components/Layout';
-import { CartItemType } from '../../typings';
+
 import { Cart } from '../../components/Cart';
+import { CartItemType } from '../../typings';
 
 type Props = {
     cartItems: CartItemType[];

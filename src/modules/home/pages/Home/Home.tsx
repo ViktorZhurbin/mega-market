@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { Layout } from '@/components/Layout';
-import { ProductType } from '~product/typings';
 import { useData } from '@/hooks/useData';
-import { ProductItem } from '../../components/ProductItem';
+import { ProductType } from '~product/typings';
 
+import { ProductItem } from '../../components/ProductItem';
 import styles from './Home.module.css';
 
 export const Home: React.FC = () => {

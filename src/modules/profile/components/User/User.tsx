@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { UserType } from '~user/typings';
+
 import styles from './User.module.css';
 
 export const User: React.FC<{ user: Partial<UserType> }> = ({ user }) => {

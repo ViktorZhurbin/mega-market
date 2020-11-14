@@ -1,5 +1,5 @@
-import { OrderType } from '~cart/typings';
 import { ProductType } from '@/modules/product/typings';
+import { OrderType } from '~cart/typings';
 
 export type UserType = {
     _id?: string;

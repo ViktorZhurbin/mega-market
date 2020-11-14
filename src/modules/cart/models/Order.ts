@@ -1,5 +1,6 @@
-import { productSchema } from '@/modules/product/models';
 import mongoose from 'mongoose';
+
+import { productSchema } from '@/modules/product/models';
 
 export const orderSchema = new mongoose.Schema({
     items: [

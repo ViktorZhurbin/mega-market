@@ -1,4 +1,4 @@
-import { NextApiResponse, NextApiRequest } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 import { dbConnect } from '@/utils/api/db';
 import { ProductModel } from '~product/models';

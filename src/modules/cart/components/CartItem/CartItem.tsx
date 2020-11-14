@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-import { formatPrice } from '@/utils/string';
 import { Input } from '@/components/Input';
-import { CartItemType } from '../../typings';
-import { updateCartQty, deleteCartItem } from '../../services';
-
-import styles from './CartItem.module.css';
 import { useDebounce } from '@/hooks/useDebounce';
+import { formatPrice } from '@/utils/string';
+
+import { deleteCartItem, updateCartQty } from '../../services';
+import { CartItemType } from '../../typings';
+import styles from './CartItem.module.css';
 
 type Props = CartItemType & { onChange(): void };
 

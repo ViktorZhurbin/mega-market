@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { Input } from '@/components/Input';
-import { createProduct } from '../../services';
 
+import { createProduct } from '../../services';
 import styles from './AddProductForm.module.css';
 
 export const AddProductForm: React.FC = () => {

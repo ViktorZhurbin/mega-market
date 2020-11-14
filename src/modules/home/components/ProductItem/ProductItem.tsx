@@ -1,10 +1,11 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
+
+import { formatPrice } from '@/utils/string';
 
 import { ProductType } from '../../../product/typings';
 import styles from './ProductItem.module.css';
-import { formatPrice } from '@/utils/string';
 
 interface Props {
     product: ProductType;

@@ -1,13 +1,13 @@
-import { useContext } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import { useContext } from 'react';
 
 import { Button } from '@/components/Button';
 import { UserContext } from '@/contexts';
-import { CartItem } from '../CartItem';
-import { Summary } from '../Summary';
-import { createCheckoutSession } from '../../services';
-import { EmptyCart } from '../EmptyCart';
 
+import { createCheckoutSession } from '../../services';
+import { CartItem } from '../CartItem';
+import { EmptyCart } from '../EmptyCart';
+import { Summary } from '../Summary';
 import styles from './Cart.module.css';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
