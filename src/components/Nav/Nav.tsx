@@ -13,7 +13,7 @@ export const Nav: React.FC = ({ children }) => {
 
     return (
         <nav className={styles.container}>
-            {children}
+            <div className={styles.sticky}>{children}</div>
             <div className={styles.linkWrapper}>
                 <NavLink title="Home" icon={<IconHome />} href="/" />
                 <NavLink

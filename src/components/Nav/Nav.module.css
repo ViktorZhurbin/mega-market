@@ -3,6 +3,15 @@
     bottom: 0;
     z-index: 15;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.sticky {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .linkWrapper {
