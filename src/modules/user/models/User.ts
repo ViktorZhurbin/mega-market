@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { CartItemType } from '@/modules/cart/typings';
-import { UserType } from '~user/typings';
+import { UserType } from '@/modules/user/typings';
 
 export type UserSchemaType = UserType & {
     addToCart(productId: string): Promise<UserType>;

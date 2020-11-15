@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-import { productSchema } from '~product/models';
-import { accountSchema, userSchema } from '~user/models';
+import { productSchema } from '@/modules/product/models';
+import { accountSchema, userSchema } from '@/modules/user/models';
 
 export const schemas = {
     Product: productSchema,

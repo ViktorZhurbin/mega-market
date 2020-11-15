@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Layout } from '@/components/Layout';
 import { useData } from '@/hooks/useData';
-import { ProductType } from '~product/typings';
+import { ProductType } from '@/modules/product/typings';
 
 import { ProductItem } from '../../components/ProductItem';
 import styles from './Home.module.css';

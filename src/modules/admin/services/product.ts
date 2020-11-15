@@ -1,6 +1,6 @@
+import { ProductType } from '@/modules/product/typings';
 import { ApiResponse, GenericObject } from '@/typings';
 import { fetcher } from '@/utils/api/helpers';
-import { ProductType } from '~product/typings';
 
 export const createProduct = (
     products: ProductType | ProductType[]

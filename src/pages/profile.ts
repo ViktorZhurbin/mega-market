@@ -1,1 +1,1 @@
-export { Profile as default } from '~profile/pages';
+export { Profile as default } from '@/modules/profile/pages';

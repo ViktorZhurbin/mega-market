@@ -2,14 +2,7 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "paths": {
-            "@/*": ["./*"],
-            "~admin/*": ["./modules/admin/*"],
-            "~cart/*": ["./modules/cart/*"],
-            "~checkout/*": ["./modules/checkout/*"],
-            "~home/*": ["./modules/home/*"],
-            "~product/*": ["./modules/product/*"],
-            "~profile/*": ["./modules/profile/*"],
-            "~user/*": ["./modules/user/*"]
+            "@/*": ["./*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],

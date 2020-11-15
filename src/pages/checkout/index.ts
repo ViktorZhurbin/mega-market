@@ -1,1 +1,1 @@
-export { Checkout as default } from '~checkout/pages';
+export { Checkout as default } from '@/modules/checkout/pages';
