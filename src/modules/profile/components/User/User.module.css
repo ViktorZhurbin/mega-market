@@ -1,4 +1,9 @@
 .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
     background-color: #005bff;
     display: flex;
     align-items: center;

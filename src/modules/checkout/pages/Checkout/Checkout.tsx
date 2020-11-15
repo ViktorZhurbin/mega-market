@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useContext } from 'react';
 
 import { Layout } from '@/components/Layout';
-import { CartContext } from '@/contexts';
+import { UserContext } from '@/contexts';
 import { formatPrice } from '@/utils/string';
 
 import CardForm from '../../components/CardForm/CardForm';
@@ -12,10 +12,10 @@ import styles from './Checkout.module.css';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 export const Checkout: React.FC = () => {
-    const cart = useContext(CartContext);
+    const { data, isLoading } = useContext(UserContext);
 
-    if (cart?.isLoading) {
-        return <div>Loading Cart...</div>;
+    if (isLoading) {
+        return <div>Loading...</div>;
     }
 
     return (
@@ -23,11 +23,11 @@ export const Checkout: React.FC = () => {
             <Layout>
                 <div className={styles.container}>
                     <h1 className={styles.title}>Card payment</h1>
-                    {cart?.data?.total && (
+                    {data.cart.total && (
                         <div className={styles.titleWrapper}>
                             <p className={styles.total}>Total</p>
                             <span className={styles.title}>
-                                {formatPrice(cart?.data?.total)}
+                                {formatPrice(data.cart.total)}
                             </span>
                         </div>
                     )}
