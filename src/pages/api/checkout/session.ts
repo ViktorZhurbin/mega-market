@@ -1,20 +1,19 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
+
+import { UserApiRequest, withUser } from '@/utils/api/middleware';
 
 // Set your secret key. Remember to switch to your live secret key in production!
 // See your keys here: https://dashboard.stripe.com/account/apikeys
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
-export default async (
-    req: NextApiRequest,
+const handler = async (
+    req: UserApiRequest,
     res: NextApiResponse
 ): Promise<any> => {
     try {
-        const { cart } = req.body;
-
-        if (!cart) {
-            throw new Error('Missing required fields: cart');
-        }
+        const { user } = req.body;
+        const { cart } = await user.populate('cart.product').execPopulate();
 
         const line_items = cart.products.map(({ product, quantity }) => ({
             price_data: {
@@ -40,3 +39,5 @@ export default async (
         res.status(400).json({ success: false, error: error.message });
     }
 };
+
+export default withUser(handler);

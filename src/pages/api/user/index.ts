@@ -20,10 +20,12 @@ const handler = async (
         res.status(200).json({
             success: true,
             data: {
-                userId: user._id,
-                products: cart,
-                quantity,
-                total,
+                ...user.toObject(),
+                cart: {
+                    products: cart,
+                    quantity,
+                    total,
+                },
             },
         });
     } catch (error) {

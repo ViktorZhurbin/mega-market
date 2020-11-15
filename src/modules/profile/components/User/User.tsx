@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { UserType } from '~user/typings';
+import { SessionUserType } from '~user/typings';
 
 import styles from './User.module.css';
 
-export const User: React.FC<{ user: Partial<UserType> }> = ({ user }) => {
+export const User: React.FC<{ user: SessionUserType }> = ({ user }) => {
     const [imageError, setImageError] = useState(false);
 
     return (

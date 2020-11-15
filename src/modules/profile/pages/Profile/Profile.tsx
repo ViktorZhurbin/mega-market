@@ -8,9 +8,10 @@ import { User } from '../../components/User/User';
 export const Profile: React.FC = () => {
     const [session] = useSession();
 
+    const handleSignOut = () => signOut({ callbackUrl: '/' });
     const getButton = () =>
         session ? (
-            <Button color="red" onClick={() => signOut({ callbackUrl: '/' })}>
+            <Button color="red" onClick={handleSignOut}>
                 Sign out
             </Button>
         ) : (

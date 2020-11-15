@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { CartContext } from '@/contexts';
+import { UserContext } from '@/contexts';
 
 import IconCart from './icons/cart.svg';
 import IconHome from './icons/home.svg';
@@ -9,7 +9,7 @@ import styles from './Nav.module.css';
 import { NavLink } from './NavLink';
 
 export const Nav: React.FC = ({ children }) => {
-    const cart = useContext(CartContext);
+    const user = useContext(UserContext);
 
     return (
         <nav className={styles.container}>
@@ -20,7 +20,7 @@ export const Nav: React.FC = ({ children }) => {
                     title="Cart"
                     icon={<IconCart />}
                     href="/cart"
-                    counter={cart?.data?.quantity}
+                    counter={user?.data?.cart.quantity}
                 />
                 <NavLink
                     title="Profile"
