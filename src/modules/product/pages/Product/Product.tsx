@@ -1,10 +1,7 @@
-import { signIn, useSession } from 'next-auth/client';
 import Image from 'next/image';
-import { mutate } from 'swr';
 
-import { Button } from '@/components/Button';
 import { Layout } from '@/components/Layout';
-import { addToCart } from '@/modules/user/services';
+import { CartButton } from '@/modules/cart/components/CartButton/CartButton';
 import { formatPrice } from '@/utils/string';
 
 import { ProductType } from '../../typings';
@@ -15,26 +12,10 @@ type Props = {
 };
 
 export const Product: React.FC<Props> = ({ product }) => {
-    const { image, title, description, price } = product;
-    const [session] = useSession();
-
-    const handleClick = async () => {
-        if (session) {
-            await addToCart(product._id);
-            mutate(`/api/user/cart`);
-        } else {
-            signIn();
-        }
-    };
-
-    const AddToCartButton = (
-        <Button onClick={handleClick}>
-            {session ? 'Add to cart' : 'Sign In'}
-        </Button>
-    );
+    const { _id, image, title, description, price } = product;
 
     return (
-        <Layout stickyItem={AddToCartButton}>
+        <Layout stickyItem={<CartButton productId={_id} />}>
             <div className={styles.container}>
                 <Image
                     src={image}
