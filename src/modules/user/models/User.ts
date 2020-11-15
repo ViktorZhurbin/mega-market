@@ -1,15 +1,13 @@
 import mongoose from 'mongoose';
 
 import { CartItemType } from '@/modules/cart/typings';
-import { UserWithCartType } from '~user/typings';
+import { UserType } from '~user/typings';
 
-export type UserSchemaType = UserWithCartType & {
-    addToCart(productId: string): Promise<UserWithCartType>;
-    removeFromCart(productId: string): Promise<UserWithCartType>;
-    updateCartQty(productId: string, qty: number): Promise<UserWithCartType>;
-    clearCart(): Promise<UserWithCartType>;
-    getCartQty(): number;
-    getCartAmount(): number;
+export type UserSchemaType = UserType & {
+    addToCart(productId: string): Promise<UserType>;
+    removeFromCart(productId: string): Promise<UserType>;
+    updateCartQty(productId: string, qty: number): Promise<UserType>;
+    clearCart(): Promise<UserType>;
 };
 
 export type UserDocumentType = UserSchemaType & mongoose.Document;

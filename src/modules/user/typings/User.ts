@@ -1,5 +1,4 @@
-import { CartItemType } from '@/modules/cart/typings';
-import { ProductType } from '@/modules/product/typings';
+import { CartItemType, PopulatedCartItemType } from '@/modules/cart/typings';
 
 export type SessionUserType = {
     _id?: string;
@@ -9,14 +8,6 @@ export type SessionUserType = {
     role?: string;
 };
 
-export type UserWithCartType = SessionUserType & {
-    cart: CartItemType[];
-};
-
-export type UserWithExtendedCartType = SessionUserType & {
-    cart: {
-        products: CartItemType<ProductType>[];
-        quantity: number;
-        total: number;
-    };
+export type UserType = SessionUserType & {
+    cart: (CartItemType | PopulatedCartItemType)[];
 };

@@ -1,14 +1,21 @@
 import { createContext } from 'react';
 
 import { Response, useData } from '@/hooks/useData';
-import { UserWithExtendedCartType } from '@/modules/user/typings';
+import { PopulatedCartItemType } from '@/modules/cart/typings';
+import { SessionUserType } from '@/modules/user/typings';
 
-export const UserContext = createContext<Response<
-    UserWithExtendedCartType
-> | null>(null);
+type Data = SessionUserType & {
+    cart: {
+        products: PopulatedCartItemType[];
+        quantity: number;
+        total: number;
+    };
+};
+
+export const UserContext = createContext<Response<Data> | null>(null);
 
 export const UserProvider: React.FC = ({ children }) => {
-    const cart = useData<UserWithExtendedCartType>('/api/user');
+    const cart = useData<Data>('/api/user');
 
     return <UserContext.Provider value={cart}>{children}</UserContext.Provider>;
 };

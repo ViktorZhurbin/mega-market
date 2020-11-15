@@ -4,14 +4,13 @@ import { useEffect, useState } from 'react';
 
 import { Input } from '@/components/Input';
 import { useDebounce } from '@/hooks/useDebounce';
-import { ProductType } from '@/modules/product/typings';
 import { deleteCartItem, updateCartQty } from '@/modules/user/services';
 import { formatPrice } from '@/utils/string';
 
-import { CartItemType } from '../../typings';
+import { PopulatedCartItemType } from '../../typings';
 import styles from './CartItem.module.css';
 
-type Props = CartItemType<ProductType> & { onChange(): void };
+type Props = PopulatedCartItemType & { onChange(): void };
 
 export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
     const { _id, title, price, image } = product;

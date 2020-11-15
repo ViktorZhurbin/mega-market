@@ -1,13 +1,10 @@
 import { ProductType } from '@/modules/product/typings';
 
-export type CartItemType<T = string> = {
-    product: T;
+export type CartItemType = {
+    product: string;
     quantity: number;
 };
 
-export type CartResponseType = {
-    userId: string;
-    products: CartItemType<ProductType>[];
-    quantity: number;
-    total: number;
+export type PopulatedCartItemType = Omit<CartItemType, 'product'> & {
+    product: ProductType;
 };
