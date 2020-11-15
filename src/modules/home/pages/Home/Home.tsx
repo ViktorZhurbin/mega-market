@@ -8,14 +8,14 @@ import { ProductItem } from '../../components/ProductItem';
 import styles from './Home.module.css';
 
 export const Home: React.FC = () => {
-    const { data, isLoading, isError } = useData<ProductType[]>(
+    const { data, isLoading, error } = useData<ProductType[]>(
         '/api/product/get'
     );
 
     return (
         <Layout>
             {isLoading && <span>Loading products...</span>}
-            {isError && <span>ERROR fetching products!</span>}
+            {error && <span>ERROR fetching products!</span>}
             {data && (
                 <div className={styles.container}>
                     {data.map((product) => (

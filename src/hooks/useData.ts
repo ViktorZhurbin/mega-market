@@ -6,7 +6,7 @@ const fetcher = (input: RequestInfo, init?: RequestInit) =>
 export type Response<Data> = {
     data: Data;
     isLoading: boolean;
-    isError: boolean | undefined;
+    error: boolean | undefined;
     mutate(): void;
 };
 
@@ -16,7 +16,7 @@ export const useData = <Data>(key: string): Response<Data> => {
     return {
         data: data?.data,
         isLoading: !error && !data,
-        isError: error,
+        error,
         mutate,
     };
 };

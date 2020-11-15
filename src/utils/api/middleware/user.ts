@@ -2,13 +2,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/client';
 
 import { dbConnect } from '@/utils/api/db';
-import { UserDocument, UserModel } from '~user/models';
+import { UserDocumentType, UserModel } from '~user/models';
 
-export type ApiRequest = NextApiRequest & { user: UserDocument };
-type Handler = (req: ApiRequest, res: NextApiResponse) => Promise<any>;
+export type UserApiRequest = NextApiRequest & { user: UserDocumentType };
+type Handler = (req: UserApiRequest, res: NextApiResponse) => Promise<any>;
 
 export const withUser = (handler: Handler) => async (
-    req: ApiRequest,
+    req: UserApiRequest,
     res: NextApiResponse
 ): Promise<any> => {
     try {

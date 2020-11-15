@@ -1,16 +1,30 @@
 import mongoose from 'mongoose';
 
-import { ProductType } from '@/modules/product/typings';
-import { productSchema } from '~product/models';
+import { CartItemType } from '@/modules/cart/typings';
 import { UserType } from '~user/typings';
 
-export const userSchema = new mongoose.Schema({
+export type UserSchemaType = UserType & {
+    addToCart(productId: string): Promise<UserType>;
+    removeFromCart(productId: string): Promise<UserType>;
+    updateCartQty(productId: string, qty: number): Promise<UserType>;
+    clearCart(): Promise<UserType>;
+    getCartQty(): number;
+    getCartAmount(): number;
+};
+
+export type UserDocumentType = UserSchemaType & mongoose.Document;
+
+export const userSchema = new mongoose.Schema<UserSchemaType>({
     email: String,
     name: String,
     role: String,
     cart: [
         {
-            product: productSchema,
+            product: {
+                type: mongoose.Types.ObjectId,
+                ref: 'Product',
+                required: true,
+            },
             quantity: {
                 type: Number,
                 required: true,
@@ -19,41 +33,36 @@ export const userSchema = new mongoose.Schema({
     ],
 });
 
-type CartItemType = { product: ProductType; quantity: number };
-
-userSchema.methods.addToCart = async function (product: ProductType) {
+userSchema.methods.addToCart = async function (productId: string) {
     const updatedCart: CartItemType[] = [...this.cart];
     const itemIndex = updatedCart.findIndex(
-        (item) => item?.product.toString() === product._id
+        (item) => item.product.toString() === productId
     );
 
     if (itemIndex !== -1) {
         updatedCart[itemIndex].quantity += 1;
     } else {
-        updatedCart.push({ product, quantity: 1 });
+        updatedCart.push({ product: productId, quantity: 1 });
     }
 
     this.cart = updatedCart;
 
-    await this.save();
-
-    return this.cart;
+    return await this.save();
 };
 
 userSchema.methods.updateCartQty = async function (
     productId: string,
-    qty: number
+    quantity: number
 ) {
-    const updatedCart = [...this.cart];
+    const updatedCart: CartItemType[] = [...this.cart];
     const itemIndex = updatedCart.findIndex(
         (item) => item.product.toString() === productId
     );
-    updatedCart[itemIndex].quantity = qty;
+    updatedCart[itemIndex].quantity = quantity;
+
     this.cart = updatedCart;
 
-    await this.save();
-
-    return this.cart;
+    return await this.save();
 };
 
 userSchema.methods.removeFromCart = async function (productId: string) {
@@ -63,20 +72,16 @@ userSchema.methods.removeFromCart = async function (productId: string) {
         (item) => item.product.toString() !== productId
     );
 
-    await this.save();
-
-    return this.cart;
+    return await this.save();
 };
 
 userSchema.methods.clearCart = async function () {
     this.cart = [];
 
-    await this.save();
-
-    return this.cart;
+    return await this.save();
 };
 
-userSchema.methods.getCartQty = async function () {
+userSchema.methods.getCartQty = function () {
     if (this.cart.length === 0) {
         return 0;
     }
@@ -84,7 +89,7 @@ userSchema.methods.getCartQty = async function () {
     return this.cart.reduce((total, item) => total + item.quantity, 0);
 };
 
-userSchema.methods.getCartAmount = async function () {
+userSchema.methods.getCartAmount = function () {
     if (this.cart.length === 0) {
         return 0;
     }
@@ -92,16 +97,6 @@ userSchema.methods.getCartAmount = async function () {
     return this.cart.reduce((total, item) => total + item.product.price, 0);
 };
 
-export type UserDocument = mongoose.Document &
-    UserType & {
-        addToCart(product: ProductType): Promise<any>;
-        removeFromCart(productId: string): Promise<any>;
-        updateCartQty(productId: string, qty: number): Promise<any>;
-        clearCart(): void;
-        getCartQty(): number;
-        getCartAmount(): number;
-    };
-
 export const UserModel =
     mongoose.models?.User ||
-    mongoose.model<UserDocument & mongoose.Document>('User', userSchema);
+    mongoose.model<UserDocumentType>('User', userSchema);

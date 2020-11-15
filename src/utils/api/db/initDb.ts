@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-import { orderSchema } from '~cart/models';
 import { productSchema } from '~product/models';
 import { accountSchema, userSchema } from '~user/models';
 
@@ -8,7 +7,6 @@ export const schemas = {
     Product: productSchema,
     Account: accountSchema,
     User: userSchema,
-    Order: orderSchema,
 };
 
 const createModels = () => {

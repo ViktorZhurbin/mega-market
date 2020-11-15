@@ -1,12 +1,15 @@
 import { NextApiResponse } from 'next';
 
-import { ApiRequest, withUser } from '@/utils/api/middleware';
+import { UserApiRequest, withUser } from '@/utils/api/middleware';
 
-const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
+const handler = async (
+    req: UserApiRequest,
+    res: NextApiResponse
+): Promise<any> => {
     try {
         const {
             method,
-            body: { productId, qty },
+            body: { productId, quantity },
             user,
         } = req;
 
@@ -17,13 +20,19 @@ const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
         if (!productId) {
             throw new Error('Missing required field: productId');
         }
-        if (!qty) {
-            throw new Error('Missing required field: qty');
+        if (!quantity) {
+            throw new Error('Missing required field: quantity');
         }
 
-        const updatedCart = await user.updateCartQty(productId, qty);
+        const updatedUser = await user.updateCartQty(productId, quantity);
 
-        res.status(200).json({ success: true, data: updatedCart });
+        if (!updatedUser) {
+            throw new Error(
+                `Couldn't update quntity for productId: ${productId} in cart`
+            );
+        }
+
+        res.status(200).json({ success: true, data: updatedUser.cart });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

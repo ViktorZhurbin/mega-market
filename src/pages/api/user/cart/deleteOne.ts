@@ -1,8 +1,11 @@
 import { NextApiResponse } from 'next';
 
-import { ApiRequest, withUser } from '@/utils/api/middleware';
+import { UserApiRequest, withUser } from '@/utils/api/middleware';
 
-const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
+const handler = async (
+    req: UserApiRequest,
+    res: NextApiResponse
+): Promise<any> => {
     try {
         const {
             method,
@@ -18,9 +21,15 @@ const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
             throw new Error('Missing required field: productId');
         }
 
-        const updatedCart = await user.removeFromCart(productId);
+        const updatedUser = await user.removeFromCart(productId);
 
-        res.status(200).json({ success: true, data: updatedCart });
+        if (!updatedUser) {
+            throw new Error(
+                `Couldn't delete productId: ${productId} from cart`
+            );
+        }
+
+        res.status(200).json({ success: true, data: updatedUser.cart });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

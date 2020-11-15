@@ -1,8 +1,11 @@
 import { NextApiResponse } from 'next';
 
-import { ApiRequest, withUser } from '@/utils/api/middleware';
+import { UserApiRequest, withUser } from '@/utils/api/middleware';
 
-const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
+const handler = async (
+    req: UserApiRequest,
+    res: NextApiResponse
+): Promise<any> => {
     try {
         const { method, user } = req;
 
