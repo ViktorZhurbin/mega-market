@@ -8,15 +8,15 @@ import { getDeclension } from '@/utils/string';
 
 export const CartButton: React.FC<{ productId: string }> = ({ productId }) => {
     const [session, loading] = useSession();
-    const user = useContext(UserContext);
-    const cartItem = user?.data?.cart.products.find(({ product }) => {
+    const { data, isLoading, mutate } = useContext(UserContext);
+    const cartItem = data?.cart.products.find(({ product }) => {
         return product._id === productId;
     });
     const isInCart = Boolean(cartItem);
 
     const handleAddToCart = async () => {
         await addToCart(productId);
-        user?.mutate();
+        mutate();
     };
     const cartBtnText = isInCart
         ? `${getDeclension('item', cartItem.quantity)} in cart`
@@ -31,5 +31,5 @@ export const CartButton: React.FC<{ productId: string }> = ({ productId }) => {
 
     const StickyButton = session ? AddToCartButton : SignInButton;
 
-    return loading || user.isLoading ? null : StickyButton;
+    return loading || isLoading ? null : StickyButton;
 };

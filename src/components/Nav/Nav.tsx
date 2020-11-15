@@ -9,7 +9,7 @@ import styles from './Nav.module.css';
 import { NavLink } from './NavLink';
 
 export const Nav: React.FC = ({ children }) => {
-    const user = useContext(UserContext);
+    const { data } = useContext(UserContext);
 
     return (
         <nav className={styles.container}>
@@ -20,7 +20,7 @@ export const Nav: React.FC = ({ children }) => {
                     title="Cart"
                     icon={<IconCart />}
                     href="/cart"
-                    counter={user?.data?.cart.quantity}
+                    counter={data?.cart.quantity}
                 />
                 <NavLink
                     title="Profile"

@@ -13,29 +13,29 @@ import styles from './Cart.module.css';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 export const Cart: React.FC = () => {
-    const user = useContext(UserContext);
+    const { data, isLoading, mutate } = useContext(UserContext);
     const handleCheckout = async () => {
         const stripe = await stripePromise;
         await createCheckoutSession(stripe);
     };
 
-    if (user?.isLoading) {
+    if (isLoading) {
         return <div>Loading cart...</div>;
     }
 
-    if (!user?.data.cart.quantity) {
+    if (!data?.cart?.quantity) {
         return <EmptyCart />;
     }
 
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Cart</h1>
-            {user.data.cart.products.map(({ product, quantity }) => (
+            {data.cart.products.map(({ product, quantity }) => (
                 <CartItem
                     key={product._id}
                     product={product}
                     quantity={quantity}
-                    onChange={user.mutate}
+                    onChange={mutate}
                 />
             ))}
             <Button
@@ -45,10 +45,7 @@ export const Cart: React.FC = () => {
             >
                 Checkout
             </Button>
-            <Summary
-                quantity={user.data.cart.quantity}
-                total={user.data.cart.total}
-            />
+            <Summary quantity={data.cart.quantity} total={data.cart.total} />
         </div>
     );
 };
