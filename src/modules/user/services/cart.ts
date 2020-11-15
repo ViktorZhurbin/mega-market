@@ -2,7 +2,7 @@ import { Stripe } from '@stripe/stripe-js';
 
 import { ApiResponse } from '@/typings';
 import { fetcher } from '@/utils/api/helpers';
-import { CartResponseType, CartItemType } from '~cart/typings';
+import { CartItemType, CartResponseType } from '~cart/typings';
 
 export const clearCart = (): Promise<ApiResponse<CartItemType>> =>
     fetcher('/api/user/cart/clear', 'PUT');

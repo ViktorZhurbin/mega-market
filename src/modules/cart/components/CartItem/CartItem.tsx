@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 
 import { Input } from '@/components/Input';
 import { useDebounce } from '@/hooks/useDebounce';
+import { ProductType } from '@/modules/product/typings';
+import { deleteCartItem, updateCartQty } from '@/modules/user/services';
 import { formatPrice } from '@/utils/string';
 
-import { deleteCartItem, updateCartQty } from '@/modules/user/services';
 import { CartItemType } from '../../typings';
 import styles from './CartItem.module.css';
-import { ProductType } from '@/modules/product/typings';
 
 type Props = CartItemType<ProductType> & { onChange(): void };
 

@@ -3,8 +3,8 @@ import { useContext } from 'react';
 
 import { Button } from '@/components/Button';
 import { CartContext } from '@/contexts';
-
 import { createCheckoutSession } from '@/modules/user/services';
+
 import { CartItem } from '../CartItem';
 import { EmptyCart } from '../EmptyCart';
 import { Summary } from '../Summary';

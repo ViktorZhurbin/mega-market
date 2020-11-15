@@ -2,10 +2,10 @@ import faker from 'faker';
 
 import { Button } from '@/components/Button';
 import { ProductType } from '@/modules/product/typings';
+import { clearCart } from '@/modules/user/services';
 
 import { createProduct, deleteManyProducts } from '../../services';
 import styles from './ControlButtons.module.css';
-import { clearCart } from '@/modules/user/services';
 
 const getShuffledArray = (length: number) =>
     Array.from({ length }, (_, i) => i + 1).sort(() => Math.random() - 0.5);

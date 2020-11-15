@@ -4,8 +4,8 @@ import { mutate } from 'swr';
 
 import { Button } from '@/components/Button';
 import { Layout } from '@/components/Layout';
-import { formatPrice } from '@/utils/string';
 import { addToCart } from '@/modules/user/services';
+import { formatPrice } from '@/utils/string';
 
 import { ProductType } from '../../typings';
 import styles from './Product.module.css';
