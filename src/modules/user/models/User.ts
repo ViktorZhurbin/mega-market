@@ -79,22 +79,6 @@ userSchema.methods.clearCart = async function () {
     return await this.save();
 };
 
-userSchema.methods.getCartQty = function () {
-    if (this.cart.length === 0) {
-        return 0;
-    }
-
-    return this.cart.reduce((total, item) => total + item.quantity, 0);
-};
-
-userSchema.methods.getCartAmount = function () {
-    if (this.cart.length === 0) {
-        return 0;
-    }
-
-    return this.cart.reduce((total, item) => total + item.product.price, 0);
-};
-
 export const UserModel =
     mongoose.models?.User ||
     mongoose.model<UserDocumentType>('User', userSchema);
