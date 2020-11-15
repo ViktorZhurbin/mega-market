@@ -12,7 +12,8 @@
         "prettier": "prettier --write 'src/**/*.(js|jsx|tsx|ts)'",
         "lint": "eslint src",
         "lint:fix": "eslint src --fix",
-        "stylelint": "stylelint 'src/**/*.css'"
+        "stylelint": "stylelint 'src/**/*.css'",
+        "ts:check": "tsc -p tsconfig.json"
     },
     "husky": {
         "hooks": {
