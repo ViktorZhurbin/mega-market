@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import { Button } from '@/components/Button';
 import { UserContext } from '@/contexts';
-import { addToCart } from '@/modules/user/services';
+import { addToCart } from '@/modules/cart/services';
 import { getDeclension } from '@/utils/string';
 
 export const CartButton: React.FC<{ productId: string }> = ({ productId }) => {

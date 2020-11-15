@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { Input } from '@/components/Input';
 import { useDebounce } from '@/hooks/useDebounce';
-import { deleteCartItem, updateCartQty } from '@/modules/user/services';
+import { deleteCartItem, updateCartQty } from '@/modules/cart/services';
 import { formatPrice } from '@/utils/string';
 
 import { PopulatedCartItemType } from '../../typings';

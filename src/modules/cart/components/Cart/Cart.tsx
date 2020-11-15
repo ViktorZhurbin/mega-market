@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import { Button } from '@/components/Button';
 import { UserContext } from '@/contexts';
-import { createCheckoutSession } from '@/modules/user/services';
+import { createCheckoutSession } from '@/modules/cart/services';
 
 import { CartItem } from '../CartItem';
 import { EmptyCart } from '../EmptyCart';
