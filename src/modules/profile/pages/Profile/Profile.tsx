@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from 'next-auth/client';
 import { Button } from '@/components/Button';
 import { Layout } from '@/components/Layout';
 
-import { User } from '../../components/User/User';
+import { User } from '../../components/User';
 
 export const Profile: React.FC = () => {
     const [session] = useSession();
@@ -20,13 +20,7 @@ export const Profile: React.FC = () => {
 
     return (
         <Layout stickyItem={getButton()}>
-            {session?.user ? (
-                <User user={session.user} />
-            ) : (
-                <div>
-                    <h2>Please sign in</h2>
-                </div>
-            )}
+            {session ? <User /> : <h2>Please sign in</h2>}
         </Layout>
     );
 };
