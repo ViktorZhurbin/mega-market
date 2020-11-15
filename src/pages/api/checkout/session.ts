@@ -10,13 +10,13 @@ export default async (
     res: NextApiResponse
 ): Promise<any> => {
     try {
-        const { order } = req.body;
+        const { cart } = req.body;
 
-        if (!order) {
-            throw new Error('Missing required fields: order');
+        if (!cart) {
+            throw new Error('Missing required fields: cart');
         }
 
-        const line_items = order.products.map(({ product, quantity }) => ({
+        const line_items = cart.products.map(({ product, quantity }) => ({
             price_data: {
                 currency: 'EUR',
                 product_data: {

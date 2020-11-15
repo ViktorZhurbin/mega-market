@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { Layout } from '@/components/Layout';
-import { clearCart } from '@/modules/admin/services';
+import { clearCart } from '@/modules/user/services';
 
 import styles from './Success.module.css';
 

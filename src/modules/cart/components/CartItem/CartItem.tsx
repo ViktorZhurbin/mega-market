@@ -6,11 +6,12 @@ import { Input } from '@/components/Input';
 import { useDebounce } from '@/hooks/useDebounce';
 import { formatPrice } from '@/utils/string';
 
-import { deleteCartItem, updateCartQty } from '../../services';
+import { deleteCartItem, updateCartQty } from '@/modules/user/services';
 import { CartItemType } from '../../typings';
 import styles from './CartItem.module.css';
+import { ProductType } from '@/modules/product/typings';
 
-type Props = CartItemType & { onChange(): void };
+type Props = CartItemType<ProductType> & { onChange(): void };
 
 export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
     const { _id, title, price, image } = product;
@@ -19,7 +20,10 @@ export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
 
     useEffect(() => {
         if (updatedQty && updatedQty !== quantity.toString()) {
-            updateCartQty(product._id, updatedQty).then(() => onChange());
+            updateCartQty(product._id, updatedQty).then(() => {
+                console.log('onChange');
+                onChange();
+            });
         }
     }, [updatedQty, product._id, onChange, quantity]);
 

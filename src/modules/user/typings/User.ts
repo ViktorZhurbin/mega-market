@@ -1,5 +1,4 @@
-import { ProductType } from '@/modules/product/typings';
-import { OrderType } from '~cart/typings';
+import { CartItemType } from '@/modules/cart/typings';
 
 export type UserType = {
     _id?: string;
@@ -7,10 +6,5 @@ export type UserType = {
     image?: string;
     name: string;
     role: string;
-    cart: [{ _id?: string; product: ProductType; quantity: number }];
-};
-
-export type UserResponse = {
-    user: UserType;
-    order: OrderType;
+    cart: CartItemType[];
 };

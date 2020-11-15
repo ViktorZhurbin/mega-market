@@ -5,7 +5,7 @@ import { mutate } from 'swr';
 import { Button } from '@/components/Button';
 import { Layout } from '@/components/Layout';
 import { formatPrice } from '@/utils/string';
-import { addToCart } from '~cart/services';
+import { addToCart } from '@/modules/user/services';
 
 import { ProductType } from '../../typings';
 import styles from './Product.module.css';
@@ -19,9 +19,9 @@ export const Product: React.FC<Props> = ({ product }) => {
     const [session] = useSession();
 
     const handleClick = async () => {
-        if (session?.userId) {
-            await addToCart(product);
-            mutate(`/api/user/${session.userId}`);
+        if (session) {
+            await addToCart(product._id);
+            mutate(`/api/user/cart`);
         } else {
             signIn();
         }
@@ -29,7 +29,7 @@ export const Product: React.FC<Props> = ({ product }) => {
 
     const AddToCartButton = (
         <Button onClick={handleClick}>
-            {session?.userId ? 'Add to cart' : 'Sign In'}
+            {session ? 'Add to cart' : 'Sign In'}
         </Button>
     );
 

@@ -1,12 +1,15 @@
 import { NextApiResponse } from 'next';
 
-import { ApiRequest, withUser } from '@/utils/api/middleware';
+import { UserApiRequest, withUser } from '@/utils/api/middleware';
 
-const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
+const handler = async (
+    req: UserApiRequest,
+    res: NextApiResponse
+): Promise<any> => {
     try {
         const {
             method,
-            body: { product },
+            body: { productId },
             user,
         } = req;
 
@@ -14,13 +17,17 @@ const handler = async (req: ApiRequest, res: NextApiResponse): Promise<any> => {
             throw new Error('Request method must be PUT');
         }
 
-        if (!product) {
-            throw new Error('Missing required field: product');
+        if (!productId) {
+            throw new Error('Missing required field: productId');
         }
 
-        const updatedCart = await user.addToCart(product);
+        const updatedUser = await user.addToCart(productId);
 
-        res.status(200).json({ success: true, data: updatedCart });
+        if (!updatedUser) {
+            throw new Error(`Couldn't add productId: ${productId} to cart`);
+        }
+
+        res.status(200).json({ success: true, data: updatedUser.cart });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

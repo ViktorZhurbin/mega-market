@@ -1,2 +1,2 @@
 export * from './GenericObject';
-export * from './GenericResponse';
+export * from './ApiResponse';

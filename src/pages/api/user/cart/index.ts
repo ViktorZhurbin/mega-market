@@ -9,19 +9,22 @@ const handler = async (
     try {
         const { method, user } = req;
 
-        if (method !== 'PUT') {
-            throw new Error('Request method must be PUT');
+        if (method !== 'GET') {
+            throw new Error('Request method must be GET');
         }
 
-        const updatedUser = await user.clearCart();
-
-        if (!updatedUser) {
-            throw new Error(`Couldn't clear cart`);
-        }
+        const quantity = await user.getCartQty();
+        const total = await user.getCartAmount();
+        const { cart } = await user.populate('cart.product').execPopulate();
 
         res.status(200).json({
             success: true,
-            data: updatedUser.cart,
+            data: {
+                userId: user._id,
+                products: cart,
+                quantity,
+                total,
+            },
         });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
