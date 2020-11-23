@@ -9,7 +9,7 @@
         "debug": "NODE_OPTIONS='--inspect' next dev",
         "build": "next build",
         "start": "next start",
-        "prettier": "prettier --write 'src/**/*.(js|jsx|tsx|ts)'",
+        "prettier": "prettier --write 'src/**/*.(js|jsx|tsx|ts|json)'",
         "lint": "eslint src",
         "lint:fix": "eslint src --fix",
         "stylelint": "stylelint 'src/**/*.css'",
