@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { UserModel } from '@/modules/user/models';
+import { UserModel } from '@/db/models';
 import { UserType } from '@/modules/user/typings';
 import { dbConnect } from '@/utils/api/db';
 

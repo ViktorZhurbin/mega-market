@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 
+import { ProductModel } from '@/db/models';
 import { Home } from '@/modules/home/pages';
-import { ProductModel } from '@/modules/product/models';
 import { ProductType } from '@/modules/product/typings';
 import { dbConnect } from '@/utils/api/db';
 

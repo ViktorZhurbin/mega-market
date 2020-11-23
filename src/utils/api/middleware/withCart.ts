@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/client';
 
-import { CartDocument, CartModel } from '@/modules/cart/models';
+import { CartDocument, CartModel } from '@/db/models';
 import { dbConnect } from '@/utils/api/db';
 
 export type CartApiRequest = NextApiRequest & {

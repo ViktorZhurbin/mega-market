@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import { productSchema } from '@/modules/product/models';
+import { productSchema } from './Product';
 
 export const orderSchema = new mongoose.Schema({
     userId: {

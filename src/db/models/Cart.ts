@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 
-import { productSchema } from '@/modules/product/models';
+import { CartItemType, CartType } from '../../modules/cart/typings';
+import { productSchema } from './Product';
 
-import { CartItemType, CartType } from '../typings';
-
-export type CartItemDocumentType = CartItemType[] & mongoose.Document;
+type CartItemDocumentType = CartItemType[] & mongoose.Document;
 
 export type CartDocument = mongoose.Document &
     Omit<CartType, 'products'> & {
