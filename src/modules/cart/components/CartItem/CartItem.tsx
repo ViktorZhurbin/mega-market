@@ -20,7 +20,6 @@ export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
     useEffect(() => {
         if (updatedQty && updatedQty !== quantity.toString()) {
             updateCartQty(product._id, updatedQty).then(() => {
-                console.log('onChange');
                 onChange();
             });
         }
