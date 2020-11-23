@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import { UserApiRequest, withUser } from '@/utils/api/middleware';
+import { CartApiRequest, withCart } from '@/utils/api/middleware';
 
 // Set your secret key. Remember to switch to your live secret key in production!
 // See your keys here: https://dashboard.stripe.com/account/apikeys
@@ -8,11 +8,11 @@ import { UserApiRequest, withUser } from '@/utils/api/middleware';
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 const handler = async (
-    req: UserApiRequest,
+    req: CartApiRequest,
     res: NextApiResponse
 ): Promise<any> => {
     try {
-        const { cart } = req.body;
+        const { cart } = req;
 
         if (!cart) {
             throw new Error('Missing required fields: cart');
@@ -43,4 +43,4 @@ const handler = async (
     }
 };
 
-export default withUser(handler);
+export default withCart(handler);
