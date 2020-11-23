@@ -1,36 +1,33 @@
-import { useSession } from 'next-auth/client';
 import { useState } from 'react';
 
 import { ControlButtons } from '@/modules/admin/components/ControlButtons';
+import { UserType } from '@/modules/user/typings';
 
 import styles from './User.module.css';
 
-export const User: React.FC = () => {
+export const User: React.FC<{ user: UserType }> = ({ user }) => {
     const [imageError, setImageError] = useState(false);
-    const [session, loading] = useSession();
+
+    if (!user) {
+        return null;
+    }
 
     return (
-        !loading && (
-            <div className={styles.container}>
-                <div className={styles.header}>
-                    {session.user.image && !imageError ? (
-                        <img
-                            className={styles.photo}
-                            src={session.user.image}
-                            alt="User Photo"
-                            onError={() => setImageError(true)}
-                        />
-                    ) : (
-                        <div className={styles.fallbackPhoto}>
-                            {session.user.name[0]}
-                        </div>
-                    )}
-                    <span className={styles.name}>
-                        {session.user.name || session.user.email}
-                    </span>
-                </div>
-                {session?.userRole === 'admin' && <ControlButtons />}
+        <div className={styles.container}>
+            <div className={styles.header}>
+                {user.image && !imageError ? (
+                    <img
+                        className={styles.photo}
+                        src={user.image}
+                        alt="User Photo"
+                        onError={() => setImageError(true)}
+                    />
+                ) : (
+                    <div className={styles.fallbackPhoto}>{user.name?.[0]}</div>
+                )}
+                <span className={styles.name}>{user.name || user.email}</span>
             </div>
-        )
+            {user.role === 'admin' && <ControlButtons />}
+        </div>
     );
 };

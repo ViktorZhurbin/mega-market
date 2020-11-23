@@ -13,12 +13,9 @@ const handler = async (
             throw new Error('Request method must be GET');
         }
 
-        res.status(200).json({
-            success: true,
-            data: user,
-        });
+        res.status(200).json({ user });
     } catch (error) {
-        res.status(400).json({ success: false, error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 
