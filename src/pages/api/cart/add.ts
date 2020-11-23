@@ -33,9 +33,9 @@ const handler = async (
             throw new Error(`Couldn't add productId: ${product._id} to cart`);
         }
 
-        res.status(200).json({ success: true, data: updatedCart });
+        res.status(200).json(updatedCart);
     } catch (error) {
-        res.status(400).json({ success: false, error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 

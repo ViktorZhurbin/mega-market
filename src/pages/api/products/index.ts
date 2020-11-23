@@ -19,8 +19,8 @@ export default async (
         const filter = typeof body === 'object' ? body : {};
         const products = await ProductModel.find(filter);
 
-        res.status(200).json({ success: true, data: products });
+        res.status(200).json(products);
     } catch (error) {
-        res.status(400).json({ success: false, error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };

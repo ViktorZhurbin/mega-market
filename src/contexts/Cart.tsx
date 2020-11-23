@@ -10,7 +10,7 @@ export const CartProvider: React.FC = ({ children }) => {
     const [session] = useSession();
 
     const cart = useData<CartType>(
-        session ? `/api/user/cart/${session.userId}` : null
+        session ? `/api/cart/${session.userId}` : null
     );
 
     return <CartContext.Provider value={cart}>{children}</CartContext.Provider>;

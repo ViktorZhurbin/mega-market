@@ -9,7 +9,7 @@ const handler = async (
     try {
         const {
             method,
-            body: { productId },
+            body: { productId, quantity },
             cart,
         } = req;
 
@@ -20,20 +20,22 @@ const handler = async (
         if (!productId) {
             throw new Error('Missing required field: productId');
         }
+        if (!quantity) {
+            throw new Error('Missing required field: quantity');
+        }
 
-        cart.products.id(productId).remove();
-
+        cart.products.id(productId).set({ quantity });
         const updatedCart = await cart.save();
 
         if (!updatedCart) {
             throw new Error(
-                `Couldn't delete productId: ${productId} from cart`
+                `Couldn't update quntity for productId: ${productId} in cart`
             );
         }
 
-        res.status(200).json({ success: true, data: updatedCart });
+        res.status(200).json(updatedCart);
     } catch (error) {
-        res.status(400).json({ success: false, error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 

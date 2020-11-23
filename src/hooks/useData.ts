@@ -11,10 +11,10 @@ export type Response<Data> = {
 };
 
 export const useData = <Data>(key: string): Response<Data> => {
-    const { data, error, mutate } = useSWR<{ data: Data }>(key, fetcher);
+    const { data, error, mutate } = useSWR<Data>(key, fetcher);
 
     return {
-        data: data?.data,
+        data,
         isLoading: !error && !data,
         error,
         mutate,
