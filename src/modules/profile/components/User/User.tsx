@@ -1,35 +1,35 @@
-import { useContext, useState } from 'react';
+import { useSession } from 'next-auth/client';
+import { useState } from 'react';
 
-import { UserContext } from '@/contexts';
 import { ControlButtons } from '@/modules/admin/components/ControlButtons';
 
 import styles from './User.module.css';
 
 export const User: React.FC = () => {
     const [imageError, setImageError] = useState(false);
-    const { data, isLoading } = useContext(UserContext);
+    const [session, loading] = useSession();
 
     return (
-        !isLoading && (
+        !loading && (
             <div className={styles.container}>
                 <div className={styles.header}>
-                    {data.image && !imageError ? (
+                    {session.user.image && !imageError ? (
                         <img
                             className={styles.photo}
-                            src={data.image}
+                            src={session.user.image}
                             alt="User Photo"
                             onError={() => setImageError(true)}
                         />
                     ) : (
                         <div className={styles.fallbackPhoto}>
-                            {data.name[0]}
+                            {session.user.name[0]}
                         </div>
                     )}
                     <span className={styles.name}>
-                        {data.name || data.email}
+                        {session.user.name || session.user.email}
                     </span>
                 </div>
-                {data?.role === 'admin' && <ControlButtons />}
+                {session?.userRole === 'admin' && <ControlButtons />}
             </div>
         )
     );

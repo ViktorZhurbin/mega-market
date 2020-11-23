@@ -1,8 +1,7 @@
 import { loadStripe } from '@stripe/stripe-js';
-import { useContext } from 'react';
 
 import { Button } from '@/components/Button';
-import { UserContext } from '@/contexts';
+import { useCart } from '@/hooks/useCart';
 import { createCheckoutSession } from '@/modules/cart/services';
 
 import { CartItem } from '../CartItem';
@@ -13,7 +12,7 @@ import styles from './Cart.module.css';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 export const Cart: React.FC = () => {
-    const { data, isLoading, mutate } = useContext(UserContext);
+    const { data: cart, isLoading, mutate } = useCart();
     const handleCheckout = async () => {
         const stripe = await stripePromise;
         await createCheckoutSession(stripe);
@@ -23,14 +22,14 @@ export const Cart: React.FC = () => {
         return <div>Loading cart...</div>;
     }
 
-    if (!data?.cart?.quantity) {
+    if (!cart.products.length) {
         return <EmptyCart />;
     }
 
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Cart</h1>
-            {data.cart.products.map(({ product, quantity }) => (
+            {cart.products.map(({ product, quantity }) => (
                 <CartItem
                     key={product._id}
                     product={product}
@@ -45,7 +44,7 @@ export const Cart: React.FC = () => {
             >
                 Checkout
             </Button>
-            <Summary quantity={data.cart.quantity} total={data.cart.total} />
+            <Summary quantity={cart.quantity} total={cart.total} />
         </div>
     );
 };

@@ -1,36 +1,42 @@
 import { NextApiResponse } from 'next';
 
-import { UserApiRequest, withUser } from '@/utils/api/middleware';
+import { CartApiRequest, withCart } from '@/utils/api/middleware';
 
 const handler = async (
-    req: UserApiRequest,
+    req: CartApiRequest,
     res: NextApiResponse
 ): Promise<any> => {
     try {
         const {
             method,
-            body: { productId },
-            user,
+            body: { product },
+            cart,
         } = req;
 
         if (method !== 'PUT') {
             throw new Error('Request method must be PUT');
         }
 
-        if (!productId) {
-            throw new Error('Missing required field: productId');
+        if (!product) {
+            throw new Error('Missing required field: product');
         }
 
-        const updatedUser = await user.addToCart(productId);
+        const cartItem = cart.products.id(product._id);
 
-        if (!updatedUser) {
-            throw new Error(`Couldn't add productId: ${productId} to cart`);
+        cartItem
+            ? cartItem.set({ quantity: cartItem.quantity + 1 })
+            : cart.products.push({ _id: product._id, product, quantity: 1 });
+
+        const updatedCart = await cart.save();
+
+        if (!updatedCart) {
+            throw new Error(`Couldn't add productId: ${product._id} to cart`);
         }
 
-        res.status(200).json({ success: true, data: updatedUser.cart });
+        res.status(200).json({ success: true, data: updatedCart });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }
 };
 
-export default withUser(handler);
+export default withCart(handler);

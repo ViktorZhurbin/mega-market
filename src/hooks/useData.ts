@@ -6,7 +6,7 @@ const fetcher = (input: RequestInfo, init?: RequestInit) =>
 export type Response<Data> = {
     data: Data;
     isLoading: boolean;
-    error: boolean | undefined;
+    error: any;
     mutate(): void;
 };
 

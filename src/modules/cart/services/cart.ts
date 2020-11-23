@@ -1,6 +1,7 @@
 import { Stripe } from '@stripe/stripe-js';
 
 import { CartItemType } from '@/modules/cart/typings';
+import { ProductType } from '@/modules/product/typings';
 import { ApiResponse } from '@/typings';
 import { fetcher } from '@/utils/api/helpers';
 
@@ -19,9 +20,9 @@ export const deleteCartItem = (
     fetcher('/api/user/cart/deleteOne', 'PUT', { productId });
 
 export const addToCart = (
-    productId: string
+    product: ProductType
 ): Promise<ApiResponse<CartItemType>> =>
-    fetcher('/api/user/cart/add', 'PUT', { productId });
+    fetcher('/api/user/cart/add', 'PUT', { product });
 
 export const createCheckoutSession = async (stripe: Stripe): Promise<any> => {
     const session = await fetcher('/api/checkout/session', 'POST');

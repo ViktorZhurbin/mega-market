@@ -1,28 +1,23 @@
 import React from 'react';
 
 import { Layout } from '@/components/Layout';
-import { useData } from '@/hooks/useData';
 import { ProductType } from '@/modules/product/typings';
 
 import { ProductItem } from '../../components/ProductItem';
 import styles from './Home.module.css';
 
-export const Home: React.FC = () => {
-    const { data, isLoading, error } = useData<ProductType[]>(
-        '/api/product/get'
-    );
+type Props = {
+    products: ProductType[];
+};
 
+export const Home: React.FC<Props> = ({ products }) => {
     return (
         <Layout>
-            {isLoading && <span>Loading products...</span>}
-            {error && <span>ERROR fetching products!</span>}
-            {data && (
-                <div className={styles.container}>
-                    {data.map((product) => (
-                        <ProductItem key={product._id} product={product} />
-                    ))}
-                </div>
-            )}
+            <div className={styles.container}>
+                {products.map((product) => (
+                    <ProductItem key={product._id} product={product} />
+                ))}
+            </div>
         </Layout>
     );
 };

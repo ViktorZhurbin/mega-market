@@ -12,8 +12,11 @@ const handler = async (
     res: NextApiResponse
 ): Promise<any> => {
     try {
-        const { user } = req.body;
-        const { cart } = await user.populate('cart.product').execPopulate();
+        const { cart } = req.body;
+
+        if (!cart) {
+            throw new Error('Missing required fields: cart');
+        }
 
         const line_items = cart.products.map(({ product, quantity }) => ({
             price_data: {

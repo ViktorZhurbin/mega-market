@@ -1,10 +1,17 @@
+import { Response } from '@/hooks/useData';
 import { ProductType } from '@/modules/product/typings';
 
 export type CartItemType = {
-    product: string;
+    _id: string;
+    product: ProductType;
     quantity: number;
 };
 
-export type PopulatedCartItemType = Omit<CartItemType, 'product'> & {
-    product: ProductType;
+export type CartType = {
+    userId: string;
+    products: CartItemType[];
+    quantity: number;
+    total: number;
 };
+
+export type CartResponse = Response<CartType>;

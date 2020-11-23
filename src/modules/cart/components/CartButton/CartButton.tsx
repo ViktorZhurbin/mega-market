@@ -1,21 +1,21 @@
 import { signIn, useSession } from 'next-auth/client';
-import { useContext } from 'react';
 
 import { Button } from '@/components/Button';
-import { UserContext } from '@/contexts';
+import { useCart } from '@/hooks/useCart';
 import { addToCart } from '@/modules/cart/services';
+import { ProductType } from '@/modules/product/typings';
 import { getDeclension } from '@/utils/string';
 
-export const CartButton: React.FC<{ productId: string }> = ({ productId }) => {
+export const CartButton: React.FC<{ product: ProductType }> = ({ product }) => {
     const [session, loading] = useSession();
-    const { data, isLoading, mutate } = useContext(UserContext);
-    const cartItem = data?.cart.products.find(({ product }) => {
-        return product._id === productId;
+    const { data, isLoading, mutate } = useCart();
+    const cartItem = data?.products.find((item) => {
+        return item.product._id === product._id;
     });
     const isInCart = Boolean(cartItem);
 
     const handleAddToCart = async () => {
-        await addToCart(productId);
+        await addToCart(product);
         mutate();
     };
     const cartBtnText = isInCart

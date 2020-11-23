@@ -7,19 +7,17 @@ const handler = async (
     res: NextApiResponse
 ): Promise<any> => {
     try {
-        const { method, cart } = req;
+        const { method, query, cart } = req;
 
-        if (method !== 'PUT') {
-            throw new Error('Request method must be PUT');
+        if (method !== 'GET') {
+            throw new Error('Request method must be GET');
         }
 
-        cart.set({ products: [] });
-        const updatedCart = await cart.save();
+        if (!query?.userId) {
+            throw new Error('Missing required query param: userId');
+        }
 
-        res.status(200).json({
-            success: true,
-            data: updatedCart,
-        });
+        res.status(200).json({ success: true, data: cart });
     } catch (error) {
         res.status(400).json({ success: false, error: error.message });
     }

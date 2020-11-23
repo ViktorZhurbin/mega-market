@@ -26,7 +26,7 @@ const CardForm: React.FC = () => {
         const cardElement = elements.getElement(CardElement);
 
         // Use your card Element with other Stripe.js APIs
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card: cardElement,
         });
@@ -49,9 +49,7 @@ const CardForm: React.FC = () => {
         }
 
         if (error) {
-            console.log('[error]', error);
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
+            console.error('[error]', error);
         }
     };
 

@@ -12,10 +12,10 @@ type Props = {
 };
 
 export const Product: React.FC<Props> = ({ product }) => {
-    const { _id, image, title, description, price } = product;
+    const { image, title, description, price } = product;
 
     return (
-        <Layout stickyItem={<CartButton productId={_id} />}>
+        <Layout stickyItem={<CartButton product={product} />}>
             <div className={styles.container}>
                 <Image
                     src={image}
