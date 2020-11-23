@@ -36,16 +36,6 @@ export const ControlButtons: React.FC = () => {
         <>
             <h1>Admin Controls</h1>
             <div className={styles.container}>
-                <div className={styles.btnContainer}>
-                    <h2 className={styles.title}>Cart</h2>
-                    <Button
-                        className={styles.btn}
-                        color="red"
-                        onClick={clearCart}
-                    >
-                        Clear
-                    </Button>
-                </div>
                 <h2 className={styles.title}>Products</h2>
                 <div className={styles.btnContainer}>
                     <Button
@@ -66,6 +56,16 @@ export const ControlButtons: React.FC = () => {
 
                     <Button className={styles.btn} onClick={repopulateDb}>
                         Delete & Add
+                    </Button>
+                </div>
+                <div className={styles.btnContainer}>
+                    <h2 className={styles.title}>Cart</h2>
+                    <Button
+                        className={styles.btn}
+                        color="red"
+                        onClick={clearCart}
+                    >
+                        Clear
                     </Button>
                 </div>
             </div>

@@ -1,5 +1,7 @@
+import { signOut } from 'next-auth/client';
 import { useState } from 'react';
 
+import { Button } from '@/components/Button';
 import { ControlButtons } from '@/modules/admin/components/ControlButtons';
 import { UserType } from '@/modules/user/typings';
 
@@ -7,6 +9,7 @@ import styles from './User.module.css';
 
 export const User: React.FC<{ user: UserType }> = ({ user }) => {
     const [imageError, setImageError] = useState(false);
+    const handleSignOut = () => signOut({ callbackUrl: '/' });
 
     if (!user) {
         return null;
@@ -27,6 +30,9 @@ export const User: React.FC<{ user: UserType }> = ({ user }) => {
                 )}
                 <span className={styles.name}>{user.name || user.email}</span>
             </div>
+            <Button color="red" onClick={handleSignOut}>
+                Sign out
+            </Button>
             {user.role === 'admin' && <ControlButtons />}
         </div>
     );
