@@ -1,3 +1,5 @@
+import cx from 'classnames';
+
 import { useCart } from '@/hooks/useCart';
 
 import IconCart from './icons/cart.svg';
@@ -12,7 +14,11 @@ export const Nav: React.FC = ({ children }) => {
     return (
         <nav className={styles.container}>
             <div className={styles.sticky}>{children}</div>
-            <div className={styles.linkWrapper}>
+            <div
+                className={cx(styles.linkWrapper, {
+                    [styles.withSticky]: Boolean(children),
+                })}
+            >
                 <NavLink title="Home" icon={<IconHome />} href="/" />
                 <NavLink
                     title="Cart"

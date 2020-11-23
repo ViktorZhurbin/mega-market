@@ -1,6 +1,7 @@
 .container {
     position: sticky;
     bottom: 0;
+    margin: 0 -16px;
     z-index: 15;
     background-color: #fff;
     display: flex;
@@ -12,15 +13,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 -2px 5px -2px rgba(0, 0, 0, 0.12);
 }
 
 .linkWrapper {
     display: flex;
     padding: 10px 0;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    margin: 0 -16px;
+    box-shadow: 0 -2px 5px -2px rgba(0, 0, 0, 0.12);
     align-items: stretch;
     max-width: 100vw;
     box-sizing: border-box;
     overflow: hidden;
+}
+
+.linkWrapper.withSticky {
+    box-shadow: none;
 }
