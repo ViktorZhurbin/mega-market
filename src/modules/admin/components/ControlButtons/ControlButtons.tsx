@@ -29,7 +29,7 @@ export const ControlButtons: React.FC = () => {
     };
     const repopulateDb = async () => {
         await clearDb();
-        fillDb();
+        await fillDb();
     };
 
     return (

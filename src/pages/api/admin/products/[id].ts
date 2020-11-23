@@ -13,20 +13,11 @@ export default async (
         const session = await getSession({ req });
 
         if (!session) {
-            res.status(401).json({ success: false, error: 'Unauthorized' });
+            res.status(401).json({ error: 'Unauthorized' });
             throw new Error('Unauthorized');
         }
 
         await dbConnect();
-
-        if (method === 'DELETE') {
-            if (!query.id) {
-                throw new Error('Missing required field: id');
-            }
-            const result = await ProductModel.deleteOne({ _id: query.id });
-
-            res.status(200).json(result);
-        }
 
         if (method !== 'PUT') {
             if (!body.payload) {

@@ -14,7 +14,7 @@ export default async (
         const session = await getSession({ req });
 
         if (!session) {
-            res.status(401).json({ success: false, error: 'Unauthorized' });
+            res.status(401).json({ error: 'Unauthorized' });
             throw new Error('Unauthorized');
         }
 
