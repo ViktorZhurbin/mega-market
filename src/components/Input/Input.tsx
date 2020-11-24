@@ -1,5 +1,4 @@
 import cx from 'classnames';
-import React, { forwardRef } from 'react';
 
 import styles from './Input.module.css';
 
@@ -20,42 +19,36 @@ interface InputProps {
     type?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-    (
-        {
-            className,
-            value = '',
-            placeholder = '',
-            onBlur,
-            onFocus,
-            onChange,
-            onTouchMove,
-            onKeyDown,
-            type = 'text',
-            ...props
-        },
-        ref
-    ) => {
-        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-            onChange(event.target.value);
-        };
+export const Input: React.FC<InputProps> = ({
+    className,
+    value = '',
+    placeholder = '',
+    onBlur,
+    onFocus,
+    onChange,
+    onTouchMove,
+    onKeyDown,
+    type = 'text',
+    ...props
+}) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(event.target.value);
+    };
 
-        return (
-            <input
-                ref={ref}
-                className={cx(styles.input, className)}
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                onChange={handleChange}
-                onKeyDown={onKeyDown}
-                onBlur={onBlur}
-                onFocus={onFocus}
-                onTouchMove={onTouchMove}
-                {...props}
-            />
-        );
-    }
-);
+    return (
+        <input
+            className={cx(styles.input, className)}
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            onChange={handleChange}
+            onKeyDown={onKeyDown}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            onTouchMove={onTouchMove}
+            {...props}
+        />
+    );
+};
 
 Input.displayName = 'Input';
