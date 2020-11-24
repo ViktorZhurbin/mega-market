@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
 import { Layout } from '@/components/Layout';
-import { CartButton } from '@/modules/cart/components/CartButton/CartButton';
 import { formatPrice } from '@/utils/string';
 
+import { AddToCartButton } from '../../components/AddToCartButton';
 import { ProductType } from '../../typings';
 import styles from './Product.module.css';
 
@@ -15,7 +15,7 @@ export const Product: React.FC<Props> = ({ product }) => {
     const { image, title, description, price } = product;
 
     return (
-        <Layout stickyItem={<CartButton product={product} />}>
+        <Layout stickyItem={<AddToCartButton product={product} />}>
             <div className={styles.container}>
                 <Image
                     src={image}
