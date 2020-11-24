@@ -19,48 +19,38 @@ interface TextAreaProps {
     ref?: React.RefObject<HTMLTextAreaElement>;
 }
 
-export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-    (
-        {
-            className,
-            value = '',
-            placeholder = '',
-            onBlur,
-            onFocus,
-            onChange,
-            onTouchMove,
-            onKeyDown,
-            rows = 1,
-        },
-        ref
-    ) => {
-        const handleChange = (
-            event: React.ChangeEvent<HTMLTextAreaElement>
-        ) => {
-            const value = event.target.value.replace(/\r?\n|\r/, '');
-            onChange(value);
-        };
+export const TextArea: React.FC<TextAreaProps> = ({
+    className,
+    value = '',
+    placeholder = '',
+    onBlur,
+    onFocus,
+    onChange,
+    onTouchMove,
+    onKeyDown,
+    rows = 1,
+}) => {
+    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const value = event.target.value.replace(/\r?\n|\r/, '');
+        onChange(value);
+    };
 
-        return (
-            <div
-                className={cx(styles.wrapper, className)}
-                data-value={String(value).trim()}
-            >
-                <textarea
-                    ref={ref}
-                    className={styles.textarea}
-                    rows={rows}
-                    placeholder={placeholder}
-                    value={value}
-                    onChange={handleChange}
-                    onKeyDown={onKeyDown}
-                    onBlur={onBlur}
-                    onFocus={onFocus}
-                    onTouchMove={onTouchMove}
-                />
-            </div>
-        );
-    }
-);
-
-TextArea.displayName = 'TextArea';
+    return (
+        <div
+            className={cx(styles.wrapper, className)}
+            data-value={String(value).trim()}
+        >
+            <textarea
+                className={styles.textarea}
+                rows={rows}
+                placeholder={placeholder}
+                value={value}
+                onChange={handleChange}
+                onKeyDown={onKeyDown}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                onTouchMove={onTouchMove}
+            />
+        </div>
+    );
+};
