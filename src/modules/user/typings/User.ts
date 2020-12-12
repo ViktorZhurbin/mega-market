@@ -1,13 +1,13 @@
 import { CartItemType } from '@/modules/cart/typings';
 
-export type SessionUserType = {
+export interface SessionUserType {
     _id?: string;
     name: string;
     email?: string;
     image?: string;
     role?: string;
-};
+}
 
-export type UserType = SessionUserType & {
+export interface UserType extends SessionUserType {
     cart: CartItemType[];
-};
+}

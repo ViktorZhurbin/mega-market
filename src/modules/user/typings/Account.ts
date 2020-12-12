@@ -1,4 +1,4 @@
-export type AccountType = {
+export interface AccountType {
     compoundId: string;
     userId: string;
     providerType: string;
@@ -6,4 +6,4 @@ export type AccountType = {
     accessToken: string;
     createdAt: Date;
     updatedAt: Date;
-};
+}

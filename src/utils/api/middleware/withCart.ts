@@ -4,9 +4,10 @@ import { getSession } from 'next-auth/client';
 import { CartDocument, CartModel } from '@/db/models';
 import { dbConnect } from '@/utils/api/db';
 
-export type CartApiRequest = NextApiRequest & {
+export interface CartApiRequest extends NextApiRequest {
     cart: CartDocument;
-};
+}
+
 type Handler = (req: CartApiRequest, res: NextApiResponse) => Promise<any>;
 
 export const withCart = (handler: Handler) => async (
