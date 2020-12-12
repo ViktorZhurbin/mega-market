@@ -2,7 +2,7 @@ import cx from 'classnames';
 
 import styles from './Input.module.css';
 
-interface InputProps {
+type InputProps = {
     className?: string;
     value: string;
     placeholder?: string;
@@ -12,12 +12,12 @@ interface InputProps {
     step?: string;
     onBlur?(): void;
     onFocus?(): void;
-    onChange: (value: string) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: React.KeyboardEvent) => void;
     onTouchMove?(): void;
     ref?: React.RefObject<HTMLInputElement>;
     type?: string;
-}
+};
 
 export const Input: React.FC<InputProps> = ({
     className,
@@ -31,17 +31,13 @@ export const Input: React.FC<InputProps> = ({
     type = 'text',
     ...props
 }) => {
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onChange(event.target.value);
-    };
-
     return (
         <input
             className={cx(styles.input, className)}
             type={type}
             placeholder={placeholder}
             value={value}
-            onChange={handleChange}
+            onChange={onChange}
             onKeyDown={onKeyDown}
             onBlur={onBlur}
             onFocus={onFocus}

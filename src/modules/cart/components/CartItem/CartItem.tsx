@@ -43,7 +43,7 @@ export const CartItem: React.FC<Props> = ({ product, quantity, onChange }) => {
                     className={styles.quantity}
                     type="number"
                     min={1}
-                    onChange={setQty}
+                    onChange={(e) => setQty(e.target.value)}
                 />
                 <span className={styles.delete} onClick={handleDelete}>
                     Delete
